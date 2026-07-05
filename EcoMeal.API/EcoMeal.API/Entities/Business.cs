@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EcoMeal.API.Entities;
 
 public class Business
 {
+    [Key]
     public int Id { get; set; }
     public required string Name { get; set; }
     public required string Adress { get; set; }
@@ -13,4 +15,5 @@ public class Business
     public int BusinessTypeId { get; set; }
 
     public required BusinessType BusinessType { get; set; }
+    public ICollection<Package> Packages = new List<Package>();
 }
