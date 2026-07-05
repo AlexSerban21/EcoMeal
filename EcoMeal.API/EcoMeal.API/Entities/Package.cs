@@ -16,4 +16,5 @@ public class Package
     public required DateTime EndRidicare { get; set; }
     public required Business Business { get; set; }
     public required PackageType PackageType { get; set; }
+    public ICollection<Order> Orders { get; set; } = new List<Order>();
 }

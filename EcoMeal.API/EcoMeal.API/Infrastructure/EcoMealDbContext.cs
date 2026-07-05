@@ -20,12 +20,15 @@ public class EcoMealDbContext : DbContext
         //modelBuilder.Entity<Business>().HasKey(e => e.Id);
         //modelBuilder.Entity<Package>().HasKey (e => e.Id);
         //modelBuilder.Entity<User>().HasKey(e => e.Id);
+        //modelBuilder.Entity<Order>().HasKey (e => e.Id);
+
 
         //Business
         modelBuilder.Entity<Business>()
             .HasOne (p => p.BusinessType)
             .WithMany(p => p.Businesses)
             .HasForeignKey(p => p.BusinessTypeId);
+
 
         //Package
         modelBuilder.Entity<Package>()
@@ -38,6 +41,17 @@ public class EcoMealDbContext : DbContext
             .WithMany(p => p.Packages)
             .HasForeignKey(p => p.BusinessId);
 
+
+        //Order
+        modelBuilder.Entity<Order>()
+            .HasOne(p => p.User)
+            .WithMany(p => p.Orders)
+            .HasForeignKey(p => p.UserId);
+
+        modelBuilder.Entity<Order>()
+            .HasOne(p => p.Package)
+            .WithMany(p => p.Orders)
+            .HasForeignKey(p => p.PackageId);
 
         base.OnModelCreating(modelBuilder);
     }
