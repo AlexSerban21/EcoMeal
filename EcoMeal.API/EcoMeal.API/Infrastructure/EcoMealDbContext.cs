@@ -23,6 +23,10 @@ public class EcoMealDbContext : DbContext
         //modelBuilder.Entity<Order>().HasKey (e => e.Id);
 
 
+        modelBuilder.Entity<Package>()
+            .Property(p => p.Price)
+            .HasPrecision(10, 2);
+
         //Business
         modelBuilder.Entity<Business>()
             .HasOne (p => p.BusinessType)
