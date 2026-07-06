@@ -191,3 +191,5 @@ C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Deb
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\EcoMeal..D051FB48.Up2Date
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\EcoMeal.API.genruntimeconfig.cache
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\ref\EcoMeal.API.dll
+C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
