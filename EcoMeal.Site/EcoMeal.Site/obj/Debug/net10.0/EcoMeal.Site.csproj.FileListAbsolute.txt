@@ -161,8 +161,6 @@ C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\D
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\compressed\duevhkk73o-{0}-abdmv1u4y3-abdmv1u4y3.gz
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\compressed\b9g4k9czu7-{0}-ne14ti1q68-ne14ti1q68.gz
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\compressed\9fc26t0vjt-{0}-ig5xotzpx5-ig5xotzpx5.gz
-C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\compressed\achjihc609-{0}-gtwe09jvgh-gtwe09jvgh.gz
-C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\compressed\8pt4jngotk-{0}-gtwe09jvgh-gtwe09jvgh.gz
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\staticwebassets.build.json
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\staticwebassets.build.json.cache
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\staticwebassets.development.json
@@ -171,3 +169,5 @@ C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\D
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\EcoMeal.Site.genruntimeconfig.cache
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\ref\EcoMeal.Site.dll
+C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\compressed\achjihc609-{0}-0b8amm0qbe-0b8amm0qbe.gz
+C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\compressed\8pt4jngotk-{0}-0b8amm0qbe-0b8amm0qbe.gz

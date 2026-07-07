@@ -1,11 +1,10 @@
 ﻿@namespace EcoMeal.Site.Components.BusinessCard
-
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
-        <h5 class="card-title">@Business.Name</h5>
-        <p class="card-text">@Business.Description</p>
-        <p class="card-text">@Business.Adress</p>
-        <p class="card-text">@Business.Contact</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="card" style="width: 17rem; height: 22rem">
+    <div class="card-body text-center rounded-1 shadow border border-1 border-dark bg-body-secondary">
+        <h5 class="card-title text-black fs-3 fw-bold">@Business.Name</h5>
+        <p class="card-text text-danger fs-5 fw-bold">@Business.Description</p>
+        <p class="card-text text-primary-emphasis fw-bold fs-5">We are in @Business.Adress</p>
+        <p class="card-text text-warning-emphasis fs-5 fw-bold text-decoration-underline">Email us on: <br> @Business.Contact</p>
+        <a href="#" class="btn btn-primary bg-black" @onclick="Delete">Delete!</a>
     </div>
 </div>

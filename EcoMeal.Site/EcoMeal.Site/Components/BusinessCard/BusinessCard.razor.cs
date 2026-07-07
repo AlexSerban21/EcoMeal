@@ -7,7 +7,13 @@ public partial class BusinessCard
 {
     [Parameter]
     public required BusinessModel Business {  get; set; }
+    [Parameter]
+    public EventCallback<int> OnDelete { get; set; }
     [Inject]
     public required BusinessService BusinessService { get; set; }
-    
+    public async Task Delete ()
+    {
+        Console.WriteLine("b");
+        await OnDelete.InvokeAsync(Business.Id);
+    }
 }

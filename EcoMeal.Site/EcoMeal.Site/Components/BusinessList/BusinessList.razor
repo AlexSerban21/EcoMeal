@@ -7,11 +7,13 @@
 }
 else
 {
-	@foreach (var Business in Businesses)
-	{
-		<div class="col-3">
-			<BusinessCard Business="Business"></BusinessCard>
-		</div>
-	}
+	<div class="row row-cols-xxl-4 row-cols-xl-3 row-cols-md-2 row-cols-sm-1 row-cols-1">
+		@foreach (var Business in Businesses)
+		{
+			<div>
+				<BusinessCard Business="@Business" OnDelete="DeleteBusiness"/>
+			</div>
+		}
+	</div>
 }
 
