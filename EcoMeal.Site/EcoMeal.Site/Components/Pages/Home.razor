@@ -3,6 +3,11 @@
 @using EcoMeal.Site.Components.BusinessList
 <PageTitle>Home</PageTitle>
 
-<p class="text-center fs-2 fw-bold text-dark lh-1">Here are the businesses available!!</p>
-
+<div class="d-flex justify-content-between align-items-center mt-4 mb-3">
+    <p class="text-center fs-2 fw-bold text-dark lh-1">Here are the businesses available!!</p>
+    <button type="button"
+            class="btn btn-primary" @onclick="NavigateToAddBusiness">
+        + Adaugă pachet
+    </button>
+</div>
 <BusinessList/>

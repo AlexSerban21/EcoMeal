@@ -4,6 +4,7 @@ using EcoMeal.API.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcoMeal.API.Migrations
 {
     [DbContext(typeof(EcoMealDbContext))]
-    partial class EcoMealDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260708152338_No_Package_Deleted")]
+    partial class No_Package_Deleted
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,7 +73,7 @@ namespace EcoMeal.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BusinessTypes");
+                    b.ToTable("BusinessType");
                 });
 
             modelBuilder.Entity("EcoMeal.API.Entities.Order", b =>
@@ -123,6 +126,9 @@ namespace EcoMeal.API.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("No_Package")
+                        .HasColumnType("int");
 
                     b.Property<int>("PackageTypeId")
                         .HasColumnType("int");

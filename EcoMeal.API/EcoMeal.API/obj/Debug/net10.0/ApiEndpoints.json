@@ -83,6 +83,88 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "EcoMeal.API.Application.BusinessController",
+    "Method": "GetPackagesFromBusinessId",
+    "RelativePath": "api/Business/{id}/packages",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[EcoMeal.API.Application.Models.PackageGetDTO, EcoMeal.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EcoMeal.API.Application.BusinessController",
+    "Method": "AddBusiness",
+    "RelativePath": "api/Business/addBusiness",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "business",
+        "Type": "EcoMeal.API.Application.BusinessAddDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcoMeal.API.Application.BusinessController",
+    "Method": "GetBusinessTypes",
+    "RelativePath": "api/Business/businessTypes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[EcoMeal.API.Application.Models.BusinessTypeDTO, EcoMeal.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EcoMeal.API.Application.BusinessController",
+    "Method": "GetPackageTypes",
+    "RelativePath": "api/Business/packageTypes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[EcoMeal.API.Application.Models.PackageTypeDTO, EcoMeal.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "EcoMeal.API.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",

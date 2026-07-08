@@ -1,4 +1,5 @@
 ﻿using EcoMeal.Site.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EcoMeal.Site.Services;
 
@@ -11,7 +12,7 @@ public class BusinessService
     }
     public async Task<List<BusinessModel>> GetAllSync()
     {
-        var businesses = await _http.GetFromJsonAsync<List<BusinessModel>>("/api/Business");
+        var businesses = await _http.GetFromJsonAsync<List<BusinessModel>>("/api/business");
         return businesses ?? new List<BusinessModel>();
     }
     public async Task<bool> DeleteAsync(int id)
@@ -22,13 +23,35 @@ public class BusinessService
 
     public async Task<BusinessDetailsModel?> GetOneById(int id)
     {
-        var business = await _http.GetFromJsonAsync<BusinessDetailsModel>($"api/business/{id}");
+        var business = await _http.GetFromJsonAsync<BusinessDetailsModel>($"/api/business/{id}");
 
         return business;
     }
-
     public async Task AddPackageToBusiness(int businessId, PackageAddModel package)
     {
-        await _http.PostAsJsonAsync($"api/business/{businessId}/addPackage", package);
+        await _http.PostAsJsonAsync($"/api/business/{businessId}/addPackage", package);
+    }
+
+    public async Task<List<PackageTypesModel>> GetPackageTypes ()
+    {
+        var PackageTypes = await _http.GetFromJsonAsync<List<PackageTypesModel>>("/api/Business/packageTypes");
+        return PackageTypes ?? new List<PackageTypesModel>();
+    }
+
+    public async Task<List<PackageModel>> GetPackagesFromBusinessId(int id)
+    {
+        var Packages = await _http.GetFromJsonAsync<List<PackageModel>>($"/api/Business/{id}/packages");
+        return Packages ?? new List<PackageModel>();
+    }
+
+    public async Task AddBusiness (BusinessAddModel business)
+    {
+        await _http.PostAsJsonAsync<BusinessAddModel>("/api/Business/addBusiness", business);
+    }
+
+    public async Task<List<BusinessTypeModel>> GetBusinessTypes()
+    {
+        var BusinessTypes = await _http.GetFromJsonAsync<List<BusinessTypeModel>>("/api/Business/businessTypes");
+        return BusinessTypes ?? new List<BusinessTypeModel>();
     }
 }

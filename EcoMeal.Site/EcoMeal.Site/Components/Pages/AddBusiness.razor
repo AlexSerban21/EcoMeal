@@ -1,0 +1,50 @@
+﻿@page "/addBusiness"
+@rendermode InteractiveServer
+
+<h2>Adauga business</h2>
+
+<EditForm Model="BusinessAddModel">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <label class="form-label">Nume</label>
+    <InputText class="form-control mb-2"
+               @bind-Value="BusinessAddModel.Name"
+               placeholder="Adauga nume pachet" />
+
+    <ValidationMessage For="@(() => BusinessAddModel.Name)" />
+
+    <label class="form-label">Adresa</label>
+    <InputTextArea @bind-Value="BusinessAddModel.Adress"
+                   placeholder="Descriere"
+                   rows="4"
+                   class="form-control mb-2" />
+    
+    <label class="form-label">Descriere</label>
+    <InputTextArea @bind-Value="BusinessAddModel.Description"
+                   placeholder="Descriere"
+                   rows="4"
+                   class="form-control mb-2" />
+
+    <label class="form-label">Contact</label>
+    <InputTextArea @bind-Value="BusinessAddModel.Contact"
+                   placeholder="Descriere"
+                   rows="4"
+                   class="form-control mb-2" />
+
+    <label class="form-label">Tip pachet</label>
+    <InputSelect @bind-Value="BusinessAddModel.BusinessTypeId"
+                 class="form-control mb-2">
+        <option value="0"
+                disabled>Alege tipul...</option>
+        @if (BusinessTypes is not null)
+        {
+            foreach (var packageType in BusinessTypes)
+            {
+                <option value="@packageType.Id">@packageType.Name</option>
+            }
+        }
+    </InputSelect>
+    <button type="submit" class="btn btn-primary mt-3" @onclick="AddBusinessInService">Adaugă pachet</button>
+
+</EditForm>
+

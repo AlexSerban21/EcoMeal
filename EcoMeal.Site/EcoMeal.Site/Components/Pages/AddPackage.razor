@@ -41,12 +41,15 @@
                  class="form-control mb-2">
         <option value="0"
                 disabled>Alege tipul...</option>
-        @* @foreach (var packageType in PackageTypes)
+        @if (PackageTypes is not null)
         {
-            <option value="@packageType.Id">@packageType.Name</option>
-        } *@
+            foreach (var packageType in PackageTypes)
+            {
+                <option value="@packageType.Id">@packageType.Name</option>
+            }
+        }
     </InputSelect>
-    <button type="submit" class="btn btn-primary mt-3" @onclick="AddPackageFunction">Adaugă pachet</button>
+    <button type="submit" class="btn btn-primary mt-3" @onclick="AddPackageInService">Adaugă pachet</button>
 
 </EditForm>
 

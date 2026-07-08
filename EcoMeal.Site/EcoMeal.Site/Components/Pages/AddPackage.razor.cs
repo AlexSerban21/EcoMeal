@@ -11,6 +11,9 @@ namespace EcoMeal.Site.Components.Pages
         public int BusinessId { get; set; }
         [Inject]
         public BusinessService BusinessService { get; set; }
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
+        private List<PackageTypesModel> PackageTypes;
         public PackageAddModel PackageAddModel { get; set; } = new PackageAddModel()
         {
             Name = string.Empty,
@@ -19,9 +22,15 @@ namespace EcoMeal.Site.Components.Pages
             StartPickup = DateTime.Now,
             EndPickup = DateTime.Now.AddHours(2)
         };
-        public async Task AddPackageFunction ()
+        protected override async Task OnInitializedAsync ()
+        {
+            PackageTypes = await BusinessService.GetPackageTypes();
+            PackageTypes = PackageTypes ?? new List<PackageTypesModel> ();
+        }
+        public async Task AddPackageInService ()
         {
             await BusinessService.AddPackageToBusiness(BusinessId, PackageAddModel);
+            NavigationManager.NavigateTo(uri: $"business/{BusinessId}");
         }
     }
 }

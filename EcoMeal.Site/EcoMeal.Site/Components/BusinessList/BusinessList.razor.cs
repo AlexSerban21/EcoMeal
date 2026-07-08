@@ -10,13 +10,11 @@ public partial class BusinessList
     private List <BusinessModel>? Businesses { get; set; }
     protected override async Task OnInitializedAsync()
     {
-        Console.WriteLine("c");
         Businesses = await BusinessService.GetAllSync();
     }
     public async Task DeleteBusiness(int id)
     {
         await BusinessService.DeleteAsync(id);
-        Console.WriteLine("a");
         if (Businesses != null)
         {
             Businesses.RemoveAll (b => b.Id == id);

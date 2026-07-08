@@ -14,6 +14,6 @@ public class Business
     //[ForeignKey(nameof(BusinessType))] ///nameof verifica daca exista clasa!
     public int BusinessTypeId { get; set; }
 
-    public required BusinessType BusinessType { get; set; }
+    public BusinessType? BusinessType { get; set; }
     public ICollection<Package> Packages = new List<Package>();
 }

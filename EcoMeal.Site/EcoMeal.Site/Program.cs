@@ -8,7 +8,7 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddHttpClient("EcoMealAPI", client =>
 {
-    client.BaseAddress = new Uri("http://localhost:5062");
+    client.BaseAddress = new Uri("https://localhost:7206/");
 });
 
 

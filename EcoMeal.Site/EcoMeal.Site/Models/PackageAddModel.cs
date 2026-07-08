@@ -15,6 +15,6 @@ public class PackageAddModel
     public DateTime StartPickup { get; set; }
     [Required]
     public DateTime EndPickup { get; set; }
-    [Required]
+    [Range(1, 20, ErrorMessage = "Alege un tip de pachet.")]
     public int PackageTypeId { get; set; }
 }

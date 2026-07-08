@@ -1,0 +1,19 @@
+﻿@namespace EcoMeal.Site.Components.PackageList
+@using EcoMeal.Site.Components.PackageCard
+
+@if (Packages is null)
+{
+	<p>Loading...</p>
+}
+else
+{
+	<div class="row row-cols-xxl-4 row-cols-xl-3 row-cols-md-2 row-cols-sm-1 row-cols-1 g-3">
+		@foreach (var Package in Packages)
+		{
+			<div>
+				<PackageCard Package="@Package"/>
+			</div>
+		}
+	</div>
+}
+

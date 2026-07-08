@@ -8,7 +8,6 @@ public class Package
     [Key]
     public int Id { get; set; }
     public required string Name { get; set; }
-    public required int No_Package { get; set; }
     public required int BusinessId { get; set; }
     public required int PackageTypeId { get; set; }
     public string? Description { get; set; }

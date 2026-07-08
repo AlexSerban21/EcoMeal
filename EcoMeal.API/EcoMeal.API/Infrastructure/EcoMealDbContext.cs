@@ -9,7 +9,7 @@ public class EcoMealDbContext : DbContext
         : base (options)
     { }
     public DbSet<User> Users { get; set;}
-    public DbSet<BusinessType> BusinessType { get; set;}
+    public DbSet<BusinessType> BusinessTypes { get; set;}
     public DbSet<PackageType> PackageTypes { get; set;}
     public DbSet<Business> Businesses { get; set;}
     public DbSet<Package> Packages { get; set;}

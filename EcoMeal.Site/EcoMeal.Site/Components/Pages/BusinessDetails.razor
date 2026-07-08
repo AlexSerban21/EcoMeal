@@ -1,4 +1,5 @@
 ﻿@page "/business/{Id:int}"
+@using EcoMeal.Site.Components.PackageList
 @using EcoMeal.Site.Models
 @using EcoMeal.Site.Services;
 @rendermode InteractiveServer
@@ -22,6 +23,9 @@
             + Adaugă pachet
         </button>
     </div>
+
+    <PackageList Id="@Business.Id"/>
+
 </div>
 
 @code {
@@ -34,15 +38,16 @@
     public required NavigationManager NavigationManager { get; set; }
 
     private BusinessDetailsModel? Business;
+    private List<PackageModel>? Packages;
 
     protected override async Task OnInitializedAsync()
     {
         Business = await businessService.GetOneById(Id);
+        Packages = await businessService.GetPackagesFromBusinessId(Id);
     }
 
     public void NavigateToAddPackage ()
     {
-        Console.WriteLine("aa");
         NavigationManager.NavigateTo(uri: $"business/{Id}/addPackage");
     }
 }

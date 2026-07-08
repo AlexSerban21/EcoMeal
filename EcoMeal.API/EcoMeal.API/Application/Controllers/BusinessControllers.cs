@@ -81,10 +81,66 @@ public class BusinessController : ControllerBase
             StartPickup = package.StartPickup,
             EndPickup = package.EndPickup,
             PackageTypeId = package.PackageTypeId,
-            BusinessId = id,
-            No_Package = 1,
+            BusinessId = id
         });
         await _context.SaveChangesAsync();
         return Created();
+    }
+
+    [HttpGet]
+    [Route("packageTypes")]
+    public async Task<ActionResult<IEnumerable<PackageTypeDTO>>> GetPackageTypes()
+    {
+        var PackageTypesDTOs = await _context.PackageTypes.Select (p => new PackageTypeDTO
+        {
+            Id = p.Id,
+            Name = p.Name,
+        }).ToListAsync ();
+        return Ok(PackageTypesDTOs);
+    }
+
+    [HttpGet]
+    [Route("{id}/packages")]
+
+    public async Task<ActionResult<IEnumerable<PackageGetDTO>>> GetPackagesFromBusinessId(int id)
+    {
+        var Packages = await _context.Packages.Where(p => p.BusinessId == id).Select(p => new PackageGetDTO
+        {
+            Id = p.Id,
+            Name = p.Name,
+            PackageType = p.PackageType.Name,
+            Description = p.Description,
+            Price = p.Price,
+            StartPickup = p.StartPickup,
+            EndPickup = p.EndPickup
+        }).ToListAsync();
+        return Ok(Packages);
+    }
+
+    [HttpPost]
+    [Route("addBusiness")]
+    public async Task<IActionResult> AddBusiness([FromBody] BusinessAddDTO business)
+    {
+        _context.Businesses.Add(new Business
+        {
+            Name = business.Name,
+            Adress = business.Adress,
+            Description = business.Description,
+            Contact = business.Contact,
+            BusinessTypeId = business.BusinessTypeId
+        });
+        await _context.SaveChangesAsync();
+        return Created();
+    }
+    [HttpGet]
+    [Route("businessTypes")]
+    public async Task<ActionResult<IEnumerable<BusinessTypeDTO>>> GetBusinessTypes()
+    {
+        var BusinessTypesDTOs = await _context.BusinessTypes.Select(p => new BusinessTypeDTO
+        {
+            Id = p.Id,
+            Name = p.Name,
+        }).ToListAsync();
+        return Ok(BusinessTypesDTOs);
     }
 }
