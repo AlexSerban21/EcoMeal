@@ -11,12 +11,24 @@ public class BusinessService
     }
     public async Task<List<BusinessModel>> GetAllSync()
     {
-        var businesses = await _http.GetFromJsonAsync<List<BusinessModel>>("https://localhost:7206/api/Business");
+        var businesses = await _http.GetFromJsonAsync<List<BusinessModel>>("/api/Business");
         return businesses ?? new List<BusinessModel>();
     }
     public async Task<bool> DeleteAsync(int id)
     {
         var response = await _http.DeleteAsync($"/api/business/{id}");
         return response.IsSuccessStatusCode;
+    }
+
+    public async Task<BusinessDetailsModel?> GetOneById(int id)
+    {
+        var business = await _http.GetFromJsonAsync<BusinessDetailsModel>($"api/business/{id}");
+
+        return business;
+    }
+
+    public async Task AddPackageToBusiness(int businessId, PackageAddModel package)
+    {
+        await _http.PostAsJsonAsync($"api/business/{businessId}/addPackage", package);
     }
 }

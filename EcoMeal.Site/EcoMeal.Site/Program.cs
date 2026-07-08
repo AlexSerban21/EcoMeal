@@ -6,10 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-builder.Services.AddHttpClient("EcoMealApi", client =>
+builder.Services.AddHttpClient("EcoMealAPI", client =>
 {
-    client.BaseAddress = new Uri("https://localhost:7206");
+    client.BaseAddress = new Uri("http://localhost:5062");
 });
+
+
 
 builder.Services.AddScoped(sp =>
     sp.GetRequiredService<IHttpClientFactory>().CreateClient("EcoMealAPI"));

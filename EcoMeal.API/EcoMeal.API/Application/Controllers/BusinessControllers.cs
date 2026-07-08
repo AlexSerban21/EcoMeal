@@ -1,4 +1,4 @@
-﻿using EcoMeal.API.Application;
+﻿using EcoMeal.API.Application.Models;
 using EcoMeal.API.Entities;
 using EcoMeal.API.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +31,31 @@ public class BusinessController : ControllerBase
             }).ToListAsync();
         return Ok(businessesDTOs);
     }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<BusinessDetailsDTO>> GetOneById(int id)
+    {
+        var business = await _context.Businesses
+            .Include(b => b.Packages)
+            .ThenInclude(p => p.PackageType)
+            .Select(b => new BusinessDetailsDTO
+            {
+                Id = b.Id,
+                Name = b.Name,
+                Adress = b.Adress,
+                Description = b.Description,
+                Contact = b.Contact,
+                BusinessTypeName = b.BusinessType.Name,
+            })
+            .FirstOrDefaultAsync(b => b.Id == id);
+        if (business is null)
+        {
+            return NotFound();
+        }
+
+        return Ok(business);
+    }
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
@@ -42,5 +67,24 @@ public class BusinessController : ControllerBase
         _context.Businesses.Remove(business);
         await _context.SaveChangesAsync();
         return NoContent();
+    }
+
+    [HttpPost]
+    [Route("{id}/addPackage")]
+    public async Task<IActionResult> AddPackageToBusiness(int id, [FromBody] PackageAddDTO package)
+    {
+        _context.Packages.Add(new Package
+        {
+            Name = package.Name,
+            Description = package.Description,
+            Price = package.Price,
+            StartPickup = package.StartPickup,
+            EndPickup = package.EndPickup,
+            PackageTypeId = package.PackageTypeId,
+            BusinessId = id,
+            No_Package = 1,
+        });
+        await _context.SaveChangesAsync();
+        return Created();
     }
 }

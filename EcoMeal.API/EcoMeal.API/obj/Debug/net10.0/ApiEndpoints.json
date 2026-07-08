@@ -21,6 +21,32 @@
   },
   {
     "ContainingType": "EcoMeal.API.Application.BusinessController",
+    "Method": "GetOneById",
+    "RelativePath": "api/Business/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BusinessDetailsDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EcoMeal.API.Application.BusinessController",
     "Method": "Delete",
     "RelativePath": "api/Business/{id}",
     "HttpMethod": "DELETE",
@@ -30,6 +56,27 @@
       {
         "Name": "id",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcoMeal.API.Application.BusinessController",
+    "Method": "AddPackageToBusiness",
+    "RelativePath": "api/Business/{id}/addPackage",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "package",
+        "Type": "EcoMeal.API.Application.Models.PackageAddDTO",
         "IsRequired": true
       }
     ],
