@@ -8,6 +8,7 @@ namespace EcoMeal.Site.Components.Pages
     public partial class UpdatePackage
     {
         [Parameter]
+        public int PackageId { get; set; }
         public int BusinessId { get; set; }
         [Inject]
         public BusinessService BusinessService { get; set; }
@@ -19,8 +20,8 @@ namespace EcoMeal.Site.Components.Pages
         {
             PackageTypes = await BusinessService.GetPackageTypes();
             PackageTypes = PackageTypes ?? new List<PackageTypesModel> ();
-            package = BusinessService.GetPackageById(Id);
-            PackageAddModel =  = new PackageAddModel()
+            var package = await BusinessService.GetPackageById(PackageId);
+            PackageAddModel = new PackageAddModel()
             {
                 Name = package.Name,
                 Description = package.Description,
@@ -31,7 +32,7 @@ namespace EcoMeal.Site.Components.Pages
         }
         public async Task UpdatePackageInService ()
         {
-            await BusinessService.AddPackageToBusiness(BusinessId, PackageAddModel);
+            await BusinessService.AddPackageToBusiness(PackageId, PackageAddModel);
             NavigationManager.NavigateTo(uri: $"business/{BusinessId}");
         }
     }

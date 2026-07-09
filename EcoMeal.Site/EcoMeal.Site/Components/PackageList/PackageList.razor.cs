@@ -15,4 +15,12 @@ public partial class PackageList
     {
         Packages = await BusinessService.GetPackagesFromBusinessId(Id);
     }
+    public async Task DeletePackage(int id)
+    {
+        await BusinessService.DeletePackage(id);
+        if (Packages != null)
+        {
+            Packages.RemoveAll(b => b.Id == id);
+        }
+    }
 }

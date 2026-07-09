@@ -27,9 +27,9 @@ public class BusinessService
         return response.IsSuccessStatusCode;
     }
 
-    public async Task<BusinessDetailsModel?> GetOneById(int id)
+    public async Task<BusinessModel?> GetOneById(int id)
     {
-        var business = await _http.GetFromJsonAsync<BusinessDetailsModel>($"/api/business/{id}");
+        var business = await _http.GetFromJsonAsync<BusinessModel>($"/api/business/{id}");
 
         return business;
     }
@@ -44,6 +44,11 @@ public class BusinessService
     {
         var Packages = await _http.GetFromJsonAsync<List<PackageModel>>($"/api/Business/{id}/packages");
         return Packages ?? new List<PackageModel>();
+    }
+    public async Task<PackageModel> GetPackageById(int id)
+    {
+        var Package = await _http.GetFromJsonAsync<PackageModel>($"/api/Business/getPackage/{id}");
+        return Package;
     }
 
     public async Task<List<BusinessTypeModel>> GetBusinessTypes()

@@ -55,10 +55,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xCdXNpbmVzc0RldGFpbHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/source/repos/AlexSerban21/EcoMeal/EcoMeal.Site/EcoMeal.Site/Components/Pages/Counter.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb3VudGVyLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/alexa/source/repos/AlexSerban21/EcoMeal/EcoMeal.Site/EcoMeal.Site/Components/Pages/Error.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -77,10 +73,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/alexa/source/repos/AlexSerban21/EcoMeal/EcoMeal.Site/EcoMeal.Site/Components/Pages/UpdatePackage.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xVcGRhdGVQYWNrYWdlLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/alexa/source/repos/AlexSerban21/EcoMeal/EcoMeal.Site/EcoMeal.Site/Components/Pages/Weather.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xXZWF0aGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/alexa/source/repos/AlexSerban21/EcoMeal/EcoMeal.Site/EcoMeal.Site/Components/Routes.razor]

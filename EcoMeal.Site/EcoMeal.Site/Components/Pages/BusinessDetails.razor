@@ -37,7 +37,7 @@
     [Inject]
     public required NavigationManager NavigationManager { get; set; }
 
-    private BusinessDetailsModel? Business;
+    private BusinessModel? Business;
     private List<PackageModel>? Packages;
 
     protected override async Task OnInitializedAsync()
@@ -49,5 +49,9 @@
     public void NavigateToAddPackage ()
     {
         NavigationManager.NavigateTo(uri: $"business/{Id}/addPackage");
+    }
+    public void NavigateToUpdatePackage()
+    {
+        NavigationManager.NavigateTo(uri: $"business/{Id}/updatePackage");
     }
 }

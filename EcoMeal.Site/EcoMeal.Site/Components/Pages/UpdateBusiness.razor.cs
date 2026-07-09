@@ -6,6 +6,7 @@ namespace EcoMeal.Site.Components.Pages;
 
 public partial class UpdateBusiness
 {
+    [Parameter]
     public int Id { get; set; }
     [Inject]
     public BusinessService BusinessService { get; set; }
@@ -15,8 +16,10 @@ public partial class UpdateBusiness
     public BusinessAddModel? BusinessAddModel { get; set; }
     protected override async Task OnInitializedAsync()
     {
+        Console.WriteLine("222");
         BusinessTypes = await BusinessService.GetBusinessTypes();
         BusinessTypes = BusinessTypes ?? new List<BusinessTypeModel>();
+        
         var business = await BusinessService.GetOneById(Id);
         BusinessAddModel = new BusinessAddModel
         {
