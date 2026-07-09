@@ -47,6 +47,7 @@ wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
 Components\Layout\ReconnectModal.razor.js
 C:\Users\alexa\.nuget\packages\microsoft.aspnetcore.app.internal.assets\10.0.9\build\..\_framework\blazor.web.js
 C:\Users\alexa\.nuget\packages\microsoft.aspnetcore.app.internal.assets\10.0.9\build\..\_framework\blazor.server.js
+C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\wwwroot\app.css
 C:\Users\alexa\.nuget\packages\microsoft.aspnetcore.app.internal.assets\10.0.9\_framework\blazor.server.js
 C:\Users\alexa\.nuget\packages\microsoft.aspnetcore.app.internal.assets\10.0.9\_framework\blazor.web.js
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\Components\Layout\ReconnectModal.razor.js
@@ -94,4 +95,3 @@ C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\wwwro
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
-C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\wwwroot\app.css

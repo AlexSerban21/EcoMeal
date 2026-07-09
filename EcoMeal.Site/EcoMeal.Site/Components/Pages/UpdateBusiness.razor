@@ -1,16 +1,16 @@
-﻿@page "/addBusiness"
+﻿@page "/updateBusiness/{Id:int}"
 @rendermode InteractiveServer
 
-<p class="text-center fs-2 fw-bold text-dark lh-1">Adaugă restaurant</p>
+<p class="text-center fs-2 fw-bold text-dark lh-1">Editează restaurant</p>
 
 <EditForm Model="BusinessAddModel">
-    <DataAnnotationsValidator />
-    @*@<ValidationSummary />*@
+    @*@<DataAnnotationsValidator />*@
+    <ValidationSummary />
 
     <label class="form-label fs-5 fw-bold">Nume</label>
     <InputText class="form-control mb-2 rounded-2 shadow border border-1 border-dark"
                @bind-Value="BusinessAddModel.Name"
-               placeholder="Adauga nume resturant" />
+               placeholder="Editează nume resturant" />
 
     <ValidationMessage For="@(() => BusinessAddModel.Name)" />
 
@@ -54,7 +54,7 @@
 
     <ValidationMessage For="@(() => BusinessAddModel.BusinessTypeId)" />
 
-    <button type="submit" class="btn btn-success rounded-4" @onclick="AddBusinessInService">Adaugă Restaurant</button>
+    <button type="submit" class="btn btn-success rounded-4" @onclick="UpdateBusinessInService">Adaugă Restaurant</button>
 
 </EditForm>
 

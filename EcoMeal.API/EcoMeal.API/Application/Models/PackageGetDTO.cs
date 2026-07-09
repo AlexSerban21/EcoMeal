@@ -9,4 +9,5 @@ public class PackageGetDTO
     public DateTime StartPickup { get; set; }
     public DateTime EndPickup { get; set; }
     public string? PackageType { get; set; }
+    public int PackageTypeId { get; set; }
 }

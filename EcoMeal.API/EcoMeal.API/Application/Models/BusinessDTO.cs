@@ -10,4 +10,5 @@ public class BusinessDTO
     public string? Description { get; set; }
     public required string Contact { get; set; }
     public required string BusinessTypeName { get; set; }
+    public required int BusinessTypeId { get; set; }
 }

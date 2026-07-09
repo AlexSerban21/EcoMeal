@@ -15,7 +15,6 @@ public partial class BusinessCard
     public required NavigationManager Navigation {  get; set; }
     public async Task Delete ()
     {
-        Console.WriteLine("b");
         await OnDelete.InvokeAsync(Business.Id);
     }
     public void NavigateToDetails()

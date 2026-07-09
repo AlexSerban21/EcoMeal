@@ -21,15 +21,17 @@ public class BusinessService
         return response.IsSuccessStatusCode;
     }
 
+    public async Task<bool> DeletePackage(int id)
+    {
+        var response = await _http.DeleteAsync($"/api/business/package/{id}");
+        return response.IsSuccessStatusCode;
+    }
+
     public async Task<BusinessDetailsModel?> GetOneById(int id)
     {
         var business = await _http.GetFromJsonAsync<BusinessDetailsModel>($"/api/business/{id}");
 
         return business;
-    }
-    public async Task AddPackageToBusiness(int businessId, PackageAddModel package)
-    {
-        await _http.PostAsJsonAsync($"/api/business/{businessId}/addPackage", package);
     }
 
     public async Task<List<PackageTypesModel>> GetPackageTypes ()
@@ -44,14 +46,29 @@ public class BusinessService
         return Packages ?? new List<PackageModel>();
     }
 
+    public async Task<List<BusinessTypeModel>> GetBusinessTypes()
+    {
+        var BusinessTypes = await _http.GetFromJsonAsync<List<BusinessTypeModel>>("/api/Business/businessTypes");
+        return BusinessTypes ?? new List<BusinessTypeModel>();
+    }
+
+    public async Task AddPackageToBusiness(int businessId, PackageAddModel package)
+    {
+        await _http.PostAsJsonAsync($"/api/business/{businessId}/addPackage", package);
+    }
+
     public async Task AddBusiness (BusinessAddModel business)
     {
         await _http.PostAsJsonAsync<BusinessAddModel>("/api/Business/addBusiness", business);
     }
 
-    public async Task<List<BusinessTypeModel>> GetBusinessTypes()
+    public async Task UpdateBusiness(int businessId, BusinessAddModel business)
     {
-        var BusinessTypes = await _http.GetFromJsonAsync<List<BusinessTypeModel>>("/api/Business/businessTypes");
-        return BusinessTypes ?? new List<BusinessTypeModel>();
+        await _http.PutAsJsonAsync<BusinessAddModel>($"/api/Business/{businessId}/updateBusiness", business);
+    }
+
+    public async Task UpdatePackage(int PackageId, PackageAddModel package)
+    {
+        await _http.PutAsJsonAsync<PackageAddModel>($"/api/Business/{PackageId}/updatePackage", package);
     }
 }

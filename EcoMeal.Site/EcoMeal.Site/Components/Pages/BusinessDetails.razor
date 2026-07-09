@@ -9,17 +9,17 @@
 }
 
 <div class="container my-4">
-    <h1 class="mb-3">@Business.Name</h1>
-    <p class="text-muted mb-4">@Business.Description</p>
-    <p class="text-muted mb-4"><strong>Contact:</strong> @Business.Contact</p>
-    <p class="text-muted mb-4"><strong>Tip afacere:</strong> @Business.BusinessTypeName</p>
-    <p class="text-muted mb-4"><strong>Adresa:</strong> @Business.Adress</p>
+    <p class="card-title text-black text-center fs-1 fw-bold">@Business.Name</p>
+    <p class="card-text text-danger text-center fs-4 fw-bold">@Business.Description</p>
+    <p class="card-text text-primary-emphasis text-center fw-bold fs-4">Suntem în @Business.Adress</p>
+    <p class="card-text text-warning-emphasis text-center fs-4 fw-bold text-decoration-underline">Trimite un mail la: <br> @Business.Contact</p>
 
+    <br> <br> <br>
 
-    <div class="d-flex justify-content-between align-items-center mt-4 mb-3">
-        <h2 class="mb-0">Pachete</h2>
+    <div class="d-flex justify-content-between mt-4 mb-3">
+        <p class="text-center fs-3 fw-bold text-dark lh-1">Aici puteți vedea toate pachetele disponibile: </p>
         <button type="button"
-                class="btn btn-primary" @onclick = "NavigateToAddPackage">
+                class="btn btn-success rounded-4" @onclick="NavigateToAddPackage">
             + Adaugă pachet
         </button>
     </div>

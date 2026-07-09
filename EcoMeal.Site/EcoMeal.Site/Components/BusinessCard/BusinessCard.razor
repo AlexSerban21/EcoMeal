@@ -1,10 +1,13 @@
 ﻿@namespace EcoMeal.Site.Components.BusinessCard
-<div class="card w-100" style="height: 22rem" @onclick="NavigateToDetails">
-    <div class="card-body text-center rounded-1 shadow border border-1 border-dark bg-body-secondary">
-        <h5 class="card-title text-black fs-3 fw-bold">@Business.Name</h5>
-        <p class="card-text text-danger fs-5 fw-bold">@Business.Description</p>
-        <p class="card-text text-primary-emphasis fw-bold fs-5">We are in @Business.Adress</p>
-        <p class="card-text text-warning-emphasis fs-5 fw-bold text-decoration-underline">Email us on: <br> @Business.Contact</p>
-        <a href="#" class="btn btn-primary bg-black" @onclick="Delete" @onclick:stopPropagation="true" > Delete! </a>
+<div class="card w-100" style="height: 16rem" @onclick="NavigateToDetails">
+    <div class="card-body text-center rounded-2 shadow border border-1 border-dark card-hover">
+        <h5 class="card-title text-black fs-4 fw-bold">@Business.Name</h5>
+        <p class="card-text text-danger fs-6 fw-bold">@Business.Description</p>
+        <p class="card-text text-primary-emphasis fw-bold fs-6">Suntem în @Business.Adress</p>
+        <p class="card-text text-warning-emphasis fs-6 fw-bold text-decoration-underline">Trimite un mail la: <br> @Business.Contact</p>
+        <div class="d-flex justify-content-between align-items-center">
+            <button class="btn btn-primary bg-danger rounded-5 btn-sm" @onclick="Delete" @onclick:stopPropagation="true"> Delete! </button>
+            <button class="btn btn-primary bg-primary rounded-5 btn-sm"> Edit! </button>
+        </div>
     </div>
 </div>
