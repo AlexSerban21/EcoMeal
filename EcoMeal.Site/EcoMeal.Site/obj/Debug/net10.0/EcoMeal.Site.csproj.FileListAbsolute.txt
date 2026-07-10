@@ -108,7 +108,6 @@ C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\bin\D
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\rjimswa.dswa.cache.json
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
-C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\scopedcss\Components\Layout\MainLayout.razor.rz.scp.css
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\scopedcss\Components\Layout\ReconnectModal.razor.rz.scp.css
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\scopedcss\bundle\EcoMeal.Site.styles.css
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\scopedcss\projectbundle\EcoMeal.Site.bundle.scp.css
@@ -166,7 +165,8 @@ C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\D
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\swae.build.ex.cache
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\EcoMeal.Site.genruntimeconfig.cache
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\ref\EcoMeal.Site.dll
-C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
-C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\compressed\achjihc609-{0}-lbz8m67alt-lbz8m67alt.gz
-C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\compressed\8pt4jngotk-{0}-lbz8m67alt-lbz8m67alt.gz
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\compressed\9n0m50lqub-{0}-aambw70ddn-aambw70ddn.gz
+C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\scopedcss\Components\Layout\MainLayout2.razor.rz.scp.css
+C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\compressed\achjihc609-{0}-n0gwgv4ed6-n0gwgv4ed6.gz
+C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\compressed\8pt4jngotk-{0}-n0gwgv4ed6-n0gwgv4ed6.gz
+C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

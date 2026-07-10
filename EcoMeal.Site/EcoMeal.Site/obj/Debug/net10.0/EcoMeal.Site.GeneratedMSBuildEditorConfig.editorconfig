@@ -35,6 +35,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xCdXNpbmVzc0xpc3RcQnVzaW5lc3NMaXN0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/alexa/source/repos/AlexSerban21/EcoMeal/EcoMeal.Site/EcoMeal.Site/Components/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/alexa/source/repos/AlexSerban21/EcoMeal/EcoMeal.Site/EcoMeal.Site/Components/PackageCard/PackageCard.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWNrYWdlQ2FyZFxQYWNrYWdlQ2FyZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -63,8 +67,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/alexa/source/repos/AlexSerban21/EcoMeal/EcoMeal.Site/EcoMeal.Site/Components/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMb2dpbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/alexa/source/repos/AlexSerban21/EcoMeal/EcoMeal.Site/EcoMeal.Site/Components/Pages/NotFound.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xOb3RGb3VuZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alexa/source/repos/AlexSerban21/EcoMeal/EcoMeal.Site/EcoMeal.Site/Components/Pages/Register.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWdpc3Rlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/alexa/source/repos/AlexSerban21/EcoMeal/EcoMeal.Site/EcoMeal.Site/Components/Pages/UpdateBusiness.razor]
@@ -83,9 +95,9 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xfSW1wb3J0cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alexa/source/repos/AlexSerban21/EcoMeal/EcoMeal.Site/EcoMeal.Site/Components/Layout/MainLayout.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dC5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-divn5014ok
+[C:/Users/alexa/source/repos/AlexSerban21/EcoMeal/EcoMeal.Site/EcoMeal.Site/Components/Layout/MainLayout2.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dDIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-xxg2km7jdn
 
 [C:/Users/alexa/source/repos/AlexSerban21/EcoMeal/EcoMeal.Site/EcoMeal.Site/Components/Layout/ReconnectModal.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcUmVjb25uZWN0TW9kYWwucmF6b3I=

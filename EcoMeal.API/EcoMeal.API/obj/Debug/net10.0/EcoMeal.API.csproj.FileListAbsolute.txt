@@ -41,12 +41,9 @@ C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Deb
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\EcoMeal.API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\EcoMeal.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\EcoMeal.API.sourcelink.json
-C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\EcoMeal.API.dll
-C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\refint\EcoMeal.API.dll
-C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\EcoMeal.API.pdb
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\bin\Debug\net10.0\appsettings.Development.json
-C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\bin\Debug\net10.0\EcoMeal.API.staticwebassets.endpoints.json
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\bin\Debug\net10.0\appsettings.json
+C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\bin\Debug\net10.0\EcoMeal.API.staticwebassets.endpoints.json
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\bin\Debug\net10.0\EcoMeal.API.exe
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\bin\Debug\net10.0\EcoMeal.API.deps.json
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\bin\Debug\net10.0\EcoMeal.API.runtimeconfig.json
@@ -55,6 +52,8 @@ C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\bin\Deb
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\bin\Debug\net10.0\Azure.Core.dll
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\bin\Debug\net10.0\Azure.Identity.dll
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\bin\Debug\net10.0\Humanizer.dll
+C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\bin\Debug\net10.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\bin\Debug\net10.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\bin\Debug\net10.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\bin\Debug\net10.0\Microsoft.Bcl.Cryptography.dll
@@ -85,6 +84,7 @@ C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\bin\Deb
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\bin\Debug\net10.0\Microsoft.VisualStudio.SolutionPersistence.dll
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\bin\Debug\net10.0\Mono.TextTemplating.dll
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\bin\Debug\net10.0\Newtonsoft.Json.dll
+C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\bin\Debug\net10.0\System.ClientModel.dll
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\bin\Debug\net10.0\System.CodeDom.dll
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\bin\Debug\net10.0\System.Composition.AttributedModel.dll
@@ -189,7 +189,9 @@ C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Deb
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\staticwebassets.build.endpoints.json
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\swae.build.ex.cache
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\EcoMeal..D051FB48.Up2Date
+C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\EcoMeal.API.dll
+C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\refint\EcoMeal.API.dll
+C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\EcoMeal.API.pdb
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\EcoMeal.API.genruntimeconfig.cache
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\ref\EcoMeal.API.dll
-C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

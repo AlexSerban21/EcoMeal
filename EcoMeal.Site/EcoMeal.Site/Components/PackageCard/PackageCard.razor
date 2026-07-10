@@ -1,12 +1,15 @@
 ﻿@namespace EcoMeal.Site.Components.PackageCard
+@using Microsoft.AspNetCore.Components.Authorization
 <div class="card w-100" style="height: 13rem">
     <div class="card-body text-center rounded-2 shadow border border-1 border-dark card-hover">
         <h5 class="card-title text-black fs-4 fw-bold">@Package.Name</h5>
         <p class="card-text text-danger fs-6 fw-bold">@Package.Description</p>
         <p class="card-text text-primary-emphasis fw-bold fs-6">@Package.Price</p>
         <div class="d-flex justify-content-between align-items-center">
+        <AuthorizeView Roles="Admin">
             <button class="btn btn-primary bg-danger rounded-5 btn-sm" @onclick="Delete" @onclick:stopPropagation="true"> Delete! </button>
             <button class="btn btn-primary bg-primary rounded-5 btn-sm" @onclick="Update" @onclick:stopPropagation="true"> Edit! </button>
+        </AuthorizeView>
         </div>
     </div>
 </div>

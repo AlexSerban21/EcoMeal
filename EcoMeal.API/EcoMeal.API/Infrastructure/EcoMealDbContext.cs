@@ -1,20 +1,23 @@
 using EcoMeal.API.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace EcoMeal.API.Infrastructure;
 
-public class EcoMealDbContext : DbContext
+public class EcoMealDbContext : IdentityDbContext<User, IdentityRole<int>, int>
 {
     public EcoMealDbContext (DbContextOptions<EcoMealDbContext> options) 
         : base (options)
     { }
-    public DbSet<User> Users { get; set;}
     public DbSet<BusinessType> BusinessTypes { get; set;}
     public DbSet<PackageType> PackageTypes { get; set;}
     public DbSet<Business> Businesses { get; set;}
     public DbSet<Package> Packages { get; set;}
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
         //modelBuilder.Entity<BusinessType>().HasKey(e => e.Id);
         //modelBuilder.Entity<PackageType>().HasKey(e => e.Id);
         //modelBuilder.Entity<Business>().HasKey(e => e.Id);
@@ -46,17 +49,11 @@ public class EcoMealDbContext : DbContext
             .HasForeignKey(p => p.BusinessId);
 
 
-        //Order
-        modelBuilder.Entity<Order>()
-            .HasOne(p => p.User)
-            .WithMany(p => p.Orders)
-            .HasForeignKey(p => p.UserId);
+        //orders 
 
         modelBuilder.Entity<Order>()
             .HasOne(p => p.Package)
             .WithMany(p => p.Orders)
             .HasForeignKey(p => p.PackageId);
-
-        base.OnModelCreating(modelBuilder);
     }
 }

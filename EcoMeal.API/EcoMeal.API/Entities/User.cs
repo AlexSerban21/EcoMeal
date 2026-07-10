@@ -1,13 +1,9 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 
 namespace EcoMeal.API.Entities;
 
-public class User //required = nu poate fi NULL 
+public class User : IdentityUser<int>         //required = nu poate fi NULL 
 {
-    [Key]
-    public int Id { get; set; }
-    public required string Name { get; set; }
-    public required string Contact { get; set; }
-    public ICollection<Order> Orders { get; set; } = new List<Order>();
+    public string? Name { get; set; }
+    public string? Contact { get; set; }
 }
