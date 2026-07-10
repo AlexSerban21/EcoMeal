@@ -3,7 +3,7 @@
 
 <p class="text-center fs-2 fw-bold text-dark lh-1">Adaugă restaurant</p>
 
-<EditForm Model="BusinessAddModel">
+<EditForm Model="BusinessAddModel" OnValidSubmit="AddBusinessInService">
     <DataAnnotationsValidator />
     @*@<ValidationSummary />*@
 
@@ -54,7 +54,7 @@
 
     <ValidationMessage For="@(() => BusinessAddModel.BusinessTypeId)" />
 
-    <button type="submit" class="btn btn-success rounded-4" @onclick="AddBusinessInService">Adaugă Restaurant</button>
+    <button type="submit" class="btn btn-success rounded-4">Adaugă Restaurant</button>
 
 </EditForm>
 

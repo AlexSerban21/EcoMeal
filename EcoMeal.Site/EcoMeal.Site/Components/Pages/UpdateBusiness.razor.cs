@@ -13,13 +13,19 @@ public partial class UpdateBusiness
     [Inject]
     public NavigationManager NavigationManager { get; set; }
     private List<BusinessTypeModel> BusinessTypes;
-    public BusinessAddModel? BusinessAddModel { get; set; }
+    public BusinessAddModel? BusinessAddModel { get; set; } = new BusinessAddModel()
+    {
+        Name = string.Empty,
+        Adress = string.Empty,
+        Contact = string.Empty,
+        Description = string.Empty,
+    };
     protected override async Task OnInitializedAsync()
     {
         Console.WriteLine("222");
         BusinessTypes = await BusinessService.GetBusinessTypes();
         BusinessTypes = BusinessTypes ?? new List<BusinessTypeModel>();
-        
+        Console.WriteLine("333");
         var business = await BusinessService.GetOneById(Id);
         BusinessAddModel = new BusinessAddModel
         {

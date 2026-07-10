@@ -7,5 +7,5 @@ public class BusinessModel
     public string? Description { get; set; }
     public required string Contact {  get; set; }
     public required string BusinessTypeName { get; set; }
-    public int BusinessTypeId { get; set; }
+    public required int BusinessTypeId { get; set; }
 }

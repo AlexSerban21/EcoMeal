@@ -132,7 +132,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/Business/deleteBusiness/{id}": {
       "delete": {
         "tags": [
           "Business"

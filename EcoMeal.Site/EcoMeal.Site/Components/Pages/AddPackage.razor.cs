@@ -26,9 +26,11 @@ namespace EcoMeal.Site.Components.Pages
         {
             PackageTypes = await BusinessService.GetPackageTypes();
             PackageTypes = PackageTypes ?? new List<PackageTypesModel> ();
+            Console.WriteLine("555");
         }
         public async Task AddPackageInService ()
         {
+            Console.WriteLine("444");
             await BusinessService.AddPackageToBusiness(BusinessId, PackageAddModel);
             NavigationManager.NavigateTo(uri: $"business/{BusinessId}");
         }

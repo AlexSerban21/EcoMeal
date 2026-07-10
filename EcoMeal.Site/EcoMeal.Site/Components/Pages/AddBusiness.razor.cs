@@ -22,6 +22,7 @@ public partial class AddBusiness
     {
         BusinessTypes = await BusinessService.GetBusinessTypes();
         BusinessTypes = BusinessTypes ?? new List<BusinessTypeModel>();
+        Console.WriteLine("999");
     }
     public async Task AddBusinessInService()
     {

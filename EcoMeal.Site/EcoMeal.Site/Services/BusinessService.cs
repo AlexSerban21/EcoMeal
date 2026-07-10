@@ -17,7 +17,7 @@ public class BusinessService
     }
     public async Task<bool> DeleteAsync(int id)
     {
-        var response = await _http.DeleteAsync($"/api/business/{id}");
+        var response = await _http.DeleteAsync($"/api/business/deleteBusiness/{id}");
         return response.IsSuccessStatusCode;
     }
 

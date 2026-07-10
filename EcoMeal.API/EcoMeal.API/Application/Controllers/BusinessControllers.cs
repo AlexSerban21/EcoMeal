@@ -36,6 +36,7 @@ public class BusinessController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<BusinessDTO>> GetOneById(int id)
     {
+        Console.WriteLine("333");
         var business = await _context.Businesses
             .Include(b => b.Packages)
             .ThenInclude(p => p.PackageType)
@@ -52,13 +53,14 @@ public class BusinessController : ControllerBase
             .FirstOrDefaultAsync(b => b.Id == id);
         if (business is null)
         {
+            Console.WriteLine("444");
             return NotFound();
         }
 
         return Ok(business);
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("deleteBusiness/{id}")]
     public async Task<IActionResult> Delete(int id)
     {
         var business = await _context.Businesses.FindAsync(id);
