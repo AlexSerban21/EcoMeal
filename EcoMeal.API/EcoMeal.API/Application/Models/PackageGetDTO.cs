@@ -10,4 +10,5 @@ public class PackageGetDTO
     public DateTime EndPickup { get; set; }
     public string? PackageType { get; set; }
     public int PackageTypeId { get; set; }
+    public int BusinessId { get; set; }
 }

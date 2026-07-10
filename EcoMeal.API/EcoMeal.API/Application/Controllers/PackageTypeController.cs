@@ -17,8 +17,8 @@ public class PackageTypeController : ControllerBase
         _context = context;
     }
 
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<PackageTypeDTO>>> GetPackageTypes()
+    [HttpGet("GetAll")]
+    public async Task<ActionResult<IEnumerable<PackageTypeDTO>>> GetAll()
     {
         var PackageTypesDTOs = await _context.PackageTypes.Select(p => new PackageTypeDTO
         {

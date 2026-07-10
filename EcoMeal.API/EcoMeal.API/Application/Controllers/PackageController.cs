@@ -17,8 +17,8 @@ public class PackageController : ControllerBase
     }
 
     [HttpGet]
-    [Route("GetPackagesFromBusinessId/{id}")]
-    public async Task<ActionResult<IEnumerable<PackageGetDTO>>> GetPackagesFromBusinessId(int id)
+    [Route("GetFromBusinessId/{id}")]
+    public async Task<ActionResult<IEnumerable<PackageGetDTO>>> GetFromBusinessId(int id)
     {
         var Packages = await _context.Packages.Where(p => p.BusinessId == id).Select(p => new PackageGetDTO
         {
@@ -29,13 +29,14 @@ public class PackageController : ControllerBase
             Price = p.Price,
             StartPickup = p.StartPickup,
             EndPickup = p.EndPickup,
-            PackageTypeId = p.PackageTypeId
+            PackageTypeId = p.PackageTypeId,
+            BusinessId = p.BusinessId
         }).ToListAsync();
         return Ok(Packages);
     }
     [HttpGet]
-    [Route("GetPackageById/{id}")]
-    public async Task<ActionResult<PackageGetDTO>> GetPackageById(int id)
+    [Route("GetOneById/{id}")]
+    public async Task<ActionResult<PackageGetDTO>> GetOneById(int id)
     {
         var package = await _context.Packages
             .Select(b => new PackageGetDTO
@@ -47,7 +48,8 @@ public class PackageController : ControllerBase
                 Price = b.Price,
                 StartPickup = b.StartPickup,
                 EndPickup = b.EndPickup,
-                PackageTypeId = b.PackageTypeId
+                PackageTypeId = b.PackageTypeId,
+                BusinessId = b.BusinessId
             })
             .FirstOrDefaultAsync(b => b.Id == id);
         if (package is null)
@@ -58,8 +60,8 @@ public class PackageController : ControllerBase
         return Ok(package);
     }
 
-    [HttpDelete("DeletePackage/{id}")]
-    public async Task<IActionResult> DeletePackage(int id)
+    [HttpDelete("Delete/{id}")]
+    public async Task<IActionResult> Delete(int id)
     {
         var package = await _context.Packages.FindAsync(id);
         if (package is null)
@@ -72,8 +74,8 @@ public class PackageController : ControllerBase
     }
 
     [HttpPost]
-    [Route("AddPackageToBusiness/{id}")]
-    public async Task<IActionResult> AddPackageToBusiness(int id, [FromBody] PackageAddDTO package)
+    [Route("AddToBusiness/{id}")]
+    public async Task<IActionResult> AddToBusiness(int id, [FromBody] PackageAddDTO package)
     {
         _context.Packages.Add(new Package
         {
@@ -90,8 +92,8 @@ public class PackageController : ControllerBase
     }
 
     [HttpPut]
-    [Route("UpdatePackage/{id}")]
-    public async Task<IActionResult> UpdatePackage(int id, [FromBody] PackageAddDTO package)
+    [Route("Update/{id}")]
+    public async Task<IActionResult> Update(int id, [FromBody] PackageAddDTO package)
     {
         var PackageContext = await _context.Packages.FindAsync(id);
         if (PackageContext is null)
@@ -103,7 +105,6 @@ public class PackageController : ControllerBase
         PackageContext.StartPickup = package.StartPickup;
         PackageContext.EndPickup = package.EndPickup;
         PackageContext.PackageTypeId = package.PackageTypeId;
-        PackageContext.BusinessId = id;
 
         await _context.SaveChangesAsync();
         return NoContent();

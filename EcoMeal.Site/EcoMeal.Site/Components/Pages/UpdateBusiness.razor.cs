@@ -11,8 +11,10 @@ public partial class UpdateBusiness
     [Inject]
     public BusinessService BusinessService { get; set; }
     [Inject]
+    public BusinessTypeService BusinessTypeService { get; set; }
+    [Inject]
     public NavigationManager NavigationManager { get; set; }
-    private List<BusinessTypeModel> BusinessTypes;
+    private List<BusinessTypeModel>? BusinessTypes;
     public BusinessAddModel? BusinessAddModel { get; set; } = new BusinessAddModel()
     {
         Name = string.Empty,
@@ -22,10 +24,8 @@ public partial class UpdateBusiness
     };
     protected override async Task OnInitializedAsync()
     {
-        Console.WriteLine("222");
-        BusinessTypes = await BusinessService.GetBusinessTypes();
+        BusinessTypes = await BusinessTypeService.GetAll();
         BusinessTypes = BusinessTypes ?? new List<BusinessTypeModel>();
-        Console.WriteLine("333");
         var business = await BusinessService.GetOneById(Id);
         BusinessAddModel = new BusinessAddModel
         {
@@ -38,7 +38,7 @@ public partial class UpdateBusiness
     }
     public async Task UpdateBusinessInService()
     {
-        await BusinessService.UpdateBusiness(Id, BusinessAddModel);
+        await BusinessService.Update(Id, BusinessAddModel);
         NavigationManager.NavigateTo(uri: $"/");
     }
 }

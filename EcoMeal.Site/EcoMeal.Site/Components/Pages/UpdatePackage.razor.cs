@@ -2,6 +2,7 @@
 using EcoMeal.Site.Models;
 using EcoMeal.Site.Services;
 using Microsoft.AspNetCore.Components;
+using System.ComponentModel.DataAnnotations;
 
 namespace EcoMeal.Site.Components.Pages
 {
@@ -9,30 +10,40 @@ namespace EcoMeal.Site.Components.Pages
     {
         [Parameter]
         public int PackageId { get; set; }
+        [Parameter]
         public int BusinessId { get; set; }
         [Inject]
-        public BusinessService BusinessService { get; set; }
+        public PackageService PackageService { get; set; }
+        [Inject]
+        public PackageTypeService PackageTypeService { get; set; }
         [Inject]
         public NavigationManager NavigationManager { get; set; }
         private List<PackageTypesModel> PackageTypes;
-        public PackageAddModel PackageAddModel { get; set; }
+        public PackageAddModel PackageAddModel { get; set; } = new PackageAddModel()
+        {
+            Name = String.Empty,
+            Description = String.Empty
+        };
         protected override async Task OnInitializedAsync ()
         {
-            PackageTypes = await BusinessService.GetPackageTypes();
+            Console.WriteLine(BusinessId);
+            PackageTypes = await PackageTypeService.GetAll();
             PackageTypes = PackageTypes ?? new List<PackageTypesModel> ();
-            var package = await BusinessService.GetPackageById(PackageId);
+            var package = await PackageService.GetOneById(PackageId);
             PackageAddModel = new PackageAddModel()
             {
                 Name = package.Name,
                 Description = package.Description,
                 Price = package.Price,
                 StartPickup = package.StartPickup,
-                EndPickup = package.EndPickup
+                EndPickup = package.EndPickup,
+                PackageTypeId = package.PackageTypeId
             };
         }
         public async Task UpdatePackageInService ()
         {
-            await BusinessService.AddPackageToBusiness(PackageId, PackageAddModel);
+            //Console.WriteLine(BusinessId);
+            await PackageService.Update(PackageId, PackageAddModel);
             NavigationManager.NavigateTo(uri: $"business/{BusinessId}");
         }
     }

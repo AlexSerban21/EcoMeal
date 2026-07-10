@@ -3,7 +3,7 @@
 
 <p class="text-center fs-2 fw-bold text-dark lh-1">Editează pachet</p>
 
-<EditForm Model="PackageAddModel">
+<EditForm Model="PackageAddModel" OnValidSubmit="UpdatePackageInService">
     <DataAnnotationsValidator/>
     @*@<ValidationSummary/>*@
 
@@ -61,7 +61,7 @@
 
     <ValidationMessage For="@(() => PackageAddModel.PackageTypeId)" />
 
-    <button type="submit" class="btn btn-success rounded-5" OnValidSubmit="UpdatePackageInService">Adaugă pachet</button>
+    <button type="submit" class="btn btn-success rounded-5">Editează pachet</button>
 
 </EditForm>
 

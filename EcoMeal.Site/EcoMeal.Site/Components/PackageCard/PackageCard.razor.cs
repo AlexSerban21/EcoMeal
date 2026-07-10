@@ -9,8 +9,6 @@ public partial class PackageCard
     [Parameter]
     public required PackageModel Package { get; set; }
     [Inject]
-    public required BusinessService BusinessService { get; set; }
-    [Inject]
     public required NavigationManager Navigation { get; set; }
     [Parameter]
     public EventCallback<int> OnDelete { get; set; }

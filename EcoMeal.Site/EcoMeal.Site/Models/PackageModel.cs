@@ -10,6 +10,7 @@ public class PackageModel
     public double Price { get; set; }
     public DateTime StartPickup { get; set; }
     public DateTime EndPickup { get; set; }
+    public int PackageTypeId { get; set; }
     public string? PackageType { get; set; }
     public int BusinessId { get; set; }
 }

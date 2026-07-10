@@ -33,7 +33,9 @@
     public int Id { get; set; }
 
     [Inject]
-    public required BusinessService businessService { get; set; }
+    public required BusinessService BusinessService { get; set; }
+    [Inject]
+    public required PackageService PackageService { get; set; }
     [Inject]
     public required NavigationManager NavigationManager { get; set; }
 
@@ -42,16 +44,13 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Business = await businessService.GetOneById(Id);
-        Packages = await businessService.GetPackagesFromBusinessId(Id);
+        Console.WriteLine(Id);
+        Business = await BusinessService.GetOneById(Id);
+        Packages = await PackageService.GetFromBusinessId(Id);
     }
 
     public void NavigateToAddPackage ()
     {
         NavigationManager.NavigateTo(uri: $"business/{Id}/addPackage");
-    }
-    public void NavigateToUpdatePackage()
-    {
-        NavigationManager.NavigateTo(uri: $"business/{Id}/updatePackage");
     }
 }

@@ -357,7 +357,7 @@
         }
       }
     },
-    "/api/Business": {
+    "/api/Business/GetAll": {
       "get": {
         "tags": [
           "Business"
@@ -391,36 +391,6 @@
                 }
               }
             }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Business"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/BusinessAddDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/BusinessAddDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/BusinessAddDTO"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
           }
         }
       }
@@ -496,6 +466,38 @@
         }
       }
     },
+    "/api/Business/AddBusiness": {
+      "post": {
+        "tags": [
+          "Business"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessAddDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessAddDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessAddDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Business/UpdateBusiness/{id}": {
       "put": {
         "tags": [
@@ -543,7 +545,7 @@
         }
       }
     },
-    "/api/BusinessType": {
+    "/api/BusinessType/GetAll": {
       "get": {
         "tags": [
           "BusinessType"
@@ -581,7 +583,7 @@
         }
       }
     },
-    "/api/Package/GetPackagesFromBusinessId/{id}": {
+    "/api/Package/GetFromBusinessId/{id}": {
       "get": {
         "tags": [
           "Package"
@@ -634,7 +636,7 @@
         }
       }
     },
-    "/api/Package/GetPackageById/{id}": {
+    "/api/Package/GetOneById/{id}": {
       "get": {
         "tags": [
           "Package"
@@ -678,7 +680,7 @@
         }
       }
     },
-    "/api/Package/DeletePackage/{id}": {
+    "/api/Package/Delete/{id}": {
       "delete": {
         "tags": [
           "Package"
@@ -705,7 +707,7 @@
         }
       }
     },
-    "/api/Package/AddPackageToBusiness/{id}": {
+    "/api/Package/AddToBusiness/{id}": {
       "post": {
         "tags": [
           "Package"
@@ -752,7 +754,7 @@
         }
       }
     },
-    "/api/Package/UpdatePackage/{id}": {
+    "/api/Package/Update/{id}": {
       "put": {
         "tags": [
           "Package"
@@ -799,7 +801,7 @@
         }
       }
     },
-    "/api/PackageType": {
+    "/api/PackageType/GetAll": {
       "get": {
         "tags": [
           "PackageType"
@@ -1222,6 +1224,14 @@
             ]
           },
           "packageTypeId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "businessId": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "type": [
               "integer",

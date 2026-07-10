@@ -9,8 +9,10 @@ public partial class AddBusiness
     [Inject]
     public BusinessService BusinessService { get; set; }
     [Inject]
+    public BusinessTypeService BusinessTypeService { get; set; }
+    [Inject]
     public NavigationManager NavigationManager { get; set; }
-    private List<BusinessTypeModel> BusinessTypes;
+    private List<BusinessTypeModel>? BusinessTypes;
     public BusinessAddModel BusinessAddModel { get; set; } = new BusinessAddModel()
     {
         Name = string.Empty,
@@ -20,13 +22,12 @@ public partial class AddBusiness
     };
     protected override async Task OnInitializedAsync()
     {
-        BusinessTypes = await BusinessService.GetBusinessTypes();
+        BusinessTypes = await BusinessTypeService.GetAll();
         BusinessTypes = BusinessTypes ?? new List<BusinessTypeModel>();
-        Console.WriteLine("999");
     }
     public async Task AddBusinessInService()
     {
-        await BusinessService.AddBusiness(BusinessAddModel);
+        await BusinessService.Add(BusinessAddModel);
         NavigationManager.NavigateTo(uri: $"/");
     }
 }

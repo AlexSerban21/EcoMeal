@@ -16,7 +16,7 @@ public class BusinessController : ControllerBase
         _context = context;
     }
 
-    [HttpGet]
+    [HttpGet("GetAll")]
     public async Task<ActionResult<IEnumerable<BusinessDTO>>> GetAll()
     {
         var businessesDTOs = await _context.Businesses
@@ -72,7 +72,7 @@ public class BusinessController : ControllerBase
         return NoContent();
     }
     
-    [HttpPost]
+    [HttpPost("AddBusiness")]
     public async Task<IActionResult> AddBusiness([FromBody] BusinessAddDTO business)
     {
         _context.Businesses.Add(new Business
@@ -87,8 +87,7 @@ public class BusinessController : ControllerBase
         return Created();
     }
     
-    [HttpPut]
-    [Route("UpdateBusiness/{id}")]
+    [HttpPut("UpdateBusiness/{id}")]
     public async Task<IActionResult> UpdateBusiness(int id, [FromBody] BusinessAddDTO business)
     {
         var businessContext = await _context.Businesses.FindAsync(id);

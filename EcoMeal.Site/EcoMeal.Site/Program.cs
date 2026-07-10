@@ -26,7 +26,11 @@ builder.Services.AddHttpClient("EcoMealAPI", client =>
 builder.Services.AddScoped(sp =>
     sp.GetRequiredService<IHttpClientFactory>().CreateClient("EcoMealAPI"));
 
-builder.Services.AddScoped<EcoMeal.Site.Services.BusinessService>();
+builder.Services.AddScoped<BusinessService>();
+builder.Services.AddScoped<PackageService>();
+builder.Services.AddScoped<BusinessTypeService>();
+builder.Services.AddScoped<PackageTypeService>();
+
 
 builder.Services.AddAuthorizationCore();
 builder.Services.AddScoped<AuthService>();

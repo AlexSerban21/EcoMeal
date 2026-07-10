@@ -10,7 +10,9 @@ namespace EcoMeal.Site.Components.Pages
         [Parameter]
         public int BusinessId { get; set; }
         [Inject]
-        public BusinessService BusinessService { get; set; }
+        public PackageService PackageService { get; set; }
+        [Inject]
+        public PackageTypeService PackageTypeService { get; set; }
         [Inject]
         public NavigationManager NavigationManager { get; set; }
         private List<PackageTypesModel> PackageTypes;
@@ -24,14 +26,12 @@ namespace EcoMeal.Site.Components.Pages
         };
         protected override async Task OnInitializedAsync ()
         {
-            PackageTypes = await BusinessService.GetPackageTypes();
+            PackageTypes = await PackageTypeService.GetAll();
             PackageTypes = PackageTypes ?? new List<PackageTypesModel> ();
-            Console.WriteLine("555");
         }
         public async Task AddPackageInService ()
         {
-            Console.WriteLine("444");
-            await BusinessService.AddPackageToBusiness(BusinessId, PackageAddModel);
+            await PackageService.AddToBusiness(BusinessId, PackageAddModel);
             NavigationManager.NavigateTo(uri: $"business/{BusinessId}");
         }
     }

@@ -17,8 +17,8 @@ public class BusinessTypeController : ControllerBase
         _context = context;
     }
 
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<BusinessTypeDTO>>> GetBusinessTypes()
+    [HttpGet("GetAll")]
+    public async Task<ActionResult<IEnumerable<BusinessTypeDTO>>> GetAll()
     {
         var BusinessTypesDTOs = await _context.BusinessTypes.Select(p => new BusinessTypeDTO
         {
