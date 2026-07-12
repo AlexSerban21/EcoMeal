@@ -60,10 +60,10 @@ h1:focus {
 }
 
 .card-hover {
-    background-color: #D7F0D7;
+    background-color: #D8EFD8;
     transition: background-color 0.3s ease;
 }
 
 .card-hover:hover {
-    background-color: #A5D6A7;
+    background-color: #C0E2C0;
 }

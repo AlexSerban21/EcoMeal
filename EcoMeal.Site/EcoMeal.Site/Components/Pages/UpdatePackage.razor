@@ -1,67 +1,67 @@
 ﻿@page "/business/{BusinessId:int}/updatePackage/{PackageId:int}"
 @rendermode InteractiveServer
 
-<p class="text-center fs-2 fw-bold text-dark lh-1">Editează pachet</p>
+<div class="mx-auto px-3 py-4 card-body rounded-2 border border-1 border-dark " style="max-width: 500px; width: 100%; background:#D8EFD8">
+    <p class="text-center fs-2 fw-bold text-dark lh-1">Editează pachet</p>
+    <EditForm Model="PackageAddModel" OnValidSubmit="UpdatePackageInService">
+        <DataAnnotationsValidator/>
+        @*@<ValidationSummary/>*@
 
-<EditForm Model="PackageAddModel" OnValidSubmit="UpdatePackageInService">
-    <DataAnnotationsValidator/>
-    @*@<ValidationSummary/>*@
+        <label class="form-label fs-5 fw-bold">Nume</label>
+        <InputText class="form-control mb-2 rounded-2 shadow border border-1 border-dark"
+                   @bind-Value="PackageAddModel.Name"
+                   placeholder="Editează nume pachet" />
 
-    <label class="form-label fs-5 fw-bold">Nume</label>
-    <InputText class="form-control mb-2 rounded-2 shadow border border-1 border-dark"
-               @bind-Value="PackageAddModel.Name"
-               placeholder="Editează nume pachet" />
+        <ValidationMessage For="@(() => PackageAddModel.Name)"/>
 
-    <ValidationMessage For="@(() => PackageAddModel.Name)"/>
+        <label class="form-label fs-5 fw-bold">Descriere</label>
+        <InputTextArea @bind-Value="PackageAddModel.Description"
+                       placeholder="Descriere"
+                       rows="4"
+                       class="form-control mb-2 rounded-2 shadow border border-1 border-dark" />
+    
+        <ValidationMessage For="@(() => PackageAddModel.Description)" />
 
-    <label class="form-label fs-5 fw-bold">Descriere</label>
-    <InputTextArea @bind-Value="PackageAddModel.Description"
-                   placeholder="Descriere"
-                   rows="4"
+        <label class="form-label fs-5 fw-bold">Pret</label>
+        <InputNumber @bind-Value="PackageAddModel.Price"
+                     placeholder="Pret"
+                     class="form-control mb-2  rounded-2 shadow border border-1 border-dark" />
+
+        <ValidationMessage For="@(() => PackageAddModel.Price)" />
+    
+        <label class="form-label fs-5 fw-bold">Start Pick-up</label>
+        <InputDate @bind-Value="PackageAddModel.StartPickup"
+                   Type="InputDateType.DateTimeLocal"
+                   placeholder="Start Pick-up"
+                   class="form-control mb-2 rounded-2 shadow border border-1 border-dark" />
+
+        <ValidationMessage For="@(() => PackageAddModel.StartPickup)" />
+
+        <label class="form-label fs-5 fw-bold">End Pick-up</label>
+        <InputDate @bind-Value="PackageAddModel.EndPickup"
+                   Type="InputDateType.DateTimeLocal"
+                   placeholder="End Pick-up"
                    class="form-control mb-2 rounded-2 shadow border border-1 border-dark" />
     
-    <ValidationMessage For="@(() => PackageAddModel.Description)" />
+        <ValidationMessage For="@(() => PackageAddModel.EndPickup)" />
 
-    <label class="form-label fs-5 fw-bold">Pret</label>
-    <InputNumber @bind-Value="PackageAddModel.Price"
-                 placeholder="Pret"
-                 class="form-control mb-2  rounded-2 shadow border border-1 border-dark" />
-
-    <ValidationMessage For="@(() => PackageAddModel.Price)" />
-    
-    <label class="form-label fs-5 fw-bold">Start Pick-up</label>
-    <InputDate @bind-Value="PackageAddModel.StartPickup"
-               Type="InputDateType.DateTimeLocal"
-               placeholder="Start Pick-up"
-               class="form-control mb-2 rounded-2 shadow border border-1 border-dark" />
-
-    <ValidationMessage For="@(() => PackageAddModel.StartPickup)" />
-
-    <label class="form-label fs-5 fw-bold">End Pick-up</label>
-    <InputDate @bind-Value="PackageAddModel.EndPickup"
-               Type="InputDateType.DateTimeLocal"
-               placeholder="End Pick-up"
-               class="form-control mb-2 rounded-2 shadow border border-1 border-dark" />
-    
-    <ValidationMessage For="@(() => PackageAddModel.EndPickup)" />
-
-    <label class="form-label fs-5 fw-bold">Tip pachet</label>
-    <InputSelect @bind-Value="PackageAddModel.PackageTypeId"
-                 class="form-control mb-2 rounded-2 shadow border border-1 border-dark">
-        <option value="0"
-                disabled>Alege tipul...</option>
-        @if (PackageTypes is not null)
-        {
-            foreach (var packageType in PackageTypes)
+        <label class="form-label fs-5 fw-bold">Tip pachet</label>
+        <InputSelect @bind-Value="PackageAddModel.PackageTypeId"
+                     class="form-control mb-2 rounded-2 shadow border border-1 border-dark">
+            <option value="0"
+                    disabled>Alege tipul...</option>
+            @if (PackageTypes is not null)
             {
-                <option value="@packageType.Id">@packageType.Name</option>
+                foreach (var packageType in PackageTypes)
+                {
+                    <option value="@packageType.Id">@packageType.Name</option>
+                }
             }
-        }
-    </InputSelect>
+        </InputSelect>
 
-    <ValidationMessage For="@(() => PackageAddModel.PackageTypeId)" />
+        <ValidationMessage For="@(() => PackageAddModel.PackageTypeId)" />
 
-    <button type="submit" class="btn btn-success rounded-5">Editează pachet</button>
+        <button type="submit" class="btn btn-success rounded-5">Editează pachet</button>
 
-</EditForm>
-
+    </EditForm>
+</div>

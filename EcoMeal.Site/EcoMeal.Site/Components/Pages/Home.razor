@@ -1,24 +1,27 @@
 ﻿@page "/"
 @rendermode InteractiveServer
 @using EcoMeal.Site.Components.BusinessList
+@using Microsoft.AspNetCore.Components.Authorization
 <PageTitle>Home</PageTitle>
 
-<div class="card-body text-center rounded-1 shadow border border-1 border-dark p-5" style="background-color: #E2E6EA;">
-    <p class="fs-1 fw-bold text-success lh-1">
+<div class="card-body text-center rounded-1 shadow border border-1 border-dark p-5" style="background: linear-gradient(to right, #81C784, #C8E6C9);">
+    <p class="fs-1 fw-bold text-dark lh-1">
         EcoMeal - Protejează Mediul!
     </p>
 
-    <p class="fs-2 fw-bold text-dark lh-1">
+    <p class="fs-3 fw-bold text-primary-emphasis lh-1">
         EcoMeal este o aplicație ce ajută restaurantele să reducă surplusul alimentar.
     </p>
 </div>
 
 <br><br>
-<div class="d-flex justify-content-between mt-4 mb-3">
-    <p class="text-center fs-3 fw-bold text-dark lh-1">Aici puteți vedea toate restaurantele partenere: </p>    
-    <button type="button"
-            class="btn btn-success rounded-4" @onclick="NavigateToAddBusiness">
-        + Adaugă restaurant
-    </button>
+<div class="d-flex justify-content-between mt-4 mb-3 align-items-center">
+    <span class="text-center fs-3 fw-bold text-dark lh-1">Aici puteți vedea toate restaurantele partenere: </span>    
+    <AuthorizeView Roles="Admin"> 
+        <button type="button"
+                class="btn btn-success rounded-5" @onclick="NavigateToAddBusiness">
+            + Adaugă restaurant
+        </button>
+    </AuthorizeView> 
 </div>
 <BusinessList/>

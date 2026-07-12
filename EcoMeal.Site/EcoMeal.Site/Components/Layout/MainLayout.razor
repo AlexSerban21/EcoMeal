@@ -3,25 +3,28 @@
 @inject AuthService AuthService
 @inject NavigationManager Navigation
 
-<div class="page">
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light px-4 border-bottom">
-            <a class="navbar-brand font-weight-bold" href="/">EcoMeal</a>
-            <div class="ms-auto">
+<div class="page" style="background-color: #E2E6EA;">
+    <main>
+        <nav style="background: linear-gradient(to right, #1B5E20, #4CAF50);" class="px-3 top-row justify-content-start">
+            <a href="." class="text-white fs-5 fw-bold" style="margin-left:5px;font-family: 'Trebuchet MS'">EcoMeal</a>
+            <div class="ms-auto d-flex gap-0 align-items-center">
                 @if (AuthService.IsAuthenticated)
                 {
-                    <span class="me-3 text-secondary">Logged In</span>
-                    <button class="btn btn-outline-danger btn-sm" @onclick="HandleLogout">Logout</button>
+                    <button @onclick="HandleLogout" class="bg-transparent border-0 text-white fs-6 p-0 fw-bold text-decoration-none">Deconectează-te</button>
                 }
                 else
                 {
-                    <a class="btn btn-outline-primary btn-sm" href="/login">Login</a>
+                    <a href="/login" class="text-white fs-6 p-0 fw-bold text-decoration-none">
+                        Autentificare
+                    </a>
+
+                    <a href="register" class="text-white fs-6 p-0 fw-bold text-decoration-none">
+                        Înregistrare
+                    </a>
                 }
             </div>
         </nav>
-    </header>
-    <main>
-        <article class="content px-4 py-3">
+        <article class="content px-4 py-3" >
             @Body
         </article>
     </main>

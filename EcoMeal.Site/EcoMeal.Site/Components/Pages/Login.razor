@@ -5,33 +5,35 @@
 @inject AuthService AuthService
 @inject NavigationManager Navigation
 
-<h3>Login</h3>
+<div class="mx-auto px-3 py-4 card-body rounded-2 border border-1 border-dark " style="max-width: 350px; width: 100%; background:#D8EFD8">
+    <p class="text-center fs-2 fw-bold text-dark lh-1">Autentificare</p>
 
-@if (!string.IsNullOrEmpty(errorMessage))
-{
-    <div class="alert alert-danger">@errorMessage</div>
-}
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert rounded-2" style="background-color:#EF9A9A">@errorMessage</div>
+    }
+    <EditForm Model="loginModel" OnValidSubmit="HandleLogin" FormName="loginForm">
+        <DataAnnotationsValidator />
 
-<EditForm Model="loginModel" OnValidSubmit="HandleLogin" FormName="loginForm">
-    <DataAnnotationsValidator />
+        <div class="mb-3">
+            <label class="form-label fs-6 fw-bold">Email</label>
+            <InputText class="form-control" @bind-Value="loginModel.Email" />
+            <ValidationMessage For="() => loginModel.Email"
+            placeholder="Email" />
+        </div>
 
-    <div class="mb-3">
-        <label class="form-label">Email</label>
-        <InputText class="form-control" @bind-Value="loginModel.Email" />
-        <ValidationMessage For="() => loginModel.Email" />
-    </div>
+        <div class="mb-3">
+            <label class="form-label fs-6 fw-bold">Parolă</label>
+            <InputText type="password" class="form-control" @bind-Value="loginModel.Password" />
+            <ValidationMessage For="() => loginModel.Password"
+            placeholder="Parolă" />
+        </div>
 
-    <div class="mb-3">
-        <label class="form-label">Password</label>
-        <InputText type="password" class="form-control" @bind-Value="loginModel.Password" />
-        <ValidationMessage For="() => loginModel.Password" />
-    </div>
+        <button type="submit" class="btn btn-success w-100 rounded-5 fw-bold">Autentificare</button>
+    </EditForm>
 
-    <button type="submit" class="btn btn-primary">Login</button>
-</EditForm>
-
-<p class="mt-3">Don't have an account? <a href="/register">Register</a></p>
-
+    <p class="mt-3 fs-6 fw-bold mb-0">Nu ai cont? <a class="text-primary-emphasis text-decoration-none" href="/register">Înregistrează-te!</a></p>
+</div>
 @code {
     [SupplyParameterFromForm]
     private LoginModel loginModel { get; set; } = new();

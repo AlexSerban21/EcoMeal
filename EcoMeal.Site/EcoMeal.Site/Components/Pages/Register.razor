@@ -5,51 +5,56 @@
 @inject AuthService AuthService
 @inject NavigationManager Navigation
 
-<h3>Register</h3>
 
 @if (!string.IsNullOrEmpty(errorMessage))
 {
-    <div class="alert alert-danger">@errorMessage</div>
+    <div class="alert rounded-2" style="background-color:#EF9A9A">@errorMessage</div>
 }
 
-<EditForm Model="registerModel" OnValidSubmit="HandleRegister" FormName="registerForm">
-    <DataAnnotationsValidator />
+<div class="mx-auto px-3 py-4 card-body rounded-2 border border-1 border-dark " style="max-width: 420px; width: 100%; background:#D8EFD8">
+    <p class="text-center fs-2 fw-bold text-dark lh-1">Înregistrare</p>
+    <EditForm Model="registerModel" OnValidSubmit="HandleRegister" FormName="registerForm">
+        <DataAnnotationsValidator />
 
-    <div class="mb-3">
-        <label class="form-label">Email</label>
-        <InputText class="form-control" @bind-Value="registerModel.Email" />
-        <ValidationMessage For="() => registerModel.Email" />
-    </div>
+        <div class="mb-3 fs-6 fw-bold">
+            <label class="form-label">Email</label>
+            <InputText class="form-control" @bind-Value="registerModel.Email" />
+            <ValidationMessage For="() => registerModel.Email"
+             placeholder="Email"/>
+        </div>
 
-    <div class="mb-3">
-        <label class="form-label">Password</label>
-        <InputText type="password" class="form-control" @bind-Value="registerModel.Password" />
-        <ValidationMessage For="() => registerModel.Password" />
-    </div>
+        <div class="mb-3 fs-6 fw-bold">
+            <label class="form-label">Parolă</label>
+            <InputText type="password" class="form-control" @bind-Value="registerModel.Password" />
+            <ValidationMessage For="() => registerModel.Password"
+            placeholder="Parolă"/>
+        </div>
 
-    <div class="mb-3">
-        <label class="form-label">Confirm Password</label>
-        <InputText type="password" class="form-control" @bind-Value="registerModel.ConfirmPassword" />
-        <ValidationMessage For="() => registerModel.ConfirmPassword" />
-    </div>
+        <div class="mb-3 fs-6 fw-bold">
+            <label class="form-label">Confirm Parolă</label>
+            <InputText type="password" class="form-control" @bind-Value="registerModel.ConfirmPassword" />
+            <ValidationMessage For="() => registerModel.ConfirmPassword"
+            placeholder="Reintrodu parola"/>
+        </div>
 
-    <div class="mb-3">
-        <label class="form-label">Name</label>
-        <InputText class="form-control" @bind-Value="registerModel.Name" />
-        <ValidationMessage For="() => registerModel.Name" />
-    </div>
+        <div class="mb-3 fs-6 fw-bold">
+            <label class="form-label">Nume</label>
+            <InputText class="form-control" @bind-Value="registerModel.Name" />
+            <ValidationMessage For="() => registerModel.Name"
+            placeholder="Nume"/>
+        </div>
 
-    <div class="mb-3">
-        <label class="form-label">Contact Info</label>
-        <InputText class="form-control" @bind-Value="registerModel.Contact" />
-        <ValidationMessage For="() => registerModel.Contact" />
-    </div>
+        <div class="mb-3 fs-6 fw-bold">
+            <label class="form-label">Contact</label>
+            <InputText class="form-control" @bind-Value="registerModel.Contact" />
+            <ValidationMessage For="() => registerModel.Contact"
+            placeholder="Contact"/>
+        </div>
 
-    <button type="submit" class="btn btn-primary">Register</button>
-</EditForm>
-
-<p class="mt-3">Already have an account? <a href="/login">Login</a></p>
-
+        <button type="submit" class="btn btn-success w-100 rounded-5 fw-bold">Înregistrează-te</button>
+    </EditForm>
+    <p class="mt-3 fs-6 fw-bold mb-0">Ai deja cont? <a class="text-primary-emphasis text-decoration-none" href="/login">Autentifică-te!</a></p>
+</div>
 @code {
     [SupplyParameterFromForm]
     private RegisterModel registerModel { get; set; } = new();

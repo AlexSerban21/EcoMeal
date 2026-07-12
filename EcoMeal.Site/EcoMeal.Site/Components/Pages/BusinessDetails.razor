@@ -2,6 +2,7 @@
 @using EcoMeal.Site.Components.PackageList
 @using EcoMeal.Site.Models
 @using EcoMeal.Site.Services;
+@using Microsoft.AspNetCore.Components.Authorization
 @rendermode InteractiveServer
 @if (Business is null)
 {
@@ -9,19 +10,28 @@
 }
 
 <div class="container my-4">
-    <p class="card-title text-black text-center fs-1 fw-bold">@Business.Name</p>
-    <p class="card-text text-danger text-center fs-4 fw-bold">@Business.Description</p>
-    <p class="card-text text-primary-emphasis text-center fw-bold fs-4">Suntem în @Business.Adress</p>
-    <p class="card-text text-warning-emphasis text-center fs-4 fw-bold text-decoration-underline">Trimite un mail la: <br> @Business.Contact</p>
+    <div class="card-body rounded-1 shadow border border-1 border-dark p-3" style="background: linear-gradient(to right, #81C784, #C8E6C9);">
+    
+        <p class="card-title text-black fs-1 fw-bold text-center">@Business.Name</p>
+        <p class="card-text text-primary-emphasis fs-4 fw-bold text-center">@Business.Description</p>
 
-    <br> <br> <br>
+        <i class="bi bi-geo-alt-fill me-2"></i>
+        <span class="card-text text-dark fw-bold fs-4">@Business.Adress</span>
 
+        <br>
+
+        <i class="bi bi-envelope me-2"></i>
+        <span class="card-text text-dark fs-4 fw-bold">@Business.Contact</span>
+    </div>
+    <br>
     <div class="d-flex justify-content-between mt-4 mb-3">
         <p class="text-center fs-3 fw-bold text-dark lh-1">Aici puteți vedea toate pachetele disponibile: </p>
-        <button type="button"
-                class="btn btn-success rounded-4" @onclick="NavigateToAddPackage">
-            + Adaugă pachet
-        </button>
+        <AuthorizeView Roles="Admin"> 
+            <button type="button"
+                    class="btn btn-success rounded-5" @onclick="NavigateToAddPackage">
+                + Adaugă pachet
+            </button>
+        </AuthorizeView>
     </div>
 
     <PackageList Id="@Business.Id"/>

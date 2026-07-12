@@ -4,21 +4,21 @@ namespace EcoMeal.Site.Models.Auth;
 
 public class RegisterModel
 {
-    [Required(ErrorMessage = "Email is required")]
-    [EmailAddress(ErrorMessage = "Invalid email format")]
+    [Required(ErrorMessage = "Emailul este necesar")]
+    [EmailAddress(ErrorMessage = "Email invalid")]
     public string Email { get; set; } = string.Empty;
 
-    [Required(ErrorMessage = "Password is required")]
-    [MinLength(6, ErrorMessage = "Password must be at least 6 characters")]
+    [Required(ErrorMessage = "Parola este necesară")]
+    [MinLength(6, ErrorMessage = "Parola trebuie să aibă cel puțin 6 litere")]
     public string Password { get; set; } = string.Empty;
 
-    [Required(ErrorMessage = "Please confirm your password")]
-    [Compare(nameof(Password), ErrorMessage = "Passwords do not match")]
+    [Required(ErrorMessage = "Confirmă parola")]
+    [Compare(nameof(Password), ErrorMessage = "Parolele nu sunt identice")]
     public string ConfirmPassword { get; set; } = string.Empty;
 
-    [Required(ErrorMessage = "Name is required")]
+    [Required(ErrorMessage = "Numele este necesar")]
     public string Name { get; set; } = string.Empty;
 
-    [Required(ErrorMessage = "Contact info is required")]
+    [Required(ErrorMessage = "Contactul este necesar")]
     public string Contact { get; set; } = string.Empty;
 }

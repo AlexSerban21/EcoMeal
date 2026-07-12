@@ -1,60 +1,60 @@
 ﻿@page "/updateBusiness/{Id:int}"
 @rendermode InteractiveServer
 
-<p class="text-center fs-2 fw-bold text-dark lh-1">Editează restaurant</p>
+<div class="mx-auto px-3 py-4 card-body rounded-2 border border-1 border-dark " style="max-width: 500px; width: 100%; background:#D8EFD8">
+    <p class="text-center fs-2 fw-bold text-dark lh-1">Editează restaurant</p>
+    <EditForm Model="BusinessAddModel" OnValidSubmit="UpdateBusinessInService">
+        @*@<DataAnnotationsValidator />*@
+        <ValidationSummary />
 
-<EditForm Model="BusinessAddModel" OnValidSubmit="UpdateBusinessInService">
-    @*@<DataAnnotationsValidator />*@
-    <ValidationSummary />
+        <label class="form-label fs-5 fw-bold">Nume</label>
+        <InputText class="form-control mb-2 rounded-2 shadow border border-1 border-dark"
+                   @bind-Value="BusinessAddModel.Name"
+                   placeholder="Editează nume resturant" />
 
-    <label class="form-label fs-5 fw-bold">Nume</label>
-    <InputText class="form-control mb-2 rounded-2 shadow border border-1 border-dark"
-               @bind-Value="BusinessAddModel.Name"
-               placeholder="Editează nume resturant" />
+        <ValidationMessage For="@(() => BusinessAddModel.Name)" />
 
-    <ValidationMessage For="@(() => BusinessAddModel.Name)" />
+        <label class="form-label fs-5 fw-bold">Adresă</label>
+        <InputTextArea @bind-Value="BusinessAddModel.Adress"
+                       placeholder="Adresă"
+                       rows="4"
+                       class="form-control mb-2 rounded-2 shadow border border-1 border-dark" />
 
-    <label class="form-label fs-5 fw-bold">Adresă</label>
-    <InputTextArea @bind-Value="BusinessAddModel.Adress"
-                   placeholder="Adresă"
-                   rows="4"
-                   class="form-control mb-2 rounded-2 shadow border border-1 border-dark" />
-
-    <ValidationMessage For="@(() => BusinessAddModel.Adress)" />
+        <ValidationMessage For="@(() => BusinessAddModel.Adress)" />
     
-    <label class="form-label fs-5 fw-bold">Descriere</label>
-    <InputTextArea @bind-Value="BusinessAddModel.Description"
-                   placeholder="Descriere"
-                   rows="4"
-                   class="form-control mb-2 rounded-2 shadow border border-1 border-dark" />
+        <label class="form-label fs-5 fw-bold">Descriere</label>
+        <InputTextArea @bind-Value="BusinessAddModel.Description"
+                       placeholder="Descriere"
+                       rows="4"
+                       class="form-control mb-2 rounded-2 shadow border border-1 border-dark" />
 
-    <ValidationMessage For="@(() => BusinessAddModel.Description)" />
+        <ValidationMessage For="@(() => BusinessAddModel.Description)" />
     
-    <label class="form-label fs-5 fw-bold">Contact</label>
-    <InputTextArea @bind-Value="BusinessAddModel.Contact"
-                   placeholder="Contact"
-                   rows="4"
-                   class="form-control mb-2 rounded-2 shadow border border-1 border-dark" />
+        <label class="form-label fs-5 fw-bold">Contact</label>
+        <InputTextArea @bind-Value="BusinessAddModel.Contact"
+                       placeholder="Contact"
+                       rows="4"
+                       class="form-control mb-2 rounded-2 shadow border border-1 border-dark" />
 
-    <ValidationMessage For="@(() => BusinessAddModel.Contact)" />
+        <ValidationMessage For="@(() => BusinessAddModel.Contact)" />
 
-    <label class="form-label fs-5 fw-bold">Tip restaurant</label>
-    <InputSelect @bind-Value="BusinessAddModel.BusinessTypeId"
-                 class="form-control mb-2 rounded-2 shadow border border-1 border-dark">
-        <option value="0"
-                disabled>Alege tipul...</option>
-        @if (BusinessTypes is not null)
-        {
-            foreach (var packageType in BusinessTypes)
+        <label class="form-label fs-5 fw-bold">Tip restaurant</label>
+        <InputSelect @bind-Value="BusinessAddModel.BusinessTypeId"
+                     class="form-control mb-2 rounded-2 shadow border border-1 border-dark">
+            <option value="0"
+                    disabled>Alege tipul...</option>
+            @if (BusinessTypes is not null)
             {
-                <option value="@packageType.Id">@packageType.Name</option>
+                foreach (var packageType in BusinessTypes)
+                {
+                    <option value="@packageType.Id">@packageType.Name</option>
+                }
             }
-        }
-    </InputSelect>
+        </InputSelect>
 
-    <ValidationMessage For="@(() => BusinessAddModel.BusinessTypeId)" />
+        <ValidationMessage For="@(() => BusinessAddModel.BusinessTypeId)" />
 
-    <button type="submit" class="btn btn-success rounded-4">Editează Restaurant</button>
+        <button type="submit" class="btn btn-success rounded-4">Editează restaurant</button>
 
-</EditForm>
-
+    </EditForm>
+</div>
