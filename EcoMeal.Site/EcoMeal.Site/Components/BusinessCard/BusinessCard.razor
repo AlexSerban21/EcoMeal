@@ -1,12 +1,28 @@
 ﻿@namespace EcoMeal.Site.Components.BusinessCard
 @using Microsoft.AspNetCore.Components.Authorization
+@using EcoMeal.Site.Services
 <div class="card w-100" style="max-width:320px" @onclick="NavigateToDetails">
     <div class="card-body rounded-2 shadow border border-1 border-dark card-hover">
+        
+        @*@if (AuthService.IsAuthenticated)
+            {
+                <button>
+                if (IsFavourite)
+                {
+                    <span>★</span>
+                }
+                else
+                {
+                    <span>☆</span>
+                }
+                </button>
+            }*@
+        <img src="@Business.Image" style="width: 250px; height: 180px;" />
         <p class="card-title text-black fs-4 fw-bold text-center">@Business.Name</p>
         <p class="card-text text-primary-emphasis fs-6 fw-bold text-center">@Business.Description</p>
         
         <i class="bi bi-geo-alt-fill me-2"></i>
-        <span class="card-text text-dark fw-bold fs-6">@Business.Adress</span>
+        <span class="card-text text-dark fw-bold fs-6">@Business.CityName</span>
 
         <br>
 

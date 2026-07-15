@@ -1,5 +1,4 @@
 ﻿@page "/"
-@rendermode InteractiveServer
 @using EcoMeal.Site.Components.BusinessList
 @using Microsoft.AspNetCore.Components.Authorization
 <PageTitle>Home</PageTitle>
@@ -17,6 +16,24 @@
 <br><br>
 <div class="d-flex justify-content-between mt-4 mb-3 align-items-center">
     <span class="text-center fs-3 fw-bold text-dark lh-1">Aici puteți vedea toate restaurantele partenere: </span>    
+    <label class="form-label">Tip restaurant</label>
+
+    <InputSelect class="form-select" @bind-Value="SelectedBusinessTypeId" @bind-Value:after="FilterBusinesses">
+        <option value = "0">Toate</option>
+        @foreach (var type in BusinessTypes)
+            {
+                <option value="@type.Id">@type.Name</option>
+            }
+    </InputSelect>
+
+    <InputSelect class="form-select" @bind-Value="SelectedBusinessCity" @bind-Value:after="FilterBusinesses">
+        <option value="0">Toate</option>
+        @foreach (var type in Cities)
+        {
+            <option value="@type.Id">@type.Name</option>
+        }
+    </InputSelect>
+
     <AuthorizeView Roles="Admin"> 
         <button type="button"
                 class="btn btn-success rounded-5" @onclick="NavigateToAddBusiness">
@@ -24,4 +41,4 @@
         </button>
     </AuthorizeView> 
 </div>
-<BusinessList/>
+<BusinessList Businesses="@Businesses" />

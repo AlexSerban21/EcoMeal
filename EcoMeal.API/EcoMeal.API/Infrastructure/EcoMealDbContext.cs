@@ -14,6 +14,10 @@ public class EcoMealDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     public DbSet<PackageType> PackageTypes { get; set;}
     public DbSet<Business> Businesses { get; set;}
     public DbSet<Package> Packages { get; set;}
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<FavouriteBusiness> FavouriteBusinesses { get; set; }
+    public DbSet<City> Cities { get; set; }
+    public DbSet<Rating> Ratings { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -24,7 +28,6 @@ public class EcoMealDbContext : IdentityDbContext<User, IdentityRole<int>, int>
         //modelBuilder.Entity<Package>().HasKey (e => e.Id);
         //modelBuilder.Entity<User>().HasKey(e => e.Id);
         //modelBuilder.Entity<Order>().HasKey (e => e.Id);
-
 
         modelBuilder.Entity<Package>()
             .Property(p => p.Price)
@@ -55,5 +58,27 @@ public class EcoMealDbContext : IdentityDbContext<User, IdentityRole<int>, int>
             .HasOne(p => p.Package)
             .WithMany(p => p.Orders)
             .HasForeignKey(p => p.PackageId);
+
+        modelBuilder.Entity<FavouriteBusiness>().HasKey(fb => new { fb.UserId, fb.BusinessId });
+        
+        modelBuilder.Entity<FavouriteBusiness>().HasOne(fb => fb.User)
+            .WithMany(p => p.FavouriteBusinesses)
+            .HasForeignKey(fb => fb.UserId);
+
+        modelBuilder.Entity<FavouriteBusiness>().HasOne(fb => fb.Business)
+            .WithMany(p => p.FavouriteBusinesses)
+            .HasForeignKey(fb => fb.BusinessId);
+
+        modelBuilder.Entity<Business>().HasOne(b => b.City)
+            .WithMany(p => p.Businesses)
+            .HasForeignKey(b => b.CityId);
+
+        modelBuilder.Entity<Rating>().HasOne(r => r.User)
+            .WithMany(u => u.Ratings)
+            .HasForeignKey(r => r.UserId);
+
+        modelBuilder.Entity<Rating>().HasOne(r => r.Business)
+            .WithMany(b => b.Ratings)
+            .HasForeignKey(r => r.BusinessId);
     }
 }

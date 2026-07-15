@@ -12,11 +12,8 @@ public partial class PackageList
     public required PackageService PackageService { get; set; }
     [Parameter]
     public required int Id { get; set; }
-    private List<PackageModel>? Packages;
-    protected override async Task OnInitializedAsync()
-    {
-        Packages = await PackageService.GetFromBusinessId(Id);
-    }
+    [Parameter]
+    public List <PackageModel>? Packages { get; set; }
     public async Task DeletePackage(int id)
     {
         await PackageService.Delete(id);

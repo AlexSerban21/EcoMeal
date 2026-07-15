@@ -7,16 +7,18 @@ namespace EcoMeal.Site.Components.Pages;
 public partial class AddBusiness
 {
     [Inject]
-    public BusinessService BusinessService { get; set; }
+    public required BusinessService BusinessService { get; set; }
     [Inject]
-    public BusinessTypeService BusinessTypeService { get; set; }
+    public required BusinessTypeService BusinessTypeService { get; set; }
     [Inject]
-    public NavigationManager NavigationManager { get; set; }
+    public required NavigationManager NavigationManager { get; set; }
+    [Inject]
+    public required CityService CityService { get; set; }
     private List<BusinessTypeModel>? BusinessTypes;
+    private List<CityModel>? Cities;
     public BusinessAddModel BusinessAddModel { get; set; } = new BusinessAddModel()
     {
         Name = string.Empty,
-        Adress = string.Empty,
         Description = string.Empty,
         Contact = string.Empty
     };
@@ -24,6 +26,7 @@ public partial class AddBusiness
     {
         BusinessTypes = await BusinessTypeService.GetAll();
         BusinessTypes = BusinessTypes ?? new List<BusinessTypeModel>();
+        Cities = await CityService.GetAll();
     }
     public async Task AddBusinessInService()
     {

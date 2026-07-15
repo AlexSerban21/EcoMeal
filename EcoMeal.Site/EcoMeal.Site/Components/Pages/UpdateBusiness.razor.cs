@@ -9,16 +9,18 @@ public partial class UpdateBusiness
     [Parameter]
     public int Id { get; set; }
     [Inject]
-    public BusinessService BusinessService { get; set; }
+    public required BusinessService BusinessService { get; set; }
     [Inject]
-    public BusinessTypeService BusinessTypeService { get; set; }
+    public required BusinessTypeService BusinessTypeService { get; set; }
     [Inject]
-    public NavigationManager NavigationManager { get; set; }
+    public required NavigationManager NavigationManager { get; set; }
+    [Inject]
+    public required CityService CityService { get; set; }
     private List<BusinessTypeModel>? BusinessTypes;
+    private List<CityModel>? Cities;
     public BusinessAddModel? BusinessAddModel { get; set; } = new BusinessAddModel()
     {
         Name = string.Empty,
-        Adress = string.Empty,
         Contact = string.Empty,
         Description = string.Empty,
     };
@@ -26,14 +28,15 @@ public partial class UpdateBusiness
     {
         BusinessTypes = await BusinessTypeService.GetAll();
         BusinessTypes = BusinessTypes ?? new List<BusinessTypeModel>();
+        Cities = await CityService.GetAll();
         var business = await BusinessService.GetOneById(Id);
         BusinessAddModel = new BusinessAddModel
         {
             Name = business.Name,
-            Adress = business.Adress,
             Description = business.Description,
             Contact = business.Contact,
-            BusinessTypeId = business.BusinessTypeId
+            BusinessTypeId = business.BusinessTypeId,
+            CityId = business.CityId
         };
     }
     public async Task UpdateBusinessInService()

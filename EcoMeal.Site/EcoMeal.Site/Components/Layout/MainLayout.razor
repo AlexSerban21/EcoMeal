@@ -1,27 +1,28 @@
 @inherits LayoutComponentBase
 @using EcoMeal.Site.Services
-@inject AuthService AuthService
-@inject NavigationManager Navigation
 
-<div class="page" style="background-color: #E2E6EA;">
+<div class="page">
     <main>
         <nav style="background: linear-gradient(to right, #1B5E20, #4CAF50);" class="px-3 top-row justify-content-start">
             <a href="." class="text-white fs-5 fw-bold" style="margin-left:5px;font-family: 'Trebuchet MS'">EcoMeal</a>
             <div class="ms-auto d-flex gap-0 align-items-center">
-                @if (AuthService.IsAuthenticated)
-                {
-                    <button @onclick="HandleLogout" class="bg-transparent border-0 text-white fs-6 p-0 fw-bold text-decoration-none">Deconectează-te</button>
-                }
-                else
-                {
-                    <a href="/login" class="text-white fs-6 p-0 fw-bold text-decoration-none">
-                        Autentificare
-                    </a>
+                <AuthorizeView>
+                    <Authorized Context="authContext">
+                        <a class="btn btn-outline-secondary btn-sm me-2" href="/orders">Comenzi</a>
+                        <button @onclick="HandleLogout" class="bg-transparent border-0 text-white fs-6 p-0 fw-bold text-decoration-none">Deconectează-te</button>
+                    </Authorized>
+                    <NotAuthorized Context="authContext">
 
-                    <a href="register" class="text-white fs-6 p-0 fw-bold text-decoration-none">
-                        Înregistrare
-                    </a>
-                }
+                        //<span class="text-white fs-6 p-0 fw-bold text-decoration-none">Salut @authContext.User</span>
+                        <a href="/login" class="text-white fs-6 p-0 fw-bold text-decoration-none">
+                            Autentificare
+                        </a>
+
+                        <a href="register" class="text-white fs-6 p-0 fw-bold text-decoration-none">
+                            Înregistrare
+                        </a>
+                    </NotAuthorized>
+                </AuthorizeView>
             </div>
         </nav>
         <article class="content px-4 py-3" >
@@ -37,14 +38,13 @@
 </div>
 
 @code {
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await AuthService.LoadTokenAsync();
-            StateHasChanged();
-        }
-    }
+
+    [Inject]
+    public required AuthService AuthService { get; set; }
+    [Inject]
+	public required NavigationManager Navigation { get; set; }
+	public string UserName { get; set; } = string.Empty;
+
 
     private async Task HandleLogout()
     {

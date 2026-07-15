@@ -55,8 +55,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xCdXNpbmVzc0RldGFpbHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/alexa/source/repos/AlexSerban21/EcoMeal/EcoMeal.Site/EcoMeal.Site/Components/Pages/Component.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb21wb25lbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/alexa/source/repos/AlexSerban21/EcoMeal/EcoMeal.Site/EcoMeal.Site/Components/Pages/Error.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alexa/source/repos/AlexSerban21/EcoMeal/EcoMeal.Site/EcoMeal.Site/Components/Pages/FavouriteBusinesses.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xGYXZvdXJpdGVCdXNpbmVzc2VzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/alexa/source/repos/AlexSerban21/EcoMeal/EcoMeal.Site/EcoMeal.Site/Components/Pages/Home.razor]
@@ -69,6 +77,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/alexa/source/repos/AlexSerban21/EcoMeal/EcoMeal.Site/EcoMeal.Site/Components/Pages/NotFound.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xOb3RGb3VuZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alexa/source/repos/AlexSerban21/EcoMeal/EcoMeal.Site/EcoMeal.Site/Components/Pages/Orders.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xPcmRlcnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alexa/source/repos/AlexSerban21/EcoMeal/EcoMeal.Site/EcoMeal.Site/Components/Pages/RedirectToLogin.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWRpcmVjdFRvTG9naW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/alexa/source/repos/AlexSerban21/EcoMeal/EcoMeal.Site/EcoMeal.Site/Components/Pages/Register.razor]

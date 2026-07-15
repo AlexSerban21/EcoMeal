@@ -14,13 +14,21 @@
 
         <ValidationMessage For="@(() => BusinessAddModel.Name)" />
 
-        <label class="form-label fs-5 fw-bold">Adresă</label>
-        <InputTextArea @bind-Value="BusinessAddModel.Adress"
-                       placeholder="Adresă"
-                       rows="4"
-                       class="form-control mb-2 rounded-2 shadow border border-1 border-dark" />
+        <label class="form-label fs-6 fw-bold">Oraș</label>
+        <InputSelect @bind-Value="BusinessAddModel.CityId"
+                     class="form-control mb-2 rounded-2 shadow border border-1 border-dark">
+            <option value="0"
+                    disabled>Alege orașul...</option>
+            @if (Cities is not null)
+            {
+                foreach (var city in Cities)
+                {
+                    <option value="@city.Id">@city.Name</option>
+                }
+            }
+        </InputSelect>
 
-        <ValidationMessage For="@(() => BusinessAddModel.Adress)" />
+        <ValidationMessage For="@(() => BusinessAddModel.CityId)" />
     
         <label class="form-label fs-5 fw-bold">Descriere</label>
         <InputTextArea @bind-Value="BusinessAddModel.Description"

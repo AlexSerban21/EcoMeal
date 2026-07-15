@@ -7,9 +7,9 @@ public class BusinessAddModel
     [Required(ErrorMessage = "Numele este obligatoriu!")]
     [StringLength(50)]
     public required string Name { get; set; }
-    [Required(ErrorMessage = "Adresa este obligatoriu!")]
+    [Required(ErrorMessage = "Orașul este obligatoriu!")]
     [StringLength(50)]
-    public required string Adress { get; set; }
+    public int CityId { get; set; }
     [Required(ErrorMessage = "Descrierea este obligatoriu!")]
     [StringLength(50)]
     public string? Description { get; set; }

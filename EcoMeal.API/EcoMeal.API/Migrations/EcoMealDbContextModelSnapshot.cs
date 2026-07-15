@@ -30,11 +30,10 @@ namespace EcoMeal.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Adress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("BusinessTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CityId")
                         .HasColumnType("int");
 
                     b.Property<string>("Contact")
@@ -52,6 +51,8 @@ namespace EcoMeal.API.Migrations
 
                     b.HasIndex("BusinessTypeId");
 
+                    b.HasIndex("CityId");
+
                     b.ToTable("Businesses");
                 });
 
@@ -63,6 +64,9 @@ namespace EcoMeal.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -71,6 +75,38 @@ namespace EcoMeal.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("BusinessTypes");
+                });
+
+            modelBuilder.Entity("EcoMeal.API.Entities.City", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cities");
+                });
+
+            modelBuilder.Entity("EcoMeal.API.Entities.FavouriteBusiness", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BusinessId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "BusinessId");
+
+                    b.HasIndex("BusinessId");
+
+                    b.ToTable("FavouriteBusinesses");
                 });
 
             modelBuilder.Entity("EcoMeal.API.Entities.Order", b =>
@@ -100,7 +136,7 @@ namespace EcoMeal.API.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Order");
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("EcoMeal.API.Entities.Package", b =>
@@ -159,6 +195,32 @@ namespace EcoMeal.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PackageTypes");
+                });
+
+            modelBuilder.Entity("EcoMeal.API.Entities.Rating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BusinessId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BusinessId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Ratings");
                 });
 
             modelBuilder.Entity("EcoMeal.API.Entities.User", b =>
@@ -376,7 +438,34 @@ namespace EcoMeal.API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("EcoMeal.API.Entities.City", "City")
+                        .WithMany("Businesses")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("BusinessType");
+
+                    b.Navigation("City");
+                });
+
+            modelBuilder.Entity("EcoMeal.API.Entities.FavouriteBusiness", b =>
+                {
+                    b.HasOne("EcoMeal.API.Entities.Business", "Business")
+                        .WithMany("FavouriteBusinesses")
+                        .HasForeignKey("BusinessId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EcoMeal.API.Entities.User", "User")
+                        .WithMany("FavouriteBusinesses")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Business");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("EcoMeal.API.Entities.Order", b =>
@@ -388,7 +477,7 @@ namespace EcoMeal.API.Migrations
                         .IsRequired();
 
                     b.HasOne("EcoMeal.API.Entities.User", "User")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -415,6 +504,25 @@ namespace EcoMeal.API.Migrations
                     b.Navigation("Business");
 
                     b.Navigation("PackageType");
+                });
+
+            modelBuilder.Entity("EcoMeal.API.Entities.Rating", b =>
+                {
+                    b.HasOne("EcoMeal.API.Entities.Business", "Business")
+                        .WithMany("Ratings")
+                        .HasForeignKey("BusinessId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EcoMeal.API.Entities.User", "User")
+                        .WithMany("Ratings")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Business");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -470,10 +578,19 @@ namespace EcoMeal.API.Migrations
 
             modelBuilder.Entity("EcoMeal.API.Entities.Business", b =>
                 {
+                    b.Navigation("FavouriteBusinesses");
+
                     b.Navigation("Packages");
+
+                    b.Navigation("Ratings");
                 });
 
             modelBuilder.Entity("EcoMeal.API.Entities.BusinessType", b =>
+                {
+                    b.Navigation("Businesses");
+                });
+
+            modelBuilder.Entity("EcoMeal.API.Entities.City", b =>
                 {
                     b.Navigation("Businesses");
                 });
@@ -486,6 +603,15 @@ namespace EcoMeal.API.Migrations
             modelBuilder.Entity("EcoMeal.API.Entities.PackageType", b =>
                 {
                     b.Navigation("Packages");
+                });
+
+            modelBuilder.Entity("EcoMeal.API.Entities.User", b =>
+                {
+                    b.Navigation("FavouriteBusinesses");
+
+                    b.Navigation("Orders");
+
+                    b.Navigation("Ratings");
                 });
 #pragma warning restore 612, 618
         }

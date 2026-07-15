@@ -66,23 +66,6 @@ public class AuthService
         return AuthResult.Fail("Invalid email or password.");
     }
 
-    public async Task LoadTokenAsync()
-    {
-        var tokenResult = await _localStorage.GetAsync<string>("authToken");
-        Token = tokenResult.Success ? tokenResult.Value : null;
-
-        if (Token != null)
-        {
-            var rolesResult = await _localStorage.GetAsync<List<string>>("userRoles");
-            var roles = rolesResult.Success && rolesResult.Value != null ? rolesResult.Value : new List<string>();
-
-            if (_authStateProvider is CustomAuthenticationStateProvider customProvider)
-            {
-                customProvider.NotifyUserAuthentication(Token, roles);
-            }
-        }
-    }
-
     public async Task LogoutAsync()
     {
         Token = null;

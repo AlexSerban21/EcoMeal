@@ -1,9 +1,9 @@
 ﻿@page "/business/{Id:int}"
 @using EcoMeal.Site.Components.PackageList
-@using EcoMeal.Site.Models
-@using EcoMeal.Site.Services;
 @using Microsoft.AspNetCore.Components.Authorization
-@rendermode InteractiveServer
+@inject NavigationManager NavigationManager
+
+
 @if (Business is null)
 {
     return;
@@ -11,12 +11,12 @@
 
 <div class="container my-4">
     <div class="card-body rounded-1 shadow border border-1 border-dark p-3" style="background: linear-gradient(to right, #81C784, #C8E6C9);">
-    
+        <img src="@Business.Image" style="width: 400px; height: 400px;" />
         <p class="card-title text-black fs-1 fw-bold text-center">@Business.Name</p>
         <p class="card-text text-primary-emphasis fs-4 fw-bold text-center">@Business.Description</p>
 
         <i class="bi bi-geo-alt-fill me-2"></i>
-        <span class="card-text text-dark fw-bold fs-4">@Business.Adress</span>
+        <span class="card-text text-dark fw-bold fs-4">@Business.CityName</span>
 
         <br>
 
@@ -26,6 +26,19 @@
     <br>
     <div class="d-flex justify-content-between mt-4 mb-3">
         <p class="text-center fs-3 fw-bold text-dark lh-1">Aici puteți vedea toate pachetele disponibile: </p>
+        
+        <InputSelect class="form-select" @bind-Value="SelectedPackageTypeId" @bind-Value:after="FilterPackages">
+            <option value="0">Toate</option>
+            @foreach (var type in PackageTypes)
+            {
+                <option value="@type.Id">@type.Name</option>
+            }
+        </InputSelect>
+
+        <InputNumber @bind-Value="MaxPrice" @bind-Value:after="FilterPackages"
+                     placeholder="Preț maxim"
+                     class="form-control mb-2  rounded-2 shadow border border-1 border-dark" />
+        
         <AuthorizeView Roles="Admin"> 
             <button type="button"
                     class="btn btn-success rounded-5" @onclick="NavigateToAddPackage">
@@ -34,33 +47,6 @@
         </AuthorizeView>
     </div>
 
-    <PackageList Id="@Business.Id"/>
+    <PackageList Id="@Business.Id" Packages="@Packages"/>
 
 </div>
-
-@code {
-    [Parameter]
-    public int Id { get; set; }
-
-    [Inject]
-    public required BusinessService BusinessService { get; set; }
-    [Inject]
-    public required PackageService PackageService { get; set; }
-    [Inject]
-    public required NavigationManager NavigationManager { get; set; }
-
-    private BusinessModel? Business;
-    private List<PackageModel>? Packages;
-
-    protected override async Task OnInitializedAsync()
-    {
-        Console.WriteLine(Id);
-        Business = await BusinessService.GetOneById(Id);
-        Packages = await PackageService.GetFromBusinessId(Id);
-    }
-
-    public void NavigateToAddPackage ()
-    {
-        NavigationManager.NavigateTo(uri: $"business/{Id}/addPackage");
-    }
-}

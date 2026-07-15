@@ -57,4 +57,14 @@ public class AuthController : ControllerBase
             Roles = roles
         });
     }
+    [HttpGet("myName")]
+    [Authorize]
+    public async Task<IActionResult> GetMyName()
+    {
+        var user = await _userManager.GetUserAsync(User);
+        if (user == null)
+            return NotFound();
+        return Ok(user.Name);
+        
+    }
 }

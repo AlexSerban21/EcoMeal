@@ -7,14 +7,13 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
-
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddDbContext<EcoMealDbContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
+
 
 builder.Services.AddIdentityApiEndpoints<User>(options =>
 {
@@ -52,7 +51,6 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.MapControllers();
 app.UseHttpsRedirection();
 
 app.UseCors("AllowBlazorSite");

@@ -7,11 +7,10 @@ public partial class BusinessList
 {
     [Inject]
     public required BusinessService BusinessService { get; set; }
-    private List<BusinessModel>? Businesses;
-    protected override async Task OnInitializedAsync()
-    {
-        Businesses = await BusinessService.GetAll();
-    }
+
+    [Parameter]
+    public List<BusinessModel>? Businesses { get; set; } 
+
     public async Task DeleteBusiness(int id)
     {
         await BusinessService.Delete(id);

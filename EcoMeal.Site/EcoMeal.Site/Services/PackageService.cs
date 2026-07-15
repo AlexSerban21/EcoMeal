@@ -11,9 +11,9 @@ public class PackageService
         _http = http;
     }
 
-    public async Task<List<PackageModel>> GetFromBusinessId(int id)
+    public async Task<List<PackageModel>> GetFromBusinessId(int id, int selectedPackageType, int maxPrice)
     {
-        var Packages = await _http.GetFromJsonAsync<List<PackageModel>>($"/api/Package/GetFromBusinessId/{id}");
+        var Packages = await _http.GetFromJsonAsync<List<PackageModel>>($"/api/Package/GetFromBusinessId/{id}/{selectedPackageType}/{maxPrice}");
         return Packages ?? new List<PackageModel>();
     }
     public async Task<PackageModel> GetOneById(int id)

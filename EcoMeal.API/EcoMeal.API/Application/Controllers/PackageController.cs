@@ -17,21 +17,25 @@ public class PackageController : ControllerBase
     }
 
     [HttpGet]
-    [Route("GetFromBusinessId/{id}")]
-    public async Task<ActionResult<IEnumerable<PackageGetDTO>>> GetFromBusinessId(int id)
+    [Route("GetFromBusinessId/{id}/{selectedPackageType}/{maxPrice}")]
+    public async Task<ActionResult<IEnumerable<PackageGetDTO>>> GetFromBusinessId(int id, int selectedPackageType, int maxPrice)
     {
-        var Packages = await _context.Packages.Where(p => p.BusinessId == id).Select(p => new PackageGetDTO
-        {
-            Id = p.Id,
-            Name = p.Name,
-            PackageType = p.PackageType.Name,
-            Description = p.Description,
-            Price = p.Price,
-            StartPickup = p.StartPickup,
-            EndPickup = p.EndPickup,
-            PackageTypeId = p.PackageTypeId,
-            BusinessId = p.BusinessId
-        }).ToListAsync();
+        var Packages = await _context.Packages
+            .Where(p => p.BusinessId == id)
+            .Where(p => selectedPackageType == 0 || p.PackageTypeId == selectedPackageType)
+            .Where(p => maxPrice == 0 || p.Price <= maxPrice)
+            .Select(p => new PackageGetDTO
+            {
+                Id = p.Id,
+                Name = p.Name,
+                PackageType = p.PackageType.Name,
+                Description = p.Description,
+                Price = p.Price,
+                StartPickup = p.StartPickup,
+                EndPickup = p.EndPickup,
+                PackageTypeId = p.PackageTypeId,
+                BusinessId = p.BusinessId
+            }).ToListAsync();
         return Ok(Packages);
     }
     [HttpGet]

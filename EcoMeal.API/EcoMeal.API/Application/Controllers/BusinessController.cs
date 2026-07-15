@@ -1,6 +1,6 @@
-﻿using EcoMeal.API.Application.Models;
-using EcoMeal.API.Entities;
+﻿using EcoMeal.API.Entities;
 using EcoMeal.API.Infrastructure;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,31 +11,56 @@ namespace EcoMeal.API.Application;
 public class BusinessController : ControllerBase
 {
     private readonly EcoMealDbContext _context;
-    public BusinessController(EcoMealDbContext context)
+    private readonly IHttpContextAccessor _httpContextAccessor;
+    public BusinessController(EcoMealDbContext context, IHttpContextAccessor httpContextAccessor)
     {
         _context = context;
+        _httpContextAccessor = httpContextAccessor;
     }
 
-    [HttpGet("GetAll")]
-    public async Task<ActionResult<IEnumerable<BusinessDTO>>> GetAll()
+    [HttpGet("GetAll/{selectedType}/{selectedCity}")]
+    public async Task<ActionResult<IEnumerable<BusinessDTO>>> GetAll(int selectedType, int selectedCity)
     {
         var businessesDTOs = await _context.Businesses
+          .Include(b => b.BusinessType)
+          .Select(b => new BusinessDTO
+          {
+              Id = b.Id,
+              Name = b.Name,
+              Description = b.Description,
+              Contact = b.Contact,
+              BusinessTypeName = b.BusinessType.Name,
+              BusinessTypeId = b.BusinessTypeId,
+              Image = b.BusinessType.Image,
+              CityId = b.CityId,
+              CityName = b.City.Name,
+              Rating = 10
+          }).ToListAsync();
+
+       /* var businessesDTOs = await _context.Businesses
             .Include(b => b.BusinessType)
+            .Where(b => selectedType == 0 || b.BusinessTypeId == selectedType)
+            .Where(b => selectedCity == 0 || b.CityId == selectedCity)
             .Select(b => new BusinessDTO
             {
                 Id = b.Id,
                 Name = b.Name,
-                Adress = b.Adress,
                 Description = b.Description,
                 Contact = b.Contact,
                 BusinessTypeName = b.BusinessType.Name,
-                BusinessTypeId = b.BusinessTypeId
-            }).ToListAsync();
+                BusinessTypeId = b.BusinessTypeId,
+                Image = b.BusinessType.Image,
+                CityId = b.CityId,
+                CityName = b.City.Name,
+                Rating = b.Ratings.Average (p => p.Value)
+            }).ToListAsync();*/
         return Ok(businessesDTOs);
     }
+
     [HttpGet("GetOneById/{id}")]
     public async Task<ActionResult<BusinessDTO>> GetOneById(int id)
     {
+        var request = _httpContextAccessor.HttpContext.Request;
         var business = await _context.Businesses
             .Include(b => b.Packages)
             .ThenInclude(p => p.PackageType)
@@ -43,11 +68,14 @@ public class BusinessController : ControllerBase
             {
                 Id = b.Id,
                 Name = b.Name,
-                Adress = b.Adress,
                 Description = b.Description,
                 Contact = b.Contact,
                 BusinessTypeName = b.BusinessType.Name,
-                BusinessTypeId = b.BusinessTypeId
+                BusinessTypeId = b.BusinessTypeId,
+                Image = b.BusinessType.Image,
+                CityId = b.CityId,
+                CityName = b.City.Name,
+                Rating = 0
             })
             .FirstOrDefaultAsync(b => b.Id == id);
         if (business is null)
@@ -59,6 +87,7 @@ public class BusinessController : ControllerBase
     }
 
     [HttpDelete("Delete/{id}")]
+   [Authorize]
     public async Task<IActionResult> Delete(int id)
     {
         var business = await _context.Businesses.FindAsync(id);
@@ -73,21 +102,23 @@ public class BusinessController : ControllerBase
     }
     
     [HttpPost("AddBusiness")]
+   [Authorize]
     public async Task<IActionResult> AddBusiness([FromBody] BusinessAddDTO business)
     {
         _context.Businesses.Add(new Business
         {
             Name = business.Name,
-            Adress = business.Adress,
             Description = business.Description,
             Contact = business.Contact,
-            BusinessTypeId = business.BusinessTypeId
+            BusinessTypeId = business.BusinessTypeId,
+            CityId = business.CityId
         });
         await _context.SaveChangesAsync();
         return Created();
     }
     
     [HttpPut("UpdateBusiness/{id}")]
+   [Authorize]
     public async Task<IActionResult> UpdateBusiness(int id, [FromBody] BusinessAddDTO business)
     {
         var businessContext = await _context.Businesses.FindAsync(id);
@@ -95,11 +126,10 @@ public class BusinessController : ControllerBase
             return NotFound();
 
         businessContext.Name = business.Name;
-        businessContext.Adress = business.Adress;
         businessContext.Description = business.Description;
         businessContext.Contact = business.Contact;
         businessContext.BusinessTypeId = business.BusinessTypeId;
-
+        businessContext.CityId = business.CityId;
         await _context.SaveChangesAsync();
         return NoContent();
     }

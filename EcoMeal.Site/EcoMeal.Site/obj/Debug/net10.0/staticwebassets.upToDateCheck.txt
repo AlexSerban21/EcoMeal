@@ -1,5 +1,8 @@
 wwwroot\app.css
 wwwroot\favicon.png
+wwwroot\Images\FastFood.jpg
+wwwroot\Images\Patiserie.jpg
+wwwroot\Images\Pizza.jpg
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css

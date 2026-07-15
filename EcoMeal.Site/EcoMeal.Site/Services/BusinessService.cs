@@ -1,26 +1,38 @@
 ﻿using EcoMeal.Site.Models;
+using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http.Headers;
 
 namespace EcoMeal.Site.Services;
 
 public class BusinessService
 {
     private readonly HttpClient _http;
-    public BusinessService(HttpClient http)
+    private readonly AuthService _authService;
+    private readonly ProtectedLocalStorage _protectedLocalStorage;
+    public BusinessService(HttpClient http, AuthService authService, ProtectedLocalStorage protectedLocalStorage)
     {
         _http = http;
+        _authService = authService;
+        _protectedLocalStorage = protectedLocalStorage;
     }
 
-    public async Task<List<BusinessModel>> GetAll()
+    public async Task<List<BusinessModel>> GetAll(int selectedType, int selectedCity)
     {
-        var businesses = await _http.GetFromJsonAsync<List<BusinessModel>>("/api/Business/GetAll");
+        var businesses = await _http.GetFromJsonAsync<List<BusinessModel>>($"/api/Business/GetAll/{selectedType}/{selectedCity}");
         return businesses ?? new List<BusinessModel>();
     }
     public async Task<BusinessModel?> GetOneById(int id)
     {
+        try
+        {
         var business = await _http.GetFromJsonAsync<BusinessModel>($"/api/Business/GetOneById/{id}");
-
         return business;
+
+        } catch
+        {
+            return null;
+        }
     }
 
     public async Task<bool> Delete(int id)
@@ -38,4 +50,6 @@ public class BusinessService
     {
         await _http.PutAsJsonAsync<BusinessAddModel>($"/api/Business/UpdateBusiness/{businessId}", business);
     }
+
+   
 }
