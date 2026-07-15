@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EcoMeal.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4fe5b27f24a582626ba506431dd1393845edf68a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+18eb1aecb457b8498e5abc41fd590d2691582a73")]
 [assembly: System.Reflection.AssemblyProductAttribute("EcoMeal.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EcoMeal.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
