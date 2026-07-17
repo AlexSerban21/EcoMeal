@@ -7,6 +7,8 @@ namespace EcoMeal.Site.Components.Pages;
 public partial class AddBusiness
 {
     [Inject]
+    public required AppService AppService { get; set; }
+    [Inject]
     public required BusinessService BusinessService { get; set; }
     [Inject]
     public required BusinessTypeService BusinessTypeService { get; set; }
@@ -31,6 +33,7 @@ public partial class AddBusiness
     public async Task AddBusinessInService()
     {
         await BusinessService.Add(BusinessAddModel);
+        AppService.Message = "Ai adaugat cu succes restaurantul!";
         NavigationManager.NavigateTo(uri: $"/");
     }
 }

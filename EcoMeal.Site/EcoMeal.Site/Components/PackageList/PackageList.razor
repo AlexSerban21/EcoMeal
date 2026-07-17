@@ -7,10 +7,18 @@
 }
 else
 {
+	@if (!string.IsNullOrEmpty(AppService.Message))
+	{
+		<div class="alert alert-dismissible fade show text-dark fw-semibold"
+			 style="background: linear-gradient(135deg, #B2DFDB, #80CBC4); border: none;">
+			<i class="bi bi-check-circle-fill me-2"></i>
+			@AppService.Message
+		</div>
+	}
 	<div class="row row-cols-xxl-4 row-cols-xl-3 row-cols-md-2 row-cols-sm-1 row-cols-1 g-3">
 		@if (!Packages.Any())
 		{
-			<p>Nu există restaurante disponibile.</p>
+			<p>Nu există pachete disponibile.</p>
 		}
 		else
 		{

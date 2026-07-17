@@ -7,6 +7,14 @@
 }
 else
 {
+    @if (!string.IsNullOrEmpty(AppService.Message))
+    {
+        <div class="alert alert-dismissible fade show text-dark fw-semibold"
+             style="background: linear-gradient(135deg, #B2DFDB, #80CBC4); border: none;">
+            <i class="bi bi-check-circle-fill me-2"></i>
+            @AppService.Message
+        </div>
+    }
     <div class="row g-3 align-items-end mb-5">
         <div class="col-12 col-md-3">
 

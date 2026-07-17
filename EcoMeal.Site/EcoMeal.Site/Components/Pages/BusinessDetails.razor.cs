@@ -1,6 +1,7 @@
 ﻿using EcoMeal.Site.Models;
 using EcoMeal.Site.Services;
 using Microsoft.AspNetCore.Components;
+using System.Net.NetworkInformation;
 
 namespace EcoMeal.Site.Components.Pages;
 
@@ -8,6 +9,8 @@ public partial class BusinessDetails
 {
     [Parameter]
     public int Id { get; set; }
+    [Inject]
+    public required AppService AppService { get; set; }
 
     [Inject]
     public required BusinessService BusinessService { get; set; }
@@ -23,6 +26,19 @@ public partial class BusinessDetails
     private List<PackageTypesModel>? PackageTypes;
     private int SelectedPackageTypeId = 0;
     private int MaxPrice = 0, BusinessRating = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!string.IsNullOrEmpty(AppService.Message))
+        {
+            await Task.Delay(3000);
+
+            AppService.Message = null;
+
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)

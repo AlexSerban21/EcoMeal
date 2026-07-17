@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Components;
 namespace EcoMeal.Site.Components.BusinessList;
 public partial class BusinessList
 {
+    [Inject]
+    public required AppService AppService { get; set; }
 
     [Inject]
     public required NavigationManager NavigationManager { get; set; }
@@ -23,6 +25,14 @@ public partial class BusinessList
     private List<CityModel> Cities { get; set; } = new List<CityModel>();
     private int SelectedBusinessTypeId { get; set; } = 0;
     private int SelectedBusinessCity { get; set; } = 0;
+    private async Task HideMessageAsync()
+    {
+        await Task.Delay(3000);
+
+        AppService.Message = null;
+
+        await InvokeAsync(StateHasChanged);
+    }
     protected override async Task OnInitializedAsync()
     {
         BusinessTypes = await BusinessTypeService.GetAll();
@@ -51,6 +61,11 @@ public partial class BusinessList
         if (Businesses != null)
         {
             Businesses.RemoveAll (b => b.Id == id);
+            FilteredBusinesses.RemoveAll(b => b.Id == id);
+            AppService.Message = "Restaurantul a fost șters cu succes!";
+            StateHasChanged();
+            _ = HideMessageAsync();
+            StateHasChanged();
         }
     }
 }

@@ -13,6 +13,8 @@ namespace EcoMeal.Site.Components.Pages
         [Parameter]
         public int BusinessId { get; set; }
         [Inject]
+        public required AppService AppService { get; set; }
+        [Inject]
         public PackageService PackageService { get; set; }
         [Inject]
         public PackageTypeService PackageTypeService { get; set; }
@@ -44,6 +46,7 @@ namespace EcoMeal.Site.Components.Pages
         {
             //Console.WriteLine(BusinessId);
             await PackageService.Update(PackageId, PackageAddModel);
+            AppService.Message = "Ai editat cu succes pachetul!";
             NavigationManager.NavigateTo(uri: $"business/{BusinessId}");
         }
     }

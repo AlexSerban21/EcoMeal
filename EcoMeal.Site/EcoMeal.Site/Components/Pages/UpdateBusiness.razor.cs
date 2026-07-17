@@ -9,6 +9,8 @@ public partial class UpdateBusiness
     [Parameter]
     public int Id { get; set; }
     [Inject]
+    public required AppService AppService { get; set; }
+    [Inject]
     public required BusinessService BusinessService { get; set; }
     [Inject]
     public required BusinessTypeService BusinessTypeService { get; set; }
@@ -42,6 +44,7 @@ public partial class UpdateBusiness
     public async Task UpdateBusinessInService()
     {
         await BusinessService.Update(Id, BusinessAddModel);
+        AppService.Message = "Ai editat cu succes restaurantul!";
         NavigationManager.NavigateTo(uri: $"/");
     }
 }

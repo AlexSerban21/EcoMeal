@@ -42,6 +42,7 @@ builder.Services.AddScoped<FavouriteBusinessService>();
 builder.Services.AddScoped<CityService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<RatingService>();
+builder.Services.AddScoped<AppService>();
 builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 

@@ -1,6 +1,8 @@
 ﻿@page "/addBusiness"
 @rendermode InteractiveServer
 
+<AuthorizeView Roles="Admin">
+    <Authorized Context="authContext">
 <div class="mx-auto px-3 py-4 card-body rounded-2 border border-1 border-dark " style="max-width: 500px; width: 100%; background:#D8EFD8">
     <p class="text-center fs-2 fw-bold text-dark lh-1">Adaugă restaurant</p>
     <EditForm Model="BusinessAddModel" OnValidSubmit="AddBusinessInService">
@@ -66,3 +68,8 @@
 
     </EditForm>
 </div>
+</Authorized>
+    <NotAuthorized>
+        <RedirectToLogin />
+    </NotAuthorized>
+</AuthorizeView>
