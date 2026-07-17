@@ -17,6 +17,8 @@ public partial class BusinessList
     private List<BusinessTypeModel> BusinessTypes { get; set; } = new List<BusinessTypeModel>();
     [Parameter]
     public List<BusinessModel>? Businesses { get; set; }
+    [Parameter]
+    public bool ShowAddBusinessButton { get; set; }
     private List<BusinessModel>? FilteredBusinesses { get; set; }
     private List<CityModel> Cities { get; set; } = new List<CityModel>();
     private int SelectedBusinessTypeId { get; set; } = 0;

@@ -4,12 +4,6 @@
 {
     <p>Loading...</p>
 }
-else if (!Orders.Any())
-{
-    <div class="alert alert-light text-center text-muted">
-        Nu există comenzi.
-    </div>
-}
 else
 {
     <!-- Bara de filtrare -->
@@ -40,12 +34,19 @@ else
 
     <!-- Comenzile, pe rândul următor -->
     <div class="row g-3">
-        @foreach (var order in OrdersFiltered)
+        @if (!OrdersFiltered.Any())
         {
-            <OrderCard order="@order"
-                       IsAdmin="@IsAdmin"
-                       OnApprove="@OnApprove"
-                       OnCancel="@OnCancel" />
+            <p>Nu există comenzi.</p>
+        }
+        else
+        {
+            @foreach (var order in OrdersFiltered)
+            {
+                <OrderCard order="@order"
+                IsAdmin="@IsAdmin"
+                OnApprove="@OnApprove"
+                OnCancel="@OnCancel" />
+            }
         }
     </div>
 }
