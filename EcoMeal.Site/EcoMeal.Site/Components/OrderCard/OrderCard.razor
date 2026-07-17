@@ -1,0 +1,113 @@
+﻿@namespace EcoMeal.Site.Components.OrderCard
+@using Microsoft.AspNetCore.Components.Authorization
+@using EcoMeal.Site.Services
+
+<div class="col-12 col-md-6 col-lg-4">
+
+    <div class="card card-hover w-100 h-100 shadow-sm border border-1 border-dark rounded-3 overflow-hidden">
+
+        <div class="card-body p-3">
+
+            <!-- NUMĂR COMANDĂ + STATUS -->
+            <div class="position-relative mb-3">
+
+                <h4 class="card-title text-dark fw-bold text-center mb-0">
+                    Comanda #@Order.Id
+                </h4>
+
+                <!-- STATUS DREAPTA SUS -->
+                <span class="badge rounded-pill bg-success-subtle text-success-emphasis position-absolute top-0 end-0">
+                    @Order.Status
+                </span>
+
+            </div>
+
+
+            <!-- RESTAURANT -->
+            <div class="mb-2">
+
+                <small class="text-muted d-block">
+                    Restaurant
+                </small>
+
+                <span class="fw-bold text-dark">
+                    @Order.BusinessName
+                </span>
+
+            </div>
+
+
+            <!-- PACHET -->
+            <div class="mb-2">
+
+                <small class="text-muted d-block">
+                    Pachet
+                </small>
+
+                <span class="fw-bold text-dark">
+                    @Order.PackageName
+                </span>
+
+            </div>
+
+
+            <!-- DATA -->
+            <div class="mb-2">
+
+                <small class="text-muted d-block">
+                    Data comenzii
+                </small>
+
+                <span class="text-dark">
+                    @Order.Date.ToString("dd.MM.yyyy HH:mm")
+                </span>
+
+            </div>
+
+
+            <!-- TOTAL -->
+            <div class="d-flex justify-content-between align-items-center border-top pt-2 mt-3">
+
+                <span class="fw-bold text-muted">
+                    Total
+                </span>
+
+                <span class="fs-5 fw-bold text-success">
+                    @Order.Price lei
+                </span>
+
+            </div>
+
+
+            <!-- BUTON ADMIN -->
+            @if (IsAdmin)
+            {
+                <div class="mt-2">
+
+                    <button class="btn btn-outline-primary btn-sm w-100 rounded-5"
+                            @onclick="() => ApproveOrder(Order.Id)">
+
+                        Confirmă comanda
+
+                    </button>
+
+                </div>
+            }
+			else if (Order.Status == "Plasata")
+            {
+                <div class="mt-2">
+
+                    <button class="btn btn-outline-primary btn-sm w-100 rounded-5"
+                            @onclick="() => CancelOrder(Order.Id)">
+                        Anulează comanda
+
+                    </button>
+
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+</div>

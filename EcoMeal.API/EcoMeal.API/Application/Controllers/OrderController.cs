@@ -20,14 +20,12 @@ public class OrderController : ControllerBase
     {
         _context = context;
     }
-    [HttpPost]
-    public async Task<ActionResult<OrderGetDTO>> PlaceOrder([FromBody] OrderCreateDTO request)
+    [HttpPost("placeOrder")]
+    public async Task<ActionResult> PlaceOrder([FromBody] OrderCreateDTO request)
     {
         var userId = GetCurrentUserId();
 
-        var package = await _context.Packages.Include(p => p.Business)
-                                    .Include(package => package.Orders)
-                                    .FirstOrDefaultAsync(p => p.Id == request.PackageId);
+        var package = await _context.Packages.FirstOrDefaultAsync(p => p.Id == request.PackageId);
         if (package.Orders.Any())
         {
             return BadRequest("Pachetul nu mai e disponibil!");
@@ -41,20 +39,9 @@ public class OrderController : ControllerBase
         };
         _context.Orders.Add(order);
         await _context.SaveChangesAsync();
-        return Ok(new OrderGetDTO
-        {
-            Id = order.Id,
-            Date = order.Date,
-            Status = order.Status,
-            PackageName = package.Name,
-            Price = package.Price,
-            BusinessId = package.BusinessId,
-            BusinessName = package.Business.Name,
-            UserName = order.User.Name,
-            UserContact = order.User.Contact
-        });
+        return Created();
     }
-    [HttpGet("my")]
+    [HttpGet("myOrders")]
     [Authorize]
     public async Task<ActionResult<List<OrderGetDTO>>> GetMyOrders ()
     {
@@ -69,12 +56,54 @@ public class OrderController : ControllerBase
                           Status = o.Status,
                           Price = o.Package.Price,
                           BusinessId = o.Package.BusinessId,
-                          BusinessName = o.Package.Name,
+                          BusinessName = o.Package.Business.Name,
                           PackageName = o.Package.Name
                       }).ToListAsync();
         return Ok(orders);
 
     }
+    [HttpGet("WaitingOrders")]
+    [Authorize(Roles = "Admin")]
+    public async Task<ActionResult<List<OrderGetDTO>>> GetWaitingOrders()
+    {
+        var orders = await _context.Orders
+                     .Where(o => o.Status == "Plasata")
+                     .OrderByDescending(o => o.Date)
+                     .Select(o => new OrderGetDTO
+                     {
+                         Id = o.Id,
+                         Date = o.Date,
+                         Status = o.Status,
+                         Price = o.Package.Price,
+                         BusinessId = o.Package.BusinessId,
+                         BusinessName = o.Package.Business.Name,
+                         PackageName = o.Package.Name
+                     }).ToListAsync();
+        return Ok(orders);
+    }
+    [HttpPut("ApproveOrder")]
+    [Authorize(Roles = "Admin")]
+    public async Task<ActionResult> ApproveOrder([FromBody] int OrderId)
+    {
+        var order = await _context.Orders.FirstOrDefaultAsync(o => o.Id == OrderId);
+        if (order is null)
+        {
+            return NotFound();
+        }
+        order.Status = "Aprobata";
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
+
+    [HttpDelete("CancelOrder/{OrderId}")]
+    [Authorize(Roles = "Admin")]
+    public async Task<ActionResult> CancelOrder(int OrderId)
+    {
+        _context.Orders.RemoveRange(_context.Orders.Where(o => o.Id == OrderId));
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
+
     private int GetCurrentUserId ()
     {
         var userIdValue = User.FindFirstValue(ClaimTypes.NameIdentifier);

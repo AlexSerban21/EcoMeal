@@ -1,8 +1,11 @@
 wwwroot\app.css
 wwwroot\favicon.png
+wwwroot\Images\Burger.jpg
 wwwroot\Images\FastFood.jpg
 wwwroot\Images\Patiserie.jpg
 wwwroot\Images\Pizza.jpg
+wwwroot\Images\Pizza2.jpg
+wwwroot\Images\Shaorma.jpg
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
@@ -48,11 +51,11 @@ wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
 wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
 wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
 Components\Layout\ReconnectModal.razor.js
-C:\Users\alexa\.nuget\packages\microsoft.aspnetcore.app.internal.assets\10.0.9\build\..\_framework\blazor.web.js
-C:\Users\alexa\.nuget\packages\microsoft.aspnetcore.app.internal.assets\10.0.9\build\..\_framework\blazor.server.js
+C:\Users\alexa\.nuget\packages\microsoft.aspnetcore.app.internal.assets\10.0.10\build\..\_framework\blazor.web.js
+C:\Users\alexa\.nuget\packages\microsoft.aspnetcore.app.internal.assets\10.0.10\build\..\_framework\blazor.server.js
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\wwwroot\app.css
-C:\Users\alexa\.nuget\packages\microsoft.aspnetcore.app.internal.assets\10.0.9\_framework\blazor.server.js
-C:\Users\alexa\.nuget\packages\microsoft.aspnetcore.app.internal.assets\10.0.9\_framework\blazor.web.js
+C:\Users\alexa\.nuget\packages\microsoft.aspnetcore.app.internal.assets\10.0.10\_framework\blazor.web.js
+C:\Users\alexa\.nuget\packages\microsoft.aspnetcore.app.internal.assets\10.0.10\_framework\blazor.server.js
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\Components\Layout\ReconnectModal.razor.js
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js

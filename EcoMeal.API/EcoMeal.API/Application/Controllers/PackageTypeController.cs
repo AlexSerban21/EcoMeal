@@ -24,6 +24,7 @@ public class PackageTypeController : ControllerBase
         {
             Id = p.Id,
             Name = p.Name,
+            Image = p.Image
         }).ToListAsync();
         return Ok(PackageTypesDTOs);
     }

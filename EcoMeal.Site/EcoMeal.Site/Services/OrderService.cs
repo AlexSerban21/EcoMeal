@@ -14,37 +14,30 @@ public class OrderService
     }
     public async Task<bool> PlaceOrderAsync(int packageId)
     {
-        var response = await _http.PostAsJsonAsync ("api/order", new {PackageId = packageId});
+        var OrderAddModel = new OrderAddModel
+        {
+            PackageId = packageId,
+            DateTime = DateTime.Now
+        };
+        var response = await _http.PostAsJsonAsync ("api/order/placeOrder", OrderAddModel);
         return response.IsSuccessStatusCode;
     }
     public async Task<List<OrderGetModel>> GetMyOrdersAsync()
     {
-        try
-        {
-        var orders = await _http.GetFromJsonAsync<List<OrderGetModel>>("api/order/my");
-            return orders ?? new List<OrderGetModel>();
-
-        }
-        catch
-        {
-            return new List<OrderGetModel>();
-        }
-/*        var request = new HttpRequestMessage(HttpMethod.Get, "api/order/my");
-       *//* await AddAuthHeaderAsync(request);*//*
-
-        var response = await _http.SendAsync(request);
-        response.EnsureSuccessStatusCode();
-
-        var orders = await response.Content.ReadFromJsonAsync<List<OrderGetModel>>();*/
+        var orders = await _http.GetFromJsonAsync<List<OrderGetModel>>("api/order/myOrders");
+        return orders ?? new List<OrderGetModel>();
     }
-
-    private async Task AddAuthHeaderAsync(HttpRequestMessage request)
-    { 
-
-        if (!string.IsNullOrEmpty(_authService.Token))
-        {
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _authService.Token);
-        }
+    public async Task<List<OrderGetModel>> GetWaitingOrders()
+    {
+        var orders = await _http.GetFromJsonAsync<List<OrderGetModel>>("api/order/waitingOrders");
+        return orders ?? new List<OrderGetModel>();
     }
-
+    public async Task ApproveOrder(int orderId)
+    {
+        await _http.PutAsJsonAsync("api/order/approveOrder", orderId);
+    }
+    public async Task CancelOrder(int orderId)
+    {
+        await _http.DeleteAsync($"api/order/cancelOrder/{orderId}");
+    }
 }

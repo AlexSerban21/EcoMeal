@@ -10,41 +10,202 @@
 }
 
 <div class="container my-4">
-    <div class="card-body rounded-1 shadow border border-1 border-dark p-3" style="background: linear-gradient(to right, #81C784, #C8E6C9);">
-        <img src="@Business.Image" style="width: 400px; height: 400px;" />
-        <p class="card-title text-black fs-1 fw-bold text-center">@Business.Name</p>
-        <p class="card-text text-primary-emphasis fs-4 fw-bold text-center">@Business.Description</p>
 
-        <i class="bi bi-geo-alt-fill me-2"></i>
-        <span class="card-text text-dark fw-bold fs-4">@Business.CityName</span>
+    <div class="row g-4 align-items-stretch">
 
-        <br>
+        <!-- CARD INFORMAȚII -->
+        <div class="col-12 col-md-7">
 
-        <i class="bi bi-envelope me-2"></i>
-        <span class="card-text text-dark fs-4 fw-bold">@Business.Contact</span>
+            <div class="card h-100 shadow border border-1 border-dark rounded-3"
+                 style="background-color: #D8EFD8;">
+
+                <div class="card-body p-4">
+
+                    <!-- TITLU SUS, CENTRAT -->
+                    <div class="text-center mb-4">
+
+                        <p class="card-title text-black fs-1 fw-bold mb-0">
+                            @Business.Name
+                        </p>
+
+                    </div>
+
+
+                    <!-- STELE -->
+                    <AuthorizeView>
+
+                        <Authorized>
+
+                            <div class="d-flex justify-content-center mb-4">
+
+                                @for (int i = 1; i <= BusinessRating; i++)
+                                {
+                                    var rating = i;
+
+                                    <button class="rating-button"
+                                            @onclick="() => GetRating(rating)">
+
+                                        <span class="star-filled">★</span>
+
+                                    </button>
+                                }
+
+                                @for (int i = BusinessRating + 1; i <= 5; i++)
+                                {
+                                    var rating = i;
+
+                                    <button class="rating-button"
+                                            @onclick="() => GetRating(rating)">
+
+                                        <span class="star-empty">★</span>
+
+                                    </button>
+                                }
+
+
+                            </div>
+
+                        </Authorized>
+
+                    </AuthorizeView>
+
+
+                    <!-- DESCRIERE -->
+                    <p class="card-text text-primary-emphasis fs-4 fw-bold">
+                        @Business.Description
+                    </p>
+
+
+                    <!-- ORAȘ -->
+                    <div class="mb-3">
+
+                        <i class="bi bi-geo-alt-fill me-2 fs-4"></i>
+
+                        <span class="text-dark fw-bold fs-4">
+                            @Business.CityName
+                        </span>
+
+                    </div>
+
+
+                    <!-- CONTACT -->
+                    <div class="mb-3">
+
+                        <i class="bi bi-envelope me-2 fs-4"></i>
+
+                        <span class="text-dark fw-bold fs-4">
+                            @Business.Contact
+                        </span>
+
+                    </div>
+
+
+                    <!-- RATING GENERAL -->
+                    @if (Business.Rating > 0)
+                    {
+                        <p class="fs-4 fw-bold text-dark">
+
+                            Rating general:
+
+                            <span class="general-rating">
+                                @Business.Rating.ToString("0.0") ★
+                            </span>
+
+                        </p>
+                    }
+                    else
+                    {
+                        <p class="fs-4 fw-bold text-muted">
+                            Nu există rating!
+                        </p>
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- IMAGINE SEPARATĂ -->
+        <div class="col-12 col-md-5 border border-1 border-dark rounded-3">
+
+            <div class="h-100 text-center">
+
+                <img src="@Business.Image"
+                     alt="@Business.Name"
+                     class="img-fluid rounded-3 shadow"
+                     style="width: 100%; height: 100%; max-height: 500px; object-fit: cover;" />
+
+            </div>
+
+        </div>
+
     </div>
-    <br>
-    <div class="d-flex justify-content-between mt-4 mb-3">
-        <p class="text-center fs-3 fw-bold text-dark lh-1">Aici puteți vedea toate pachetele disponibile: </p>
-        
-        <InputSelect class="form-select" @bind-Value="SelectedPackageTypeId" @bind-Value:after="FilterPackages">
-            <option value="0">Toate</option>
-            @foreach (var type in PackageTypes)
-            {
-                <option value="@type.Id">@type.Name</option>
-            }
-        </InputSelect>
 
-        <InputNumber @bind-Value="MaxPrice" @bind-Value:after="FilterPackages"
-                     placeholder="Preț maxim"
-                     class="form-control mb-2  rounded-2 shadow border border-1 border-dark" />
-        
-        <AuthorizeView Roles="Admin"> 
-            <button type="button"
-                    class="btn btn-success rounded-5" @onclick="NavigateToAddPackage">
-                + Adaugă pachet
-            </button>
+    <br>
+
+    <div class="row g-3 align-items-end mt-4 mb-4">
+
+        <!-- Tip pachet -->
+        <div class="col-12 col-md-3">
+
+            <label class="form-label fw-bold mb-1">
+                Tip pachet
+            </label>
+
+            <InputSelect class="form-select"
+                         @bind-Value="SelectedPackageTypeId"
+                         @bind-Value:after="FilterPackages">
+
+                <option value="0">
+                    Toate pachetele
+                </option>
+
+                @foreach (var type in PackageTypes)
+                {
+                    <option value="@type.Id">
+                        @type.Name
+                    </option>
+                }
+
+            </InputSelect>
+
+        </div>
+
+
+        <!-- Preț maxim -->
+        <div class="col-12 col-md-3">
+
+            <label class="form-label fw-bold mb-1">
+                Preț maxim
+            </label>
+
+            <InputNumber @bind-Value="MaxPrice"
+                         @bind-Value:after="FilterPackages"
+                         placeholder="Preț maxim"
+                         class="form-control" />
+
+        </div>
+
+
+        <!-- Buton Admin -->
+        <AuthorizeView Roles="Admin">
+
+            <div class="col-12 col-md-2 ms-auto">
+
+                <button type="button"
+                        class="btn btn-success rounded-5 w-100"
+                        @onclick="NavigateToAddPackage">
+
+                    + Adaugă pachet
+
+                </button>
+
+            </div>
+
         </AuthorizeView>
+
     </div>
 
     <PackageList Id="@Business.Id" Packages="@Packages"/>

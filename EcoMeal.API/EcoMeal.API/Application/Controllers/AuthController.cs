@@ -57,14 +57,51 @@ public class AuthController : ControllerBase
             Roles = roles
         });
     }
+
     [HttpGet("myName")]
     [Authorize]
-    public async Task<IActionResult> GetMyName()
+    public async Task<ActionResult<string>> GetMyName()
     {
         var user = await _userManager.GetUserAsync(User);
         if (user == null)
             return NotFound();
         return Ok(user.Name);
-        
+
+    }
+    [HttpPut("UpdateUser")]
+    [Authorize]
+    public async Task<ActionResult> UpdateUser ([FromBody] UpdateUserDTO request)
+    {
+        var user = await _userManager.GetUserAsync(User);
+        if (user == null)
+            return NotFound();
+        if (request.Password != null)
+        {
+            var passwordResult = await _userManager.ChangePasswordAsync(user, request.CurrentPassword, request.Password);
+            if (!passwordResult.Succeeded)
+                return BadRequest(new { Errors = passwordResult.Errors.Select(e => e.Description) });
+        }
+        user.Name = request.Name;
+        user.Contact = request.Contact;
+        user.Email = request.Email;
+
+        var result = await _userManager.UpdateAsync(user);
+        if (!result.Succeeded)
+            return BadRequest(new { Errors = result.Errors.Select(e => e.Description) });
+        return Ok(new { Message = "User updated successfully" });
+    }
+    [HttpGet("GetProprieties")]
+    [Authorize]
+    public async Task<UserProprieties> GetProprieties ()
+    {
+        var user = await _userManager.GetUserAsync(User);
+        if (user == null)
+            return new UserProprieties();
+        return new UserProprieties
+        {
+            Email = user.Email,
+            Name = user.Name,
+            Contact = user.Contact
+        };
     }
 }

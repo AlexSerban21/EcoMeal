@@ -17,17 +17,17 @@ public class BusinessService
         _protectedLocalStorage = protectedLocalStorage;
     }
 
-    public async Task<List<BusinessModel>> GetAll(int selectedType, int selectedCity)
+    public async Task<List<BusinessModel>> GetAll()
     {
-        var businesses = await _http.GetFromJsonAsync<List<BusinessModel>>($"/api/Business/GetAll/{selectedType}/{selectedCity}");
+        var businesses = await _http.GetFromJsonAsync<List<BusinessModel>>($"/api/Business/GetAll");
         return businesses ?? new List<BusinessModel>();
     }
     public async Task<BusinessModel?> GetOneById(int id)
     {
         try
         {
-        var business = await _http.GetFromJsonAsync<BusinessModel>($"/api/Business/GetOneById/{id}");
-        return business;
+            var business = await _http.GetFromJsonAsync<BusinessModel>($"/api/Business/GetOneById/{id}");
+            return business;
 
         } catch
         {

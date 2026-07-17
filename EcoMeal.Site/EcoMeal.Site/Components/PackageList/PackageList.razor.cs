@@ -10,6 +10,8 @@ public partial class PackageList
     public required BusinessService BusinessService { get; set; }
     [Inject]
     public required PackageService PackageService { get; set; }
+    [Inject]
+    public required OrderService OrderService { get; set; }
     [Parameter]
     public required int Id { get; set; }
     [Parameter]
@@ -17,9 +19,11 @@ public partial class PackageList
     public async Task DeletePackage(int id)
     {
         await PackageService.Delete(id);
-        if (Packages != null)
-        {
-            Packages.RemoveAll(b => b.Id == id);
-        }
+        Packages.RemoveAll(b => b.Id == id);
+    }
+    public async Task UpdatePackage(int id)
+    {
+        await OrderService.PlaceOrderAsync(id);
+        Packages.RemoveAll (b => b.Id == id);
     }
 }

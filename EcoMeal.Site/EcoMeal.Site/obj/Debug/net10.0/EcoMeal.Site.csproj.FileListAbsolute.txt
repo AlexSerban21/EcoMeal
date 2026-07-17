@@ -156,8 +156,6 @@ C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\D
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\compressed\acm57h6wd9-{0}-63fj8s7r0e-63fj8s7r0e.gz
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\compressed\zk10pgg3bl-{0}-0j3bgjxly4-0j3bgjxly4.gz
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\compressed\duevhkk73o-{0}-abdmv1u4y3-abdmv1u4y3.gz
-C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\compressed\b9g4k9czu7-{0}-ne14ti1q68-ne14ti1q68.gz
-C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\compressed\9fc26t0vjt-{0}-ig5xotzpx5-ig5xotzpx5.gz
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\staticwebassets.build.json
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\staticwebassets.build.json.cache
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\staticwebassets.development.json
@@ -170,4 +168,6 @@ C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\D
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\scopedcss\Components\Layout\MainLayout.razor.rz.scp.css
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\compressed\achjihc609-{0}-9aj840kxpv-9aj840kxpv.gz
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\compressed\8pt4jngotk-{0}-9aj840kxpv-9aj840kxpv.gz
-C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\compressed\9n0m50lqub-{0}-iq2c8ay0rz-iq2c8ay0rz.gz
+C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\compressed\b9g4k9czu7-{0}-f7fxoh55ae-f7fxoh55ae.gz
+C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\compressed\9fc26t0vjt-{0}-68qhiysw0j-68qhiysw0j.gz
+C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.Site\EcoMeal.Site\obj\Debug\net10.0\compressed\9n0m50lqub-{0}-lutpumhr0w-lutpumhr0w.gz

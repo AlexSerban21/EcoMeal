@@ -1,5 +1,5 @@
 {
-  "openapi": "3.1.1",
+  "openapi": "3.0.4",
   "info": {
     "title": "EcoMeal.API | v1",
     "version": "1.0.0"
@@ -357,38 +357,10 @@
         }
       }
     },
-    "/api/Business/GetAll/{selectedType}/{selectedCity}": {
+    "/api/Business/GetAll": {
       "get": {
         "tags": [
           "Business"
-        ],
-        "parameters": [
-          {
-            "name": "selectedType",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
-              "format": "int32"
-            }
-          },
-          {
-            "name": "selectedCity",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
-              "format": "int32"
-            }
-          }
         ],
         "responses": {
           "200": {
@@ -435,10 +407,6 @@
             "required": true,
             "schema": {
               "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
               "format": "int32"
             }
           }
@@ -479,10 +447,6 @@
             "required": true,
             "schema": {
               "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
               "format": "int32"
             }
           }
@@ -538,10 +502,6 @@
             "required": true,
             "schema": {
               "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
               "format": "int32"
             }
           }
@@ -661,10 +621,6 @@
             "required": true,
             "schema": {
               "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
               "format": "int32"
             }
           },
@@ -674,10 +630,6 @@
             "required": true,
             "schema": {
               "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
               "format": "int32"
             }
           },
@@ -687,10 +639,6 @@
             "required": true,
             "schema": {
               "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
               "format": "int32"
             }
           }
@@ -740,10 +688,6 @@
             "required": true,
             "schema": {
               "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
               "format": "int32"
             }
           }
@@ -784,10 +728,6 @@
             "required": true,
             "schema": {
               "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
               "format": "int32"
             }
           }
@@ -811,10 +751,6 @@
             "required": true,
             "schema": {
               "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
               "format": "int32"
             }
           }
@@ -858,10 +794,6 @@
             "required": true,
             "schema": {
               "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
               "format": "int32"
             }
           }
@@ -932,7 +864,7 @@
       }
     },
     "/api/Rating/AddRating": {
-      "post": {
+      "put": {
         "tags": [
           "Rating"
         ],
@@ -959,6 +891,49 @@
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Rating/GetRating/{businessId}": {
+      "get": {
+        "tags": [
+          "Rating"
+        ],
+        "parameters": [
+          {
+            "name": "businessId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$",
+                  "format": "double"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$",
+                  "format": "double"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$",
+                  "format": "double"
+                }
+              }
+            }
           }
         }
       }
@@ -1014,7 +989,85 @@
         ],
         "responses": {
           "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Auth/UpdateUser": {
+      "put": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/GetProprieties": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProprieties"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProprieties"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProprieties"
+                }
+              }
+            }
           }
         }
       }
@@ -1031,10 +1084,6 @@
             "required": true,
             "schema": {
               "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
               "format": "int32"
             }
           }
@@ -1063,21 +1112,18 @@
         }
       }
     },
-    "/api/FavouriteBusiness/Add": {
-      "get": {
+    "/api/FavouriteBusiness/Add/{businessId}": {
+      "post": {
         "tags": [
           "FavouriteBusiness"
         ],
         "parameters": [
           {
             "name": "businessId",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "schema": {
               "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
               "format": "int32"
             }
           }
@@ -1101,10 +1147,6 @@
             "required": true,
             "schema": {
               "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
               "format": "int32"
             }
           }
@@ -1120,20 +1162,6 @@
       "get": {
         "tags": [
           "FavouriteBusiness"
-        ],
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "query",
-            "schema": {
-              "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
-              "format": "int32"
-            }
-          }
         ],
         "responses": {
           "200": {
@@ -1168,7 +1196,7 @@
         }
       }
     },
-    "/api/Order": {
+    "/api/Order/placeOrder": {
       "post": {
         "tags": [
           "Order"
@@ -1195,29 +1223,12 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/OrderGetDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OrderGetDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OrderGetDTO"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       }
     },
-    "/api/Order/my": {
+    "/api/Order/myOrders": {
       "get": {
         "tags": [
           "Order"
@@ -1254,6 +1265,102 @@
           }
         }
       }
+    },
+    "/api/Order/WaitingOrders": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrderGetDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrderGetDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrderGetDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Order/ApproveOrder": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "pattern": "^-?(?:0|[1-9]\\d*)$",
+                "format": "int32"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "pattern": "^-?(?:0|[1-9]\\d*)$",
+                "format": "int32"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "pattern": "^-?(?:0|[1-9]\\d*)$",
+                "format": "int32"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Order/CancelOrder/{OrderId}": {
+      "delete": {
+        "tags": [
+          "Order"
+        ],
+        "parameters": [
+          {
+            "name": "OrderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1267,20 +1374,14 @@
         "type": "object",
         "properties": {
           "tokenType": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "accessToken": {
             "type": "string"
           },
           "expiresIn": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int64"
           },
           "refreshToken": {
@@ -1297,44 +1398,30 @@
         "properties": {
           "id": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "name": {
             "type": "string"
           },
           "description": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "contact": {
             "type": "string"
           },
           "businessTypeId": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "cityId": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "city": {
             "oneOf": [
               {
-                "type": "null"
+                "nullable": true
               },
               {
                 "$ref": "#/components/schemas/City"
@@ -1344,7 +1431,7 @@
           "businessType": {
             "oneOf": [
               {
-                "type": "null"
+                "nullable": true
               },
               {
                 "$ref": "#/components/schemas/BusinessType"
@@ -1366,28 +1453,18 @@
             "type": "string"
           },
           "description": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "contact": {
             "type": "string"
           },
           "businessTypeId": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "cityId": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           }
         }
@@ -1404,20 +1481,14 @@
         "properties": {
           "id": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "name": {
             "type": "string"
           },
           "description": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "contact": {
             "type": "string"
@@ -1427,38 +1498,22 @@
           },
           "businessTypeId": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "cityId": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "image": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "cityName": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "rating": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$",
-            "type": [
-              "number",
-              "string"
-            ],
             "format": "double"
           }
         }
@@ -1471,10 +1526,6 @@
         "properties": {
           "id": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "name": {
@@ -1482,10 +1533,8 @@
             "type": "string"
           },
           "image": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "businesses": {
             "type": "array",
@@ -1500,10 +1549,6 @@
         "properties": {
           "id": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "name": {
@@ -1522,10 +1567,6 @@
         "properties": {
           "id": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "name": {
@@ -1538,17 +1579,11 @@
         "properties": {
           "id": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "name": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           }
         }
       },
@@ -1557,24 +1592,16 @@
         "properties": {
           "businessId": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "userId": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "business": {
             "oneOf": [
               {
-                "type": "null"
+                "nullable": true
               },
               {
                 "$ref": "#/components/schemas/Business"
@@ -1584,7 +1611,7 @@
           "user": {
             "oneOf": [
               {
-                "type": "null"
+                "nullable": true
               },
               {
                 "$ref": "#/components/schemas/User"
@@ -1608,37 +1635,25 @@
         "type": "object",
         "properties": {
           "type": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "title": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "status": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "null",
-              "integer",
-              "string"
-            ],
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "detail": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "instance": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "errors": {
             "type": "object",
@@ -1655,22 +1670,16 @@
         "type": "object",
         "properties": {
           "newEmail": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "newPassword": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "oldPassword": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           }
         }
       },
@@ -1703,16 +1712,12 @@
             "type": "string"
           },
           "twoFactorCode": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "twoFactorRecoveryCode": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           }
         }
       },
@@ -1727,26 +1732,14 @@
         "properties": {
           "id": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "userId": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "packageId": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "status": {
@@ -1759,7 +1752,7 @@
           "user": {
             "oneOf": [
               {
-                "type": "null"
+                "nullable": true
               },
               {
                 "$ref": "#/components/schemas/User"
@@ -1769,7 +1762,7 @@
           "package": {
             "oneOf": [
               {
-                "type": "null"
+                "nullable": true
               },
               {
                 "$ref": "#/components/schemas/Package"
@@ -1779,69 +1772,15 @@
         }
       },
       "OrderCreateDTO": {
-        "required": [
-          "packageName",
-          "status",
-          "businessName"
-        ],
         "type": "object",
         "properties": {
           "packageId": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
-          },
-          "id": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
-            "format": "int32"
-          },
-          "packageName": {
-            "type": "string"
-          },
-          "status": {
-            "type": "string"
-          },
-          "price": {
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$",
-            "type": [
-              "number",
-              "string"
-            ],
-            "format": "double"
-          },
-          "businessId": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
-            "format": "int32"
-          },
-          "businessName": {
-            "type": "string"
           },
           "date": {
             "type": "string",
             "format": "date-time"
-          },
-          "userName": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
-          "userContact": {
-            "type": [
-              "null",
-              "string"
-            ]
           }
         }
       },
@@ -1855,10 +1794,6 @@
         "properties": {
           "id": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "packageName": {
@@ -1869,18 +1804,10 @@
           },
           "price": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$",
-            "type": [
-              "number",
-              "string"
-            ],
             "format": "double"
           },
           "businessId": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "businessName": {
@@ -1891,16 +1818,12 @@
             "format": "date-time"
           },
           "userName": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "userContact": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           }
         }
       },
@@ -1917,10 +1840,6 @@
         "properties": {
           "id": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "name": {
@@ -1928,32 +1847,18 @@
           },
           "businessId": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "packageTypeId": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "description": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "price": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$",
-            "type": [
-              "number",
-              "string"
-            ],
             "format": "double"
           },
           "startPickup": {
@@ -1967,7 +1872,7 @@
           "business": {
             "oneOf": [
               {
-                "type": "null"
+                "nullable": true
               },
               {
                 "$ref": "#/components/schemas/Business"
@@ -1977,7 +1882,7 @@
           "packageType": {
             "oneOf": [
               {
-                "type": "null"
+                "nullable": true
               },
               {
                 "$ref": "#/components/schemas/PackageType"
@@ -2007,10 +1912,6 @@
           },
           "price": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$",
-            "type": [
-              "number",
-              "string"
-            ],
             "format": "double"
           },
           "startPickup": {
@@ -2023,10 +1924,6 @@
           },
           "packageTypeId": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           }
         }
@@ -2040,27 +1937,17 @@
         "properties": {
           "id": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "name": {
             "type": "string"
           },
           "description": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "price": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$",
-            "type": [
-              "number",
-              "string"
-            ],
             "format": "double"
           },
           "startPickup": {
@@ -2072,26 +1959,20 @@
             "format": "date-time"
           },
           "packageType": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "packageTypeId": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "businessId": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
+          },
+          "image": {
+            "type": "string",
+            "nullable": true
           }
         }
       },
@@ -2103,15 +1984,15 @@
         "properties": {
           "id": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "name": {
             "maxLength": 20,
             "type": "string"
+          },
+          "image": {
+            "type": "string",
+            "nullable": true
           },
           "packages": {
             "type": "array",
@@ -2126,17 +2007,15 @@
         "properties": {
           "id": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "name": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
+          },
+          "image": {
+            "type": "string",
+            "nullable": true
           }
         }
       },
@@ -2149,42 +2028,26 @@
         "properties": {
           "id": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "value": {
             "maximum": 5,
             "minimum": 1,
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
-            "format": "int32"
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$",
+            "format": "double"
           },
           "userId": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "businessId": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "user": {
             "oneOf": [
               {
-                "type": "null"
+                "nullable": true
               },
               {
                 "$ref": "#/components/schemas/User"
@@ -2194,7 +2057,7 @@
           "business": {
             "oneOf": [
               {
-                "type": "null"
+                "nullable": true
               },
               {
                 "$ref": "#/components/schemas/Business"
@@ -2208,19 +2071,11 @@
         "properties": {
           "businessId": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "value": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
-            "format": "int32"
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$",
+            "format": "double"
           }
         }
       },
@@ -2284,16 +2139,12 @@
         "type": "object",
         "properties": {
           "enable": {
-            "type": [
-              "null",
-              "boolean"
-            ]
+            "type": "boolean",
+            "nullable": true
           },
           "twoFactorCode": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "resetSharedKey": {
             "type": "boolean"
@@ -2320,20 +2171,14 @@
           },
           "recoveryCodesLeft": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "recoveryCodes": {
-            "type": [
-              "null",
-              "array"
-            ],
+            "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "nullable": true
           },
           "isTwoFactorEnabled": {
             "type": "boolean"
@@ -2343,20 +2188,36 @@
           }
         }
       },
+      "UpdateUserDTO": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "currentPassword": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "contact": {
+            "type": "string"
+          }
+        }
+      },
       "User": {
         "type": "object",
         "properties": {
           "name": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "contact": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "orders": {
             "type": "array",
@@ -2378,62 +2239,42 @@
           },
           "id": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
           },
           "userName": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "normalizedUserName": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "email": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "normalizedEmail": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "emailConfirmed": {
             "type": "boolean"
           },
           "passwordHash": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "securityStamp": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "concurrencyStamp": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "phoneNumber": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "nullable": true
           },
           "phoneNumberConfirmed": {
             "type": "boolean"
@@ -2442,22 +2283,33 @@
             "type": "boolean"
           },
           "lockoutEnd": {
-            "type": [
-              "null",
-              "string"
-            ],
-            "format": "date-time"
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
           },
           "lockoutEnabled": {
             "type": "boolean"
           },
           "accessFailedCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
             "format": "int32"
+          }
+        }
+      },
+      "UserProprieties": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact": {
+            "type": "string",
+            "nullable": true
           }
         }
       }

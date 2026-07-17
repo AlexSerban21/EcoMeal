@@ -11,4 +11,5 @@ public class PackageGetDTO
     public string? PackageType { get; set; }
     public int PackageTypeId { get; set; }
     public int BusinessId { get; set; }
+    public string? Image { get; set; }
 }

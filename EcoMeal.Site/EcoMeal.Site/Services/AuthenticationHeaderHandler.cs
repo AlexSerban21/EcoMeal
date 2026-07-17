@@ -17,27 +17,37 @@ public class AuthenticationHeaderHandler : DelegatingHandler
         _logger = logger;
     }
 
-    protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+    protected override async Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request,
+        CancellationToken cancellationToken)
     {
+        string? token = null;
+
         try
         {
-            var tokenResult = await _localStorage.GetAsync<string>("authToken");
-            if (tokenResult.Success && !string.IsNullOrEmpty(tokenResult.Value))
+            var result = await _localStorage.GetAsync<string>("authToken");
+
+            if (result.Success)
             {
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", tokenResult.Value);
-                _logger.LogDebug("Attached Bearer token to outgoing request.");
-            }
-            else
-            {
-                _logger.LogDebug("No auth token available. Request sent without authorization.");
+                token = result.Value;
             }
         }
-        catch (InvalidOperationException)
+        catch (Exception ex)
         {
-            // Usually happens if JS interop is called during prerendering (which is disabled, but good to catch anyway)
-            _logger.LogDebug("Failed to read token from local storage (likely prerendering phase). Request sent without authorization.");
+            _logger.LogDebug(
+                ex,
+                "Tokenul nu este disponibil încă. Request-ul continuă fără token.");
         }
 
+        // Dacă tokenul există, îl atașăm
+        if (!string.IsNullOrWhiteSpace(token))
+        {
+            request.Headers.Authorization =
+                new AuthenticationHeaderValue("Bearer", token);
+        }
+
+        // IMPORTANT:
+        // Request-ul continuă indiferent dacă tokenul există sau nu
         return await base.SendAsync(request, cancellationToken);
     }
 }

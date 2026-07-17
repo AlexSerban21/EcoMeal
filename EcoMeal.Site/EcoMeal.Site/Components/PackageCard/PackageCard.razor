@@ -1,31 +1,116 @@
 ﻿@namespace EcoMeal.Site.Components.PackageCard
 @using Microsoft.AspNetCore.Components.Authorization
-<div class="card w-100" style="max-width:350px">
-    <div class="card-body rounded-2 shadow border border-1 border-dark card-hover">
-        <p class="card-title text-black fs-4 fw-bold text-center">@Package.Name</p>
-        <p class="card-text text-primary-emphasis fs-6 fw-bold text-center">@Package.Description</p>
-        
-        <i class="bi bi-coin me-2"></i>
-        <span class="card-text text-dark fw-bold fs-6">@Package.Price lei</span>
-        
-        <br>
 
-        <i class="bi bi-calendar me-2"></i>
-        <span class="card-text text-dark fw-bold fs-6"> @Package.StartPickup</span>
+<div class="card card-hover w-100 h-100 shadow-sm border border-1 border-dark rounded-3 overflow-hidden"
+     style="max-width: 320px;">
 
-        <br>
+    <!-- Imagine -->
+    <img src="@Package.Image"
+         class="card-img-top"
+         alt="@Package.Name"
+         style="height: 200px; object-fit: cover;" />
 
-        <i class="bi bi-calendar-check me-2"></i>
-        <span class="card-text text-dark fw-bold fs-6">@Package.EndPickup</span>
 
-        <div class="d-flex justify-content-between align-items-center">
-        <AuthorizeView Roles="Admin">
-            <div class="mt-3">
-                <button class="btn btn-danger rounded-5 btn-sm" @onclick="Delete" @onclick:stopPropagation="true"> Șterge! </button>
-                <button class="btn btn-primary rounded-5 btn-sm" @onclick="Update" @onclick:stopPropagation="true"> Editează! </button>
-            </div>
-        </AuthorizeView>
+    <!-- Card Body -->
+    <div class="card-body d-flex flex-column">
+
+        <!-- Titlu -->
+        <h5 class="card-title text-dark fw-bold mb-3">
+            @Package.Name
+        </h5>
+
+
+        <!-- Descriere -->
+        <p class="card-text text-primary-emphasis fw-bold">
+            @Package.Description
+        </p>
+
+
+        <!-- Preț -->
+        <div class="mb-2">
+
+            <i class="bi bi-coin me-2"></i>
+
+            <span class="text-dark fw-bold">
+                @Package.Price lei
+            </span>
+
         </div>
-    </div>
-</div>
 
+
+        <!-- Început ridicare -->
+        <div class="mb-2">
+
+            <i class="bi bi-calendar me-2"></i>
+
+            <span class="text-dark fw-bold">
+                @Package.StartPickup
+            </span>
+
+        </div>
+
+
+        <!-- Sfârșit ridicare -->
+        <div class="mb-3">
+
+            <i class="bi bi-calendar-check me-2"></i>
+
+            <span class="text-dark fw-bold">
+                @Package.EndPickup
+            </span>
+
+        </div>
+
+
+        <!-- Butoane -->
+        <div class="mt-auto">
+
+            <!-- RÂNDUL 1: REZERVĂ -->
+            <AuthorizeView>
+
+                <div class="w-100 mb-2">
+
+                    <button class="btn btn-success rounded-5 w-100"
+                            @onclick="Reserve"
+                            @onclick:stopPropagation="true">
+
+                        Rezervă!
+
+                    </button>
+
+                </div>
+
+            </AuthorizeView>
+
+
+            <!-- RÂNDUL 2: ADMIN -->
+            <AuthorizeView Roles="Admin">
+
+                <div class="d-flex gap-2">
+
+                    <button class="btn btn-danger rounded-5 btn-sm"
+                            @onclick="Delete"
+                            @onclick:stopPropagation="true">
+
+                        Șterge!
+
+                    </button>
+
+
+                    <button class="btn btn-primary rounded-5 btn-sm"
+                            @onclick="Update"
+                            @onclick:stopPropagation="true">
+
+                        Editează!
+
+                    </button>
+
+                </div>
+
+            </AuthorizeView>
+
+        </div>
+
+    </div>
+
+</div>

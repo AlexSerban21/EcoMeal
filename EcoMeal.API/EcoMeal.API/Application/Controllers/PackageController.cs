@@ -24,6 +24,8 @@ public class PackageController : ControllerBase
             .Where(p => p.BusinessId == id)
             .Where(p => selectedPackageType == 0 || p.PackageTypeId == selectedPackageType)
             .Where(p => maxPrice == 0 || p.Price <= maxPrice)
+            .Where(p => p.EndPickup >= DateTime.Now)
+            .Where(p => !p.Orders.Any())
             .Select(p => new PackageGetDTO
             {
                 Id = p.Id,
@@ -34,7 +36,8 @@ public class PackageController : ControllerBase
                 StartPickup = p.StartPickup,
                 EndPickup = p.EndPickup,
                 PackageTypeId = p.PackageTypeId,
-                BusinessId = p.BusinessId
+                BusinessId = p.BusinessId,
+                Image = p.PackageType.Image
             }).ToListAsync();
         return Ok(Packages);
     }
@@ -53,7 +56,8 @@ public class PackageController : ControllerBase
                 StartPickup = b.StartPickup,
                 EndPickup = b.EndPickup,
                 PackageTypeId = b.PackageTypeId,
-                BusinessId = b.BusinessId
+                BusinessId = b.BusinessId,
+                Image = b.PackageType.Image
             })
             .FirstOrDefaultAsync(b => b.Id == id);
         if (package is null)

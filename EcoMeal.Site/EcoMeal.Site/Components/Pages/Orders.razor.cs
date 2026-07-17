@@ -7,13 +7,13 @@ namespace EcoMeal.Site.Components.Pages;
 public partial class Orders
 {
     [Inject]
-    public OrderService OrderService { get; set; }
-    private List<OrderGetModel>? MyOrders;
+    public required OrderService OrderService { get; set; }
+    private List<OrderGetModel>? OrderList;
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if(firstRender)
         {
-            MyOrders = await OrderService.GetMyOrdersAsync();
+            OrderList = await OrderService.GetMyOrdersAsync();
             StateHasChanged();
         }
     }

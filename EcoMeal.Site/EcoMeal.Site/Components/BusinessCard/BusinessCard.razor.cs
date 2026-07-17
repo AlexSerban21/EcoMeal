@@ -28,10 +28,20 @@ public partial class BusinessCard
     {
         Navigation.NavigateTo($"business/{Business.Id}");
     }
-
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await AuthService.LoadTokenAsync();
+            if (AuthService.IsAuthenticated)
+            {
+                IsFavourite = await FavouriteBusinesses.Check(Business.Id);
+            }
+            StateHasChanged();
+        }
+    }
     public async Task ToggleFavourite ()
     {
-        IsFavourite = await FavouriteBusinesses.Check(Business.Id);
         if (IsFavourite == true)
         {
             IsFavourite = false;

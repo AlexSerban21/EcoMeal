@@ -11,4 +11,5 @@ public class OrderGetModel
     public string? UserContact { get; set; }
     public double Price { get; set; }
     public string Status { get; set; }
+    public int BusinessId { get; set; }
 }

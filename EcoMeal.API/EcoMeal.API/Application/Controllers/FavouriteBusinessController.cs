@@ -24,7 +24,7 @@ public class FavouriteBusinessController : ControllerBase
         GetCurrentUserId();
         return _context.FavouriteBusinesses.AnyAsync(fb => fb.UserId == userId && fb.BusinessId == businessId);
     }
-    [HttpGet("Add")]
+    [HttpPost("Add/{businessId}")]
     public async Task<ActionResult> Add(int businessId)
     {
         GetCurrentUserId();
@@ -52,12 +52,24 @@ public class FavouriteBusinessController : ControllerBase
         return NoContent();
     }
     [HttpGet("Get")]
-    public async Task<ActionResult<List<FavouriteBusiness>>> Get(int userId)
+    public async Task<ActionResult<List<FavouriteBusiness>>> Get()
     {
         GetCurrentUserId();
         var favouriteBusinesses = await _context.FavouriteBusinesses
             .Where(fb => fb.UserId == userId)
-            .ToListAsync();
+            .Select (fb => new BusinessDTO
+            {
+                Id = fb.Business.Id,
+                Name = fb.Business.Name,
+                Description = fb.Business.Description,
+                Contact = fb.Business.Contact,
+                BusinessTypeName = fb.Business.BusinessType.Name,
+                BusinessTypeId = fb.Business.BusinessTypeId,
+                CityId = fb.Business.CityId,
+                Image = fb.Business.BusinessType.Image,
+                CityName = fb.Business.City.Name
+                //Rating = fb.Business.Rating
+            }).ToListAsync();
         return Ok(favouriteBusinesses);
     }
     private void GetCurrentUserId()

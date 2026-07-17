@@ -12,10 +12,15 @@ public class RatingService
     }
     public async Task AddRating (int businessId, int value)
     {
-        await _http.PostAsJsonAsync($"/api/Rating/AddRating", new
+        await _http.PutAsJsonAsync($"/api/Rating/AddRating", new
         {
             BusinessId = businessId,
             Value = value
         });
+    }
+    public async Task<int> GetBusinessRating (int businessId)
+    {
+        var response = await _http.GetFromJsonAsync<int>($"/api/Rating/GetRating/{businessId}");
+        return response;
     }
 }

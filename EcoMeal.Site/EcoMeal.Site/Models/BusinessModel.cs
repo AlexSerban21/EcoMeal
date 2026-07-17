@@ -10,5 +10,5 @@ public class BusinessModel
     public string? Image { get; set; }
     public required string CityName { get; set; }
     public required int CityId { get; set; }
-    public required int Rating { get; set; }
+    public required double Rating { get; set; }
 }

@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using System.Security.Cryptography;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Microsoft.Extensions.Logging;
@@ -21,6 +22,7 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
     {
         try
         {
+
             var tokenResult = await _localStorage.GetAsync<string>("authToken");
             var rolesResult = await _localStorage.GetAsync<List<string>>("userRoles");
 
@@ -47,7 +49,12 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
         }
         catch (InvalidOperationException ex)
         {
-            _logger.LogWarning(ex, "Failed to retrieve authentication state from local storage. This is expected during pre-rendering.");
+            _logger.LogWarning(ex, "Prerendering phase: local storage not available yet.");
+            return new AuthenticationState(_anonymous);
+        }
+        catch (CryptographicException ex)
+        {
+            _logger.LogWarning(ex, "Stored token could not be decrypted (Data Protection keys changed). Treating user as anonymous.");
             return new AuthenticationState(_anonymous);
         }
     }

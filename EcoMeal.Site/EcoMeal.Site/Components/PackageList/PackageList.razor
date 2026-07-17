@@ -11,7 +11,7 @@ else
 		@foreach (var Package in Packages)
 		{
 			<div>
-				<PackageCard Package="@Package" OnDelete="DeletePackage" />
+				<PackageCard Package="@Package" OnDelete="DeletePackage" OnUpdate="UpdatePackage"/>
 			</div>
 		}
 	</div>

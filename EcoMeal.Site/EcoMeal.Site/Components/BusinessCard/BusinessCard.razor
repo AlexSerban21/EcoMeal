@@ -1,41 +1,108 @@
 ﻿@namespace EcoMeal.Site.Components.BusinessCard
 @using Microsoft.AspNetCore.Components.Authorization
 @using EcoMeal.Site.Services
-<div class="card w-100" style="max-width:320px" @onclick="NavigateToDetails">
-    <div class="card-body rounded-2 shadow border border-1 border-dark card-hover">
-        
-        @*@if (AuthService.IsAuthenticated)
-            {
-                <button>
-                if (IsFavourite)
-                {
-                    <span>★</span>
-                }
-                else
-                {
-                    <span>☆</span>
-                }
+
+<div class="card card-hover w-100 h-100 shadow-sm border border-1 border-dark rounded-3 overflow-hidden"
+     style="max-width: 320px;"
+     @onclick="NavigateToDetails">
+
+    <!-- Imagine -->
+    <img src="@Business.Image"
+         class="card-img-top"
+         alt="@Business.Name"
+         style="height: 200px; object-fit: cover;" />
+
+
+    <!-- Card Body -->
+    <div class="card-body d-flex flex-column">
+
+        <!-- Titlu + Favorite -->
+        <div class="position-relative">
+
+            <h5 class="card-title text-dark fw-bold mb-3">
+                @Business.Name
+            </h5>
+
+            <AuthorizeView>
+
+                <button class="border-0 bg-transparent p-0
+                    position-absolute top-50 end-0
+                    translate-middle-y"
+                        @onclick="ToggleFavourite"
+                        @onclick:stopPropagation="true">
+
+                    @if (IsFavourite)
+                    {
+                        <i class="bi bi-heart-fill text-danger fs-5"></i>
+                    }
+                    else
+                    {
+                        <i class="bi bi-heart text-danger fs-5"></i>
+                    }
+
                 </button>
-            }*@
-        <img src="@Business.Image" style="width: 250px; height: 180px;" />
-        <p class="card-title text-black fs-4 fw-bold text-center">@Business.Name</p>
-        <p class="card-text text-primary-emphasis fs-6 fw-bold text-center">@Business.Description</p>
-        
-        <i class="bi bi-geo-alt-fill me-2"></i>
-        <span class="card-text text-dark fw-bold fs-6">@Business.CityName</span>
 
-        <br>
+            </AuthorizeView>
 
-        <i class="bi bi-envelope me-2"></i>
-        <span class="card-text text-dark fs-6 fw-bold">@Business.Contact</span>
-
-        <div class="d-flex justify-content-between align-items-center">
-        <AuthorizeView Roles="Admin"> 
-            <div class="mt-3">
-                <button class="btn btn-danger rounded-5 btn-sm" @onclick="Delete" @onclick:stopPropagation="true"> Șterge! </button>
-                <button class="btn btn-primary rounded-5 btn-sm" @onclick="Update" @onclick:stopPropagation="true"> Editează! </button>
-            </div>
-        </AuthorizeView>
         </div>
+
+
+        <!-- Descriere -->
+        <p class="card-text text-primary-emphasis fw-bold">
+            @Business.Description
+        </p>
+
+
+        <!-- Oraș -->
+        <div class="mb-2">
+
+            <i class="bi bi-geo-alt-fill me-2"></i>
+
+            <span class="text-dark fw-bold">
+                @Business.CityName
+            </span>
+
+        </div>
+
+
+        <!-- Contact -->
+        <div class="mb-3">
+
+            <i class="bi bi-envelope me-2"></i>
+
+            <span class="text-dark fw-bold">
+                @Business.Contact
+            </span>
+
+        </div>
+
+
+        <!-- Butoane Admin -->
+        <AuthorizeView Roles="Admin">
+
+            <div class="mt-auto pt-3">
+
+                <button class="btn btn-danger rounded-5 btn-sm me-2"
+                        @onclick="Delete"
+                        @onclick:stopPropagation="true">
+
+                    Șterge!
+
+                </button>
+
+
+                <button class="btn btn-primary rounded-5 btn-sm"
+                        @onclick="Update"
+                        @onclick:stopPropagation="true">
+
+                    Editează!
+
+                </button>
+
+            </div>
+
+        </AuthorizeView>
+
     </div>
+
 </div>

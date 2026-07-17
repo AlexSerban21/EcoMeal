@@ -1,6 +1,26 @@
 [
   {
     "ContainingType": "EcoMeal.API.Application.Controllers.AuthController",
+    "Method": "GetProprieties",
+    "RelativePath": "api/Auth/GetProprieties",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "EcoMeal.API.Application.Models.Auth.UserProprieties",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EcoMeal.API.Application.Controllers.AuthController",
     "Method": "GetMe",
     "RelativePath": "api/Auth/me",
     "HttpMethod": "GET",
@@ -17,7 +37,17 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "EcoMeal.API.Application.Controllers.AuthController",
@@ -30,6 +60,22 @@
       {
         "Name": "request",
         "Type": "EcoMeal.API.Application.Models.Auth.RegisterRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcoMeal.API.Application.Controllers.AuthController",
+    "Method": "UpdateUser",
+    "RelativePath": "api/Auth/UpdateUser",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EcoMeal.API.Application.Models.Auth.UpdateUserDTO",
         "IsRequired": true
       }
     ],
@@ -70,22 +116,11 @@
   {
     "ContainingType": "EcoMeal.API.Application.BusinessController",
     "Method": "GetAll",
-    "RelativePath": "api/Business/GetAll/{selectedType}/{selectedCity}",
+    "RelativePath": "api/Business/GetAll",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "selectedType",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "selectedCity",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[EcoMeal.API.Application.BusinessDTO, EcoMeal.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
@@ -188,15 +223,15 @@
   {
     "ContainingType": "EcoMeal.API.Application.Controllers.FavouriteBusinessController",
     "Method": "Add",
-    "RelativePath": "api/FavouriteBusiness/Add",
-    "HttpMethod": "GET",
+    "RelativePath": "api/FavouriteBusiness/Add/{businessId}",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "businessId",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -250,13 +285,7 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.List\u00601[[EcoMeal.API.Entities.FavouriteBusiness, EcoMeal.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
@@ -271,21 +300,47 @@
   },
   {
     "ContainingType": "EcoMeal.API.Application.Controllers.OrderController",
-    "Method": "PlaceOrder",
-    "RelativePath": "api/Order",
-    "HttpMethod": "POST",
+    "Method": "ApproveOrder",
+    "RelativePath": "api/Order/ApproveOrder",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "request",
-        "Type": "EcoMeal.API.Application.Models.OrderCreateDTO",
+        "Name": "OrderId",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcoMeal.API.Application.Controllers.OrderController",
+    "Method": "CancelOrder",
+    "RelativePath": "api/Order/CancelOrder/{OrderId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "OrderId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcoMeal.API.Application.Controllers.OrderController",
+    "Method": "GetMyOrders",
+    "RelativePath": "api/Order/myOrders",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "EcoMeal.API.Application.Models.OrderGetDTO",
+        "Type": "System.Collections.Generic.List\u00601[[EcoMeal.API.Application.Models.OrderGetDTO, EcoMeal.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -297,8 +352,24 @@
   },
   {
     "ContainingType": "EcoMeal.API.Application.Controllers.OrderController",
-    "Method": "GetMyOrders",
-    "RelativePath": "api/Order/my",
+    "Method": "PlaceOrder",
+    "RelativePath": "api/Order/placeOrder",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EcoMeal.API.Application.Models.OrderCreateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcoMeal.API.Application.Controllers.OrderController",
+    "Method": "GetWaitingOrders",
+    "RelativePath": "api/Order/WaitingOrders",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -459,7 +530,7 @@
     "ContainingType": "EcoMeal.API.Application.RatingController",
     "Method": "AddRating",
     "RelativePath": "api/Rating/AddRating",
-    "HttpMethod": "POST",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -470,6 +541,32 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcoMeal.API.Application.RatingController",
+    "Method": "GetRating",
+    "RelativePath": "api/Rating/GetRating/{businessId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "businessId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Double",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions\u002B\u003C\u003Ec__1\u00601[[EcoMeal.API.Entities.User, EcoMeal.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",

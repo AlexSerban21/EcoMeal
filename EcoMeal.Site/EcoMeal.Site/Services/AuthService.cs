@@ -1,7 +1,9 @@
-using System.Net.Http.Json;
+using EcoMeal.Site.Models;
 using EcoMeal.Site.Models.Auth;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
+using System.Net.Http.Json;
+using System.Security.Cryptography;
 
 namespace EcoMeal.Site.Services;
 
@@ -37,6 +39,32 @@ public class AuthService
         return AuthResult.Fail(errorMessage);
     }
 
+    public async Task<AuthResult> UpdateAsync(string email, string CurrentPassword, string password, string name, string contact)
+    {
+        var request = new UpdateRequest { Email = email, CurrentPassword = CurrentPassword, Password = password, Name = name, Contact = contact };
+        var response = await _http.PutAsJsonAsync("api/auth/UpdateUser", request);
+
+        if (response.IsSuccessStatusCode)
+            return AuthResult.Ok();
+
+        var error = await response.Content.ReadFromJsonAsync<RegisterErrorResponse>();
+        var errorMessage = error?.Errors != null
+            ? string.Join("; ", error.Errors)
+            : "Update failed.";
+
+        return AuthResult.Fail(errorMessage);
+    }
+
+    public async Task<UserProprieties> GetUserProprieties ()
+    {
+        var response = await _http.GetAsync("api/auth/GetProprieties");
+        if (response.IsSuccessStatusCode)
+        {
+            var userProprieties = await response.Content.ReadFromJsonAsync<UserProprieties>();
+            return userProprieties ?? new UserProprieties();
+        }
+        return new UserProprieties();
+    }
     public async Task<AuthResult> LoginAsync(string email, string password)
     {
         var request = new AuthRequest { Email = email, Password = password };
@@ -64,6 +92,35 @@ public class AuthService
         }
 
         return AuthResult.Fail("Invalid email or password.");
+    }
+
+    public async Task LoadTokenAsync()
+    {
+        try
+        {
+            var tokenResult = await _localStorage.GetAsync<string>("authToken");
+            Token = tokenResult.Success ? tokenResult.Value : null;
+
+            if (Token != null)
+            {
+                var rolesResult = await _localStorage.GetAsync<List<string>>("userRoles");
+                var roles = rolesResult.Success && rolesResult.Value != null ? rolesResult.Value : new List<string>();
+
+                if (_authStateProvider is CustomAuthenticationStateProvider customProvider)
+                {
+                    customProvider.NotifyUserAuthentication(Token, roles);
+                }
+            }
+        }
+        catch (CryptographicException)
+        {
+            // The stored token was encrypted with different Data Protection keys
+            // (e.g. after an app restart that regenerated the keys). Treat it as logged
+            // out and clear the invalid data instead of crashing the circuit.
+            Token = null;
+            await _localStorage.DeleteAsync("authToken");
+            await _localStorage.DeleteAsync("userRoles");
+        }
     }
 
     public async Task LogoutAsync()
@@ -98,5 +155,11 @@ public class AuthService
         }
 
         return new List<string>();
+    }
+    public async Task<string> GetUserName ()
+    {
+        var response = await _http.GetAsync("api/auth/myName");
+        var Name = await response.Content.ReadAsStringAsync();
+        return Name ?? string.Empty;
     }
 }

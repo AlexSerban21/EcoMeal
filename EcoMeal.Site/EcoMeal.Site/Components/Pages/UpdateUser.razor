@@ -1,0 +1,91 @@
+@page "/updateUser"
+@using EcoMeal.Site.Models
+@using EcoMeal.Site.Models.Auth
+@using EcoMeal.Site.Services
+
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert rounded-2" style="background-color:#EF9A9A">@errorMessage</div>
+}
+
+<div class="mx-auto px-3 py-4 card-body rounded-2 border border-1 border-dark " style="max-width: 420px; width: 100%; background:#D8EFD8">
+    <p class="text-center fs-2 fw-bold text-dark lh-1">Schimbă datele</p>
+    <EditForm Model="updateModel" OnValidSubmit="HandleUpdate" FormName="registerForm">
+        <DataAnnotationsValidator />
+
+        <div class="mb-3 fs-6 fw-bold">
+            <label class="form-label">Email</label>
+            <InputText class="form-control" @bind-Value="updateModel.Email" />
+            <ValidationMessage For="() => updateModel.Email"
+             placeholder="Email"/>
+        </div>
+
+        <div class="mb-3 fs-6 fw-bold">
+            <label class="form-label">Parolă curentă</label>
+            <InputText type="password" class="form-control" @bind-Value="updateModel.CurrentPassword" />
+            <ValidationMessage For="() => updateModel.CurrentPassword"
+            placeholder="Parolă curentă"/>
+        </div>
+
+        <div class="mb-3 fs-6 fw-bold">
+            <label class="form-label">Parolă</label>
+            <InputText type="password" class="form-control" @bind-Value="updateModel.Password" />
+            <ValidationMessage For="() => updateModel.Password"
+                               placeholder="Parolă" />
+        </div>
+
+        <div class="mb-3 fs-6 fw-bold">
+            <label class="form-label">Confirm Parolă</label>
+            <InputText type="password" class="form-control" @bind-Value="updateModel.ConfirmPassword" />
+            <ValidationMessage For="() => updateModel.ConfirmPassword"
+            placeholder="Reintrodu parola"/>
+        </div>
+
+        <div class="mb-3 fs-6 fw-bold">
+            <label class="form-label">Nume</label>
+            <InputText class="form-control" @bind-Value="updateModel.Name" />
+            <ValidationMessage For="() => updateModel.Name"
+            placeholder="Nume"/>
+        </div>
+
+        <div class="mb-3 fs-6 fw-bold">
+            <label class="form-label">Contact</label>
+            <InputText class="form-control" @bind-Value="updateModel.Contact" />
+            <ValidationMessage For="() => updateModel.Contact"
+            placeholder="Contact"/>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100 rounded-5 fw-bold">Schimbă</button>
+    </EditForm>
+</div>
+@code {
+    [SupplyParameterFromForm]
+    private UpdateModel updateModel { get; set; } = new();
+    [Inject]
+	public required AuthService AuthService { get; set; }
+    [Inject]
+	public required NavigationManager Navigation { get; set; }
+
+    private string? errorMessage;
+
+    protected override async void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var userProprieties = await AuthService.GetUserProprieties();
+			updateModel.Email = userProprieties.Email;
+            updateModel.Name = userProprieties.Name;
+			updateModel.Contact = userProprieties.Contact;
+        }
+    }
+
+    private async Task HandleUpdate()
+    {
+        var result = await AuthService.UpdateAsync(updateModel.Email, updateModel.CurrentPassword, updateModel.Password, updateModel.Name, updateModel.Contact);
+        if (result.Success)
+            Navigation.NavigateTo("/");
+        else
+            errorMessage = result.ErrorMessage;
+    }
+}

@@ -17,19 +17,41 @@ public class RatingController : ControllerBase
     {
         _context = context;
     }
-    [HttpPost]
+    [HttpPut]
     [Route("AddRating")]
     public async Task<ActionResult> AddRating ([FromBody] RatingDTO rating)
     {
         GetCurrentUserId();
-        _context.Ratings.Add(new Rating
+        var obj = await _context.Ratings.FirstOrDefaultAsync(r => r.UserId == userID && r.BusinessId == rating.BusinessId);
+        if (obj == null)
         {
-            UserId = userID,
-            BusinessId = rating.BusinessId,
-            Value = rating.Value,
-        });
+            _context.Ratings.Add(new Rating
+            {
+                UserId = userID,
+                BusinessId = rating.BusinessId,
+                Value = rating.Value,
+            });
+        }
+        else
+        {
+            obj.Value = rating.Value;
+        }
         await _context.SaveChangesAsync();
-        return Created();
+        return NoContent();
+    }
+    [HttpGet]
+    [Route("GetRating/{businessId}")]
+    public async Task<double> GetRating (int businessId)
+    {
+        GetCurrentUserId();
+        var rating = await _context.Ratings
+            .Where(r => r.BusinessId == businessId && r.UserId == userID)
+            .FirstOrDefaultAsync();
+        if (rating == null)
+        {
+            return 0;
+        }
+        return rating.Value;
     }
     private void GetCurrentUserId()
     {

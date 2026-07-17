@@ -18,29 +18,10 @@ public class BusinessController : ControllerBase
         _httpContextAccessor = httpContextAccessor;
     }
 
-    [HttpGet("GetAll/{selectedType}/{selectedCity}")]
-    public async Task<ActionResult<IEnumerable<BusinessDTO>>> GetAll(int selectedType, int selectedCity)
+    [HttpGet("GetAll")]
+    public async Task<ActionResult<IEnumerable<BusinessDTO>>> GetAll()
     {
         var businessesDTOs = await _context.Businesses
-          .Include(b => b.BusinessType)
-          .Select(b => new BusinessDTO
-          {
-              Id = b.Id,
-              Name = b.Name,
-              Description = b.Description,
-              Contact = b.Contact,
-              BusinessTypeName = b.BusinessType.Name,
-              BusinessTypeId = b.BusinessTypeId,
-              Image = b.BusinessType.Image,
-              CityId = b.CityId,
-              CityName = b.City.Name,
-              Rating = 10
-          }).ToListAsync();
-
-       /* var businessesDTOs = await _context.Businesses
-            .Include(b => b.BusinessType)
-            .Where(b => selectedType == 0 || b.BusinessTypeId == selectedType)
-            .Where(b => selectedCity == 0 || b.CityId == selectedCity)
             .Select(b => new BusinessDTO
             {
                 Id = b.Id,
@@ -52,12 +33,13 @@ public class BusinessController : ControllerBase
                 Image = b.BusinessType.Image,
                 CityId = b.CityId,
                 CityName = b.City.Name,
-                Rating = b.Ratings.Average (p => p.Value)
-            }).ToListAsync();*/
+                Rating = b.Ratings.Any() ? b.Ratings.Average(p => p.Value) : 0
+            }).ToListAsync();
         return Ok(businessesDTOs);
     }
 
     [HttpGet("GetOneById/{id}")]
+    [Authorize]
     public async Task<ActionResult<BusinessDTO>> GetOneById(int id)
     {
         var request = _httpContextAccessor.HttpContext.Request;
@@ -75,7 +57,7 @@ public class BusinessController : ControllerBase
                 Image = b.BusinessType.Image,
                 CityId = b.CityId,
                 CityName = b.City.Name,
-                Rating = 0
+                Rating = b.Ratings.Any()? b.Ratings.Average(p => p.Value): 0
             })
             .FirstOrDefaultAsync(b => b.Id == id);
         if (business is null)

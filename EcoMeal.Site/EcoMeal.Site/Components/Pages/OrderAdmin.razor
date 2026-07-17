@@ -1,0 +1,9 @@
+﻿@page "/ordersAdmin"
+@using EcoMeal.Site.Components.OrderList
+@rendermode InteractiveServer
+
+<PageTitle>Comenzile mele</PageTitle>
+
+<p class="text-center fs-2 fw-bold text-dark lh-1">Comenzi de confirmat</p>
+
+<OrderList Orders="@OrderList" IsAdmin="true" />

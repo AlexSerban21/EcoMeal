@@ -8,5 +8,6 @@ public class PackageType
     public int Id { get; set; }
     [MaxLength(20)]
     public required string Name { get; set; }
+    public string? Image { get; set; }
     public ICollection<Package> Packages { get; set; } = new List<Package>();
 }

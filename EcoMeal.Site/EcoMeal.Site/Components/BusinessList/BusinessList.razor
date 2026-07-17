@@ -1,14 +1,62 @@
 ﻿@namespace EcoMeal.Site.Components.BusinessList
 @using EcoMeal.Site.Components.BusinessCard
 
-@if(Businesses is null)
+@if (FilteredBusinesses is null)
 {
 	<p>Loading...</p>
 }
 else
 {
+    <div class="row g-3 align-items-end">
+        <div class="col-12 col-md-3">
+
+            <label class="form-label fw-bold mb-1">
+                Tip restaurant
+            </label>
+            <InputSelect class="form-select"
+                         @bind-Value="SelectedBusinessTypeId"
+                         @bind-Value:after="FilterBusinesses">
+                <option value="0">
+                    Toate restaurantele
+                </option>
+                @foreach (var type in BusinessTypes)
+                {
+                    <option value="@type.Id">
+                        @type.Name
+                    </option>
+                }
+            </InputSelect>
+        </div>
+        <div class="col-12 col-md-3">
+            <label class="form-label fw-bold mb-1">
+                Oraș
+            </label>
+            <InputSelect class="form-select"
+                         @bind-Value="SelectedBusinessCity"
+                         @bind-Value:after="FilterBusinesses">
+                <option value="0">
+                    Toate orașele
+                </option>
+                @foreach (var city in Cities)
+                {
+                    <option value="@city.Id">
+                        @city.Name
+                    </option>
+                }
+            </InputSelect>
+        </div>
+        <AuthorizeView Roles="Admin">
+            <div class="col-12 col-md-2 ms-auto">
+                <button type="button"
+                        class="btn btn-success rounded-5 w-100"
+                        @onclick="NavigateToAddBusiness">+ Adaugă restaurant
+                </button>
+            </div>
+        </AuthorizeView>
+    </div>
+
 	<div class="row row-cols-xxl-5 row-cols-xl-4 row-cols-md-3 row-cols-sm-2 row-cols-1 g-3">
-		@foreach (var Business in Businesses)
+        @foreach (var Business in FilteredBusinesses)
 		{
 			<div>
 				<BusinessCard Business="@Business" OnDelete="DeleteBusiness"/>

@@ -3,42 +3,95 @@
 @using Microsoft.AspNetCore.Components.Authorization
 <PageTitle>Home</PageTitle>
 
-<div class="card-body text-center rounded-1 shadow border border-1 border-dark p-5" style="background: linear-gradient(to right, #81C784, #C8E6C9);">
-    <p class="fs-1 fw-bold text-dark lh-1">
-        EcoMeal - Protejează Mediul!
-    </p>
-
-    <p class="fs-3 fw-bold text-primary-emphasis lh-1">
-        EcoMeal este o aplicație ce ajută restaurantele să reducă surplusul alimentar.
-    </p>
+<div class="card border-0 shadow rounded-4 overflow-hidden mb-5"
+     style="background: linear-gradient(135deg, #81C784, #C8E6C9);">
+    <div class="card-body text-center p-5 fs-1 fw-bold text-dark">
+        <h1 class="display-4 fw-bold text-dark mb-3">
+            EcoMeal
+        </h1>
+        <h2 class="fs-3 fw-bold text-dark mb-3">
+            Bucură-te de mâncare bună. Salvează bani. Protejează planeta.
+        </h2>
+        <p class="fs-5 fw-bold text-primary-emphasis mb-0">
+            Descoperă restaurante partenere și pachete cu mâncare la prețuri accesibile,
+            contribuind în același timp la reducerea risipei alimentare.
+        </p>
+    </div>
 </div>
 
-<br><br>
-<div class="d-flex justify-content-between mt-4 mb-3 align-items-center">
-    <span class="text-center fs-3 fw-bold text-dark lh-1">Aici puteți vedea toate restaurantele partenere: </span>    
-    <label class="form-label">Tip restaurant</label>
 
-    <InputSelect class="form-select" @bind-Value="SelectedBusinessTypeId" @bind-Value:after="FilterBusinesses">
-        <option value = "0">Toate</option>
-        @foreach (var type in BusinessTypes)
-            {
-                <option value="@type.Id">@type.Name</option>
-            }
-    </InputSelect>
+<div class="mt-5 mb-5">
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">
+            De ce EcoMeal? 🌱
+        </h2>
+        <p class="text-muted">
+            Împreună putem face o diferență pentru oameni și pentru planetă.
+        </p>
+    </div>
+    <div class="row g-4">
+        <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 text-center" style="background: linear-gradient(135deg, #81C784, #C8E6C9);">
+                <div class="card-body p-4">
+                    <div class="fs-1 mb-3">
+                        💰
+                    </div>
+                    <h4 class="fw-bold">
+                        Prețuri mai mici
+                    </h4>
+                    <p class="text-muted mb-0">
+                        Descoperă pachete cu mâncare delicioasă la prețuri accesibile.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 text-center" style="background: linear-gradient(135deg, #64B5F6, #BBDEFB);">
+                <div class="card-body p-4">
+                    <div class="fs-1 mb-3">
+                        🌍
+                    </div>
+                    <h4 class="fw-bold">
+                        Protejezi planeta
+                    </h4>
+                    <p class="text-muted mb-0">
+                        Contribui la reducerea risipei alimentare și la protejarea mediului.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 text-center" style="background: linear-gradient(135deg, #FFB74D, #FFE0B2);">
+                <div class="card-body p-4">
+                    <div class="fs-1 mb-3">
+                        🤝
+                    </div>
+                    <h4 class="fw-bold">
+                        Susții restaurantele locale
+                    </h4>
+                    <p class="text-muted mb-0">
+                        Ajută restaurantele partenere să valorifice surplusul de mâncare.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <InputSelect class="form-select" @bind-Value="SelectedBusinessCity" @bind-Value:after="FilterBusinesses">
-        <option value="0">Toate</option>
-        @foreach (var type in Cities)
-        {
-            <option value="@type.Id">@type.Name</option>
-        }
-    </InputSelect>
+<div class="mt-5 mb-4">
 
-    <AuthorizeView Roles="Admin"> 
-        <button type="button"
-                class="btn btn-success rounded-5" @onclick="NavigateToAddBusiness">
-            + Adaugă restaurant
-        </button>
-    </AuthorizeView> 
+    <!-- Titlu -->
+    <div class="mb-4">
+
+        <h2 class="fw-bold text-dark mb-2">
+            Restaurante partenere
+        </h2>
+
+        <p class="text-muted fs-5 mb-0">
+            Descoperă restaurantele disponibile și filtrează rezultatele.
+        </p>
+
+    </div>
+
 </div>
 <BusinessList Businesses="@Businesses" />

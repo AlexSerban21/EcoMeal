@@ -188,10 +188,10 @@ C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Deb
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\staticwebassets.development.json
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\staticwebassets.build.endpoints.json
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\swae.build.ex.cache
-C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\EcoMeal..D051FB48.Up2Date
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\EcoMeal.API.dll
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\refint\EcoMeal.API.dll
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\EcoMeal.API.pdb
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\EcoMeal.API.genruntimeconfig.cache
 C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\ref\EcoMeal.API.dll
+C:\Users\alexa\source\repos\AlexSerban21\EcoMeal\EcoMeal.API\EcoMeal.API\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

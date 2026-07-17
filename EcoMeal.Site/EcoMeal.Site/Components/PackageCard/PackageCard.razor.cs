@@ -12,9 +12,16 @@ public partial class PackageCard
     public required NavigationManager Navigation { get; set; }
     [Parameter]
     public EventCallback<int> OnDelete { get; set; }
+    [Parameter]
+    public EventCallback<int> OnUpdate { get; set; }
     public async Task Delete()
     {
         await OnDelete.InvokeAsync(Package.Id);
+    }
+
+    public async Task Reserve()
+    {
+        await OnUpdate.InvokeAsync(Package.Id);
     }
     public async Task Update()
     {

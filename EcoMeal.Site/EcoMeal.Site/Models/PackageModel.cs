@@ -13,4 +13,5 @@ public class PackageModel
     public int PackageTypeId { get; set; }
     public string? PackageType { get; set; }
     public int BusinessId { get; set; }
+    public string? Image { get; set; }
 }

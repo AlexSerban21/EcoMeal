@@ -3,21 +3,89 @@
 
 <div class="page">
     <main>
-        <nav style="background: linear-gradient(to right, #1B5E20, #4CAF50);" class="px-3 top-row justify-content-start">
+        <nav style="background: linear-gradient(to right, #1B5E20, #4CAF50);"
+             class="px-3 top-row d-flex align-items-center position-relative  z-3">
             <a href="." class="text-white fs-5 fw-bold" style="margin-left:5px;font-family: 'Trebuchet MS'">EcoMeal</a>
             <div class="ms-auto d-flex gap-0 align-items-center">
                 <AuthorizeView>
-                    <Authorized Context="authContext">
-                        <a class="btn btn-outline-secondary btn-sm me-2" href="/orders">Comenzi</a>
-                        <button @onclick="HandleLogout" class="bg-transparent border-0 text-white fs-6 p-0 fw-bold text-decoration-none">Deconectează-te</button>
-                    </Authorized>
-                    <NotAuthorized Context="authContext">
+                    <Authorized Context="userContext">
 
-                        //<span class="text-white fs-6 p-0 fw-bold text-decoration-none">Salut @authContext.User</span>
+                        <div class="position-relative">
+
+                            <button class="btn text-white fw-bold p-0"
+                                    @onclick="ToggleProfileMenu">
+
+                                @UserName
+
+                                <span class="ms-1">
+                                    @(IsProfileMenuOpen ? "▲" : "▼")
+                                </span>
+
+                            </button>
+
+
+                            @if (IsProfileMenuOpen)
+                            {
+                                <div class="position-absolute end-0 mt-2 bg-white rounded-3 shadow p-2 z-3"
+                                     style="width: 220px;">
+
+
+                                    <a href="/updateUser"
+                                       class="dropdown-item rounded-2 py-2 text-start text-decoration-none">
+
+                                        <i class="bi bi-person me-2"></i>
+                                        Modificare cont
+
+                                    </a>
+
+
+                                    <a href="/orders"
+                                       class="dropdown-item rounded-2 py-2 text-start text-decoration-none">
+
+                                        <i class="bi bi-bag me-2"></i>
+                                        Vizualizare comenzi
+
+                                    </a>
+
+									<AuthorizeView Roles="Admin">
+                                        <a href="/ordersAdmin"
+                                           class="dropdown-item rounded-2 py-2 text-start text-decoration-none">
+                                            <i class="bi bi-shield-lock me-2"></i>
+                                            Confirmă comenzile
+                                        </a>
+                                    </AuthorizeView>
+
+                                    <a href="/FavouriteBusinesses"
+                                       class="dropdown-item rounded-2 py-2 text-start text-decoration-none">
+
+                                        <i class="bi bi-heart me-2"></i>
+                                        Restaurante favorite
+
+                                    </a>
+
+
+                                    <hr class="my-2">
+
+
+                                    <button class="dropdown-item rounded-2 py-2 text-start text-danger ps-4 text-decoration-none"
+                                            @onclick="HandleLogout">
+
+                                        <i class="bi bi-box-arrow-right me-2"></i>
+                                        Delogare
+
+                                    </button>
+
+                                </div>
+                            }
+
+                        </div>
+
+                    </Authorized>
+                    <NotAuthorized>
                         <a href="/login" class="text-white fs-6 p-0 fw-bold text-decoration-none">
                             Autentificare
                         </a>
-
+             
                         <a href="register" class="text-white fs-6 p-0 fw-bold text-decoration-none">
                             Înregistrare
                         </a>
@@ -37,18 +105,76 @@
     <span class="dismiss">🗙</span>
 </div>
 
-@code {
+@code
+{
 
     [Inject]
     public required AuthService AuthService { get; set; }
+
+
     [Inject]
-	public required NavigationManager Navigation { get; set; }
-	public string UserName { get; set; } = string.Empty;
+    public required NavigationManager Navigation { get; set; }
+
+
+    public string UserName { get; set; } = string.Empty;
+
+
+    private bool IsProfileMenuOpen = false;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        Navigation.LocationChanged += OnLocationChanged;
+    }
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await AuthService.LoadTokenAsync();
+
+            if (AuthService.IsAuthenticated)
+            {
+                UserName = await AuthService.GetUserName();
+
+                StateHasChanged();
+            }
+        }
+    }
+
+
+    private void ToggleProfileMenu()
+    {
+        IsProfileMenuOpen = !IsProfileMenuOpen;
+    }
+
+
+    private void OnLocationChanged(
+        object? sender,
+        LocationChangedEventArgs e)
+    {
+        IsProfileMenuOpen = false;
+
+        InvokeAsync(StateHasChanged);
+    }
 
 
     private async Task HandleLogout()
     {
         await AuthService.LogoutAsync();
-        Navigation.NavigateTo("/", forceLoad: true);
+
+        IsProfileMenuOpen = false;
+
+        Navigation.NavigateTo(
+            "/",
+            forceLoad: true);
     }
+
+
+    public void Dispose()
+    {
+        Navigation.LocationChanged -= OnLocationChanged;
+    }
+
 }

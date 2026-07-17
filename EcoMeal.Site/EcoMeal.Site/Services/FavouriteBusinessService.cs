@@ -17,15 +17,15 @@ public class FavouriteBusinessService
     }
     public async Task Add(int id)
     {
-        var response = await _http.PostAsJsonAsync("/api/FavouriteBusiness/Add", id);
+        var response = await _http.PostAsJsonAsync<object?>($"/api/FavouriteBusiness/Add/{id}", null);
     }
     public async Task Delete(int id)
     {
         await _http.DeleteAsync($"/api/FavouriteBusiness/Delete/{id}");
     }
-    public async Task<List<FavouriteBusinessModel>> GetAll()
+    public async Task<List<BusinessModel>> GetAll()
     {
-        var FavouriteBusinesses =  await _http.GetFromJsonAsync<List<FavouriteBusinessModel>>($"/api/FavouriteBusiness/GetAll");
-        return FavouriteBusinesses ?? new List<FavouriteBusinessModel>();
+        var FavouriteBusinesses =  await _http.GetFromJsonAsync<List<BusinessModel>>($"/api/FavouriteBusiness/Get");
+        return FavouriteBusinesses ?? new List<BusinessModel>();
     }
 }
