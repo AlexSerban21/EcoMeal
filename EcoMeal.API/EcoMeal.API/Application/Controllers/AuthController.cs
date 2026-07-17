@@ -75,7 +75,7 @@ public class AuthController : ControllerBase
         var user = await _userManager.GetUserAsync(User);
         if (user == null)
             return NotFound();
-        if (request.Password != null)
+        if (request.Password != null && request.Password != "")
         {
             var passwordResult = await _userManager.ChangePasswordAsync(user, request.CurrentPassword, request.Password);
             if (!passwordResult.Succeeded)

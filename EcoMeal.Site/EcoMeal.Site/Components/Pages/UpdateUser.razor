@@ -84,7 +84,7 @@
     {
         var result = await AuthService.UpdateAsync(updateModel.Email, updateModel.CurrentPassword, updateModel.Password, updateModel.Name, updateModel.Contact);
         if (result.Success)
-            Navigation.NavigateTo("/");
+            Navigation.NavigateTo("/", true);
         else
             errorMessage = result.ErrorMessage;
     }
